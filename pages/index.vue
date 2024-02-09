@@ -1,3 +1,13 @@
+<script setup>
+const story = await useAsyncStoryblok("home", { version: "draft" })
+
+const content = computed(() => {
+  if (!story.value) return
+  const items = story.value.content.body
+  return items.find((item) => item.component === "purplerow")
+})
+</script>
+
 <template>
   <div class="bg-PRP h-screen">
     <div class="flex justify-center w-1/2 pt-10 mx-auto">
@@ -21,15 +31,15 @@
         </div>
       </div>
     </div>
-    <div class="bg-PRP py-20">
-        <div class="w-2/3 mx-auto text-center" >
-<h2 class="font-bold text-4xl text-white">DISEÑAMOS Y FABRICAMOS
-</h2>
-            <p class="text-white text-xl mt-6  font-thin">Objetos exclusivos en cerámica de alta temperatura para todo tipo de usos en el hogar y el comercio. Zeramic es la combinación de técnicas tradicionales de fabricación de cerámica con nuevas tecnologías como el modelado y la impresión 3d, además de un profundo amor por Guatapé y su cultura del zócalo, que adorna sus casas y calles de colores e historias.</p>
-        </div>
-        </div>
-        <div class="w-1/2 mx-auto py-10">
-        <img src="/img/logos_index.png" alt="">
+
+    <StoryblokComponent
+      class="bg-PRP text-white text-center px-20"
+      v-if="story"
+      :blok="content"
+    />
+
+    <div class="w-1/2 mx-auto py-10">
+      <img src="/img/logos_index.png" alt="" />
     </div>
     <Footer />
   </div>
