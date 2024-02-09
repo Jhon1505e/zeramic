@@ -7,8 +7,7 @@ export default defineNuxtConfig({
     cssPath: './assets/css/main.css'
   },
   storyblok: {
-    // accessToken: process.env.STORYBLOK_TOKEN,
-    accessToken: 'wziO6FqetaGF98JsD8Njbgtt',
+    accessToken: process.env.STORYBLOK_TOKEN,
     apiOptions: { region: 'us' },
     devtools: true,
   },
