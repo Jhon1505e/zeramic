@@ -9,7 +9,11 @@ export default {
     "./error.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'PRP': '#5200f8',
+      },
+    },
   },
   plugins: [],
 }
