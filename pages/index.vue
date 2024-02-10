@@ -32,13 +32,16 @@ const content = computed(() => {
       </div>
     </div>
 
-    <StoryblokComponent
+    <!-- <StoryblokComponent
       class="bg-PRP text-white text-center px-20"
       v-if="story"
       :blok="content"
     />
+ -->
+ <div class="h-96 bg-PRP">
 
-    <div class="w-1/2 mx-auto py-10">
+ </div>
+    <div class="w-full md:w-1/2 mx-auto px-6 md:px-0 py-10">
       <img src="/img/logos_index.png" alt="" />
     </div>
     <Footer />
