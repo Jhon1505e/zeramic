@@ -1,10 +1,10 @@
 <template>
   <div class="bg-gray-600 pt-8 relative bottom-0  ">
-    <div class="flex justify-center w-1/2 mx-auto">
+    <div class="block md:flex justify-center w-1/2 mx-auto">
       <div>
         <img src="/img/logo_zeramic.webp" class="w-60" alt="" />
       </div>
-      <hr class="rotate-90 w-40 mt-24" />
+      <hr class=" sm:rotate-90 md:w-40 mt-2 md:mt-24" />
       <div class="mt-10">
         <h2 class="text-white text-4xl ml-3 font-bold">Contacto</h2>
         <div class="flex gap-2 mt-3">
