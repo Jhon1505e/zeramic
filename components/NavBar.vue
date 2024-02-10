@@ -10,7 +10,7 @@
         <li>
           <NuxtLink
             class="text-white text-2xl pb-1 border-b border-PRP hover:border-white duration-100 ease-in font-thin opacity-80 hover:opacity-100"
-            to="/">Productos</NuxtLink>
+            to="/productos">Productos</NuxtLink>
         </li>
         <li>
           <NuxtLink
