@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/image-edge": "^1.3.0-28465588.9982e17",
     "@storyblok/nuxt": "^6.0.4",
     "nuxt": "^3.10.1",
     "vue": "^3.4.15",

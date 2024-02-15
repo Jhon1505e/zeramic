@@ -9,6 +9,7 @@ export function useProducts() {
         let params = {
             version: 'draft',
             starts_with: 'productos/',
+            is_startpage: false,
         }
 
         const { data } = await storyblokApi.get("cdn/stories/", params as any)

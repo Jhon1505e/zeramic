@@ -29,7 +29,7 @@ fetchProducts();
         </button>
       </div>
 
-      <div >
+      <div>
         <img src="/img/logo_zeramic.webp" class="w-52" alt="" />
       </div>
       <div class="hidden md:flex justify-center gap-4 items-center">
