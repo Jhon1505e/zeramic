@@ -10,7 +10,7 @@ const content = computed(() => {
 
 <template>
   <div class="bg-PRP h-screen">
-    <div class="flex justify-center w-1/2 pt-10 mx-auto">
+    <div class="flex justify-center w-1/2 pt-6 mx-auto">
       <img src="/img/logo_zeramic.webp" alt="" />
     </div>
     <div class="w-full bg-PRP">
