@@ -71,7 +71,7 @@ fetchProducts();
         
       </div> </div>
       <div
-        class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 w-5/6 mx-auto py-10"
+        class="grid grid-cols sm:grid-cols-3 lg:grid-cols-4 gap-6 w-5/6 mx-auto py-10"
       >
         <ProductoCard
           v-for="{ content, uuid, slug } in products"
