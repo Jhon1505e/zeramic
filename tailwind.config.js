@@ -9,7 +9,7 @@ export default {
     'nuxt.config.js'
   ],
   safelist: [
-    { pattern: /([a-zA-Z]+)-./ }
+    { pattern: /(bg|text|border)-./ }
   ],
   theme: {
     extend: {
