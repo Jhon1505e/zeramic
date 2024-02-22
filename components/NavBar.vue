@@ -1,38 +1,49 @@
 <template>
-  <div class="bg-PRP  shadow-md shadow-PRP">
-    <div class="w-full md:w-1/2 mx-auto flex justify-center py-4">
-      <ul class="hidden md:flex gap-5">
+  <div class="bg-PRP drop-shadow-xl fixed w-full z-20 ">
+    <div class="w-full  justify-around flex py-4">
+      <div class="w-1/3 pl-10 md:pl-32 " >
+        <img src="/img/zeramicText.png" class="w-36 mx-auto md:mx-0" alt="">
+      </div>
+      <ul class="hidden md:flex gap-5 w-1/3  justify-center pt-2 pl-12 ">
         <li>
           <NuxtLink
-            class="text-white text-2xl pb-1 border-b border-PRP hover:border-white duration-100 ease-in font-thin opacity-80 hover:opacity-100"
+            class="text-white text-2xl pb-1 border-b focus:border-white focus:opacity-100 border-PRP hover:border-white duration-100 ease-in font-thin opacity-80 hover:opacity-100"
             to="/">Inicio</NuxtLink>
         </li>
         <li>
           <NuxtLink
-            class="text-white text-2xl pb-1 border-b border-PRP hover:border-white duration-100 ease-in font-thin opacity-80 hover:opacity-100"
+            class="text-white text-2xl pb-1 border-b focus:border-white focus:opacity-100 border-PRP hover:border-white duration-100 ease-in font-thin opacity-80 hover:opacity-100"
             to="/productos">Productos</NuxtLink>
         </li>
         <li>
           <NuxtLink
-            class="text-white text-2xl pb-1 border-b border-PRP hover:border-white duration-100 ease-in font-thin opacity-80 hover:opacity-100"
+            class="text-white text-2xl pb-1 border-b border-PRP focus:border-white focus:opacity-100 hover:border-white duration-100 ease-in font-thin opacity-80 hover:opacity-100"
             to="/nosotros">Nosotros</NuxtLink>
         </li>
         <li>
           <NuxtLink
-            class="text-white text-2xl pb-1 border-b border-PRP hover:border-white duration-100 ease-in font-thin opacity-80 hover:opacity-100"
+            class="text-white text-2xl pb-1 border-b border-PRP focus:border-white focus:opacity-100 hover:border-white duration-100 ease-in font-thin opacity-80 hover:opacity-100"
             to="/home">Contacto</NuxtLink>
         </li>
+       
+        
       </ul>
-      <div class="w-full text-end pr-10">
+      <div class="w-1/2 md:w-1/3 flex justify-end pt-1 md:pt-2 pr-10">
+        <button class="flex rounded-full text-white bg-white/20 px-4 md:px-6 py-1 md:pt-2 gap-2 md:h-10">
+         <span class="hidden md:block">Compras</span>
+          <IconsBag class="w-8 md:w-6 stroke-white" />
+        </button>
+      </div>
+      <div class="w-auto text-end pr-10 pt-1 md:hidden ">
 
         <button class="" @click="modal = true">
-          <IconsMenu class="w-10 stroke-white md:hidden" />
+          <IconsMenu class="w-10 stroke-white " />
         </button>
       </div>
     </div>
-    <div class="h-screen fixed inset-0 z-20 bg-PRP" v-if="modal">
+    <div class="h-screen fixed inset-0 z-30 bg-PRP" v-if="modal">
     
-      <div class="text-end pr-10 pt-4">
+      <div class="text-end pr-10  pt-4">
         <button @click="modal = false">
           <IconsClose class="w-10 stroke-white md:hidden" />
         </button>
@@ -62,5 +73,7 @@
   </div>
 </template>
 <script setup lang="ts">
+
+
 const modal = ref(false)
 </script>
