@@ -42,12 +42,14 @@ const content = computed(() => {
     />  -->
     
     <div class="bg-PRP">
-      <div class="w-full md:w-5/6 py-20 px-6 mx-auto text-center">
+      <div class="w-full md:w-5/6 pt-20 pb-16 px-6 mx-auto text-center">
         
         <h2 class="text-xl md:text-3xl font-semibold pb-4 text-white ">DISEÑAMOS Y FABRICAMOS</h2>
         <p class="text-white antialiased font-light md:font-semibold">Objetos exclusivos en cerámica de alta temperatura para todo tipo de usos en el hogar y el comercio. Zeramic es la combinación de técnicas tradicionales de fabricación de cerámica con nuevas tecnologías como el modelado y la impresión 3d, además de un profundo amor por Guatapé y su cultura del zócalo, que adorna sus casas y calles de colores e historias.</p>
       </div>
-      
+      <div class="w-full">
+        <img src="/img/wave.png" class="w-full h-16 rotate-180" alt="" />
+      </div>
     </div>
     <div class="w-full md:w-1/2 mx-auto px-6 md:px-0 py-10">
       <img src="/img/logos_index.png" alt="" />
