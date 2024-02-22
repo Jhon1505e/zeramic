@@ -8,9 +8,6 @@ export default {
     'plugins/**/*.js',
     'nuxt.config.js'
   ],
-  safelist: [
-    { pattern: /(bg|text|border)-./ }
-  ],
   theme: {
     extend: {
       colors: {
