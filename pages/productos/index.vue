@@ -5,44 +5,6 @@ fetchProducts();
 </script>
 <template>
   <div class="bg-PRP">
-  <!--   <div class="flex justify-center gap-6">
-      <div class="hidden md:flex justify-center gap-4 items-center">
-        <button
-          class="text-white border-b pb-1 text-sm font-normal hover:scale-110 duration-100 easy-out"
-        >
-          TODOS
-        </button>
-        <button
-          class="text-white border-b pb-1 text-sm font-normal hover:scale-110 duration-100 easy-out"
-        >
-          COCINA
-        </button>
-        <button
-          class="text-white border-b pb-1 text-sm font-normal hover:scale-110 duration-100 easy-out"
-        >
-          DECORATIVO
-        </button>
-        
-      </div>
-
-      <div>
-        <img src="/img/logo_zeramic.webp" class="w-52" alt="" />
-      </div>
-      <div class="hidden md:flex justify-center gap-4 items-center">
-        <button
-          class="text-white border-b pb-1 text-sm font-normal hover:scale-110 duration-100 easy-out"
-        >
-          MATERAS
-        </button>
-        <button
-          class="text-white border-b pb-1 text-sm font-normal hover:scale-110 duration-100 easy-out"
-        >
-          UTILITARIO
-        </button>
-       
-      </div>
-    </div> -->
-
     <div class="bg-gray-100">
       <div class="bg-white pt-10 pb-5">
 
@@ -71,7 +33,7 @@ fetchProducts();
         
       </div> </div>
       <div
-        class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 w-5/6 mx-auto py-10"
+        class="grid grid-cols sm:grid-cols-3 lg:grid-cols-4 gap-6 w-5/6 mx-auto py-10"
       >
         <ProductoCard
           v-for="{ content, uuid, slug } in products"
