@@ -1,5 +1,6 @@
 <template>
-  <div id="default-carousel" class="relative w-full">
+  <div id="default-carousel" class="relative w-full" :class="classNames">
+    {{props.blok.classNames}}
     <div class="relative h-56 overflow-hidden rounded-lg md:h-[450px]">
       <div
         v-for="(image, i) in blok.images"
@@ -45,7 +46,7 @@
 <script setup>
 const props = defineProps({ blok: Object })
 const id = ref(1)
-const { images } = props.blok
+const { images, classNames } = props.blok
 function prev() {
   id.value = id.value === 1 ? images.length : id.value - 1
 }

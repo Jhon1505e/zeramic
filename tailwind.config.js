@@ -8,6 +8,9 @@ export default {
     'plugins/**/*.js',
     'nuxt.config.js'
   ],
+  safelist: [
+    { pattern: /([a-zA-Z]+)-./ }
+  ],
   theme: {
     extend: {
       colors: {

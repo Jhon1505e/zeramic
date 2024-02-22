@@ -7,8 +7,7 @@ const story = await useAsyncStoryblok(
 </script>
 
 <template>
-  <div>
-    
+  <div class="max-w-6xl mx-auto">
     <StoryblokComponent v-if="story" :blok="story.content" />
   </div>
 </template>
