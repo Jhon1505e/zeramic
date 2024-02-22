@@ -27,7 +27,11 @@
         </div>
       </div>
     </div>
-    
+
+    <div v-editable="blok" class="px-4">
+      <StoryblokComponent v-for="blok in blok.Body" :key="blok._uid" :blok="blok" />
+    </div>
+
     <div class="bg-PRP">
       <div class="w-full">
         <img src="/img/wave.png" class="w-full h-16" alt="" />
@@ -67,8 +71,6 @@
         </div>
       </div>
       <div class="pl-20 pb-10">
-        
-
         <NuxtLink to="/productos/" class="text-white font-thin text-xl border border-white px-6 py-2 rounded-lg  hover:bg-white/20 hover:scale-105 duration-100 ease-in"> Ver otros productos</NuxtLink>
       </div>
     </div>
@@ -81,7 +83,7 @@
 
 
 const props = defineProps({ blok: Object });
-const { Imagen, Nombre, Descripcion, ImgMedidas, Medidas, Uso } = toRefs(
+const { Imagen, Nombre, Descripcion, ImgMedidas, Medidas, Uso, Body } = toRefs(
   props.blok
 );
 </script>
