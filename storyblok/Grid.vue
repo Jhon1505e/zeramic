@@ -1,7 +1,7 @@
 <template>
   <div
     v-editable="blok"
-    class="grid gap-12 my-12 place-items-center"
+    class="grid gap-12 py-12 place-items-center"
     :class="classNames"
   >
     <StoryblokComponent

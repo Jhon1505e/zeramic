@@ -1,0 +1,20 @@
+<template>
+  <svg
+    version="1.1"
+    id="Capa_1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    x="0px"
+    y="0px"
+    viewBox="0 0 533.8 13.02"
+    style="enable-background: new 0 0 533.8 13.02"
+    xml:space="preserve"
+  >
+    <path
+      d="M0,4.5v8.52h533.8V4.5c-23.69,1.79-60.52,3.96-105.73,3.92c-72.81-0.06-85.38-5.79-154.1-5.89
+	c-65.51-0.1-74.5,5.1-146.53,5.89C73.27,9.02,29.02,6.63,0,4.5z"
+    />
+    <path d="M289.97,38.32" />
+    <path d="M428.91,41.26" />
+  </svg>
+</template>

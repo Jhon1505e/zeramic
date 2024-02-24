@@ -7,7 +7,8 @@ const story = await useAsyncStoryblok(
 </script>
 
 <template>
-  <div class="max-w-6xl mx-auto">
+  <div class=" mx-auto">
     <StoryblokComponent v-if="story" :blok="story.content" />
   </div>
+  <FooterImg class="fill-slate-900" />
 </template>

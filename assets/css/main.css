@@ -11,3 +11,11 @@ h2 {
 h3 {
     @apply text-xl font-semibold pt-3 pb-1;
 }
+
+b {
+    @apply font-semibold;
+}
+
+.myTitle {
+    @apply text-3xl font-semibold pt-3 pb-1 text-center text-purple-500;
+}

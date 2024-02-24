@@ -1,6 +1,6 @@
 <template>
   <div id="default-carousel" class="relative w-full" :class="classNames">
-    {{props.blok.classNames}}
+
     <div class="relative h-56 overflow-hidden rounded-lg md:h-[450px]">
       <div
         v-for="(image, i) in blok.images"

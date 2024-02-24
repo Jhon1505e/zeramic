@@ -6,9 +6,9 @@ const contenido = computed(() => renderRichText(props.blok.Contenido));
 <template>
   <div v-editable="blok"
     class="py-20">
-    <h2 class="text-3xl text-PRP font-bold text-center">
+    <h2 class="text-3xl text-white  font-bold text-center">
       {{ blok.Titulo }}
     </h2>
-    <div class="mt-6 font-light p-3" v-html="contenido" />
+    <div class="mt-6 font-light p-3 text-white" v-html="contenido" />
   </div>
 </template>

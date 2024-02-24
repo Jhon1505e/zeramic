@@ -2,7 +2,7 @@
     <div
       v-editable="blok"
     >
-      {{ blok.headline }}
+      {{ blok }}
     </div>
   </template>
   
