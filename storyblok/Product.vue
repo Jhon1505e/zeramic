@@ -1,12 +1,12 @@
 <template>
   <div v-editable="blok">
-  <div v-if="modal" class="bg-black/50 h-screen w-full fixed  z-20 flex justify-center items-center">
+  <div v-if="modal" class="bg-black/50  h-screen w-full fixed inset-0 flex justify-center items-center">
 <div class="w-1/2 h-1/2 bg-white rounded-lg">
 <button @click="modal = false">s</button>
 </div>
   </div>  
     <div class="max-w-6xl  py-10 mx-auto">
-      <div class="w-full mt-20 md:flex px-5 md:px-0">
+      <div class="w-full  md:flex px-5 md:px-0">
         <div class="w-full md:w-1/2 mt-5">
           <NuxtImg
             v-if="Imagen?.filename"
@@ -34,17 +34,15 @@
       
       
     </div>
-    <PagesImg class="fill-PRP" />
+    <FooterImg class="fill-PRP" />
     <div class="bg-PRP ">
       
-      <div v-editable="blok" class="px-4 ">
+      <div v-editable="blok" class="px-10 ">
         <StoryblokComponent v-for="blok in blok.Body" :key="blok._uid" :blok="blok" />
       </div>
+      <FooterImg class="fill-slate-900" />
     </div>
-    <FooterImg class="fill-PRP rotate-180" />
-<div class="bg-white h-56">
-
-</div>
+    
   </div>
 </template>
 
