@@ -2,7 +2,7 @@
   <div class="bg-PRP drop-shadow-xl fixed w-full z-20 ">
     <div class="w-full  justify-around flex py-4">
       <div class="w-1/3 pl-10 md:pl-32 " >
-        <img src="/img/zeramicText.png" class="w-36 mx-auto md:mx-0" alt="">
+        <NuxtImg format="webp" src="/img/zeramicText.png" class="w-36 mx-auto md:mx-0" alt="" />
       </div>
       <ul class="hidden md:flex gap-5 w-1/3  justify-center pt-2 pl-12 ">
         <li>
@@ -88,7 +88,7 @@
         </div>
       </div>
       <div class="pt-20">
-        <img src="/img/logo_zeramic.webp" class="w-60 m-auto" alt="" />
+        <NuxtImg format="webp" src="/img/logo_zeramic.webp" class="w-60 m-auto" alt="" />
       </div>
     </div>
   </div>
