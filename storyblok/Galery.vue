@@ -7,7 +7,7 @@
         :class="{ 'opacity-0': id !== i + 1 }"
         class="duration-700 ease-in-out"
       >
-        <img
+        <NuxtImg format="webp"
           :src="image.filename"
           :alt="image.id"
           class="absolute rounded-lg block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
