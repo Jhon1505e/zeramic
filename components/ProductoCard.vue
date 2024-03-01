@@ -12,23 +12,38 @@ defineProps<{
     :key="uuid"
   >
 
-   <NuxtLink :to="`/productos/${slug}`" >
+   <NuxtLink :to="`/productos/${slug}`" class="relative" >
       <NuxtImg
       v-if="content.Imagen?.filename"
-      class="rounded-t-lg"
+      class="rounded-lg w-full"
       provider="storyblok"
       :src="content.Imagen?.filename"
       alt=""
       />
+
       <NuxtImg
       v-else
-      class="bg-gray-300 rounded-t-lg"
+      class="bg-gray-300 rounded-lg"
       src="/img/logo_zeramic.webp"
       alt=""
       />
+      <div class="w-full hover:bg-black/60 absolute bottom-0 text-end h-full duration-300 rounded-lg ">
+        <div class="opacity-0 hover:opacity-100 duration-300  h-full w-full flex justify-center items-center">
+          <div>
+
+            <h2 class="text-white font-normal  justify-center pr-4 text-lg flex"> 
+              <IconsBag class="w-5 stroke-2" /> :
+              {{ content.Precio  }}</h2>
+              <hr class=" mb-2">
+            <button class="bg-PRP px-4 py-2 rounded-lg text-white ">
+              Comprar Producto
+            </button>
+            </div>
+          </div>
+      </div>
       
    
-      <div
+    <!--   <div
         class="flex justify-center items-center text-center bg-white w-full py-3 px-6 rounded-b-lg h-38"
       >
         <div>
@@ -51,7 +66,7 @@ defineProps<{
             </p>
           </div>
         </div> 
-      </div>
+      </div> -->
      </NuxtLink>
 
   </article>

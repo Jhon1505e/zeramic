@@ -4,7 +4,7 @@
       <div class="w-1/3 pl-10 md:pl-32 " >
         <NuxtImg format="webp" src="/img/zeramicText.png" class="w-36 mx-auto md:mx-0" alt="" />
       </div>
-      <ul class="hidden md:flex gap-5 w-1/3  justify-center pt-2 pl-12 ">
+      <ul class="hidden lg:flex gap-5 w-1/3  justify-center pt-2 pl-12 ">
         <li>
           <NuxtLink
             class="text-white text-2xl pb-1 border-b border-PRP hover:border-white duration-100 ease-in font-thin opacity-80 hover:opacity-100"
@@ -40,10 +40,10 @@
           <IconsBag class="w-8 md:w-6 stroke-white" />
         </button>
       </div>
-      <div class="w-auto text-end pr-10 pt-1 md:hidden ">
+      <div class="w-auto text-end pr-10 pt-1 lg:hidden ">
 
         <button class="" @click="modal = true">
-          <IconsMenu class="w-10 stroke-white md:hidden" />
+          <IconsMenu class="w-10 stroke-white " />
         </button>
       </div>
     </div>
