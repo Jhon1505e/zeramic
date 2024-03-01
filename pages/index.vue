@@ -29,7 +29,7 @@ const content = computed(() => {
       >
         <div>
           <NuxtImg format="webp" src="/img/text_index.webp" class="w-2/3 mx-auto" alt="" />
-          <h2 class="text-white text-md mt-8 py-3 px-5 font-bold">
+          <h4 class="text-white text-md mt-8 py-3 px-5 font-bold">
             NOS INSPIRA A CREAR BELLAS PIEZAS QUE GUARDAN SU ESENCIA, SUS
             FORMAS, SUS COLORES...
           </h4>
