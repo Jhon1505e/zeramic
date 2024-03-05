@@ -5,47 +5,49 @@ fetchProducts();
 </script>
 <template>
   <div class="bg-gray-200">
-    <div class="bg-PRP pt-6  w-full ">
+    <div class="bg-PRP  w-full ">
       
-      <h2 class="text-4xl text-center md:text-left md:pl-28 font-bold pb-4 text-white">
-        Productos Zeramic
+      <h2 class="text-4xl md:text-6xl py-20 w-3/4 mx-auto text-center font-bold  text-white">
+        ¡ Todo lo que necesitas  para decorar tu hogar !
       </h2>
-      <div class="w-full md:w-5/6 mx-auto flex gap-4 justify-center md:justify-start pb-4 md:pb-0">
+     
+      
+    </div>
+    <FooterImg class="fill-gray-400 rotate-180" />
+    <div class="bg-gray-200">
+      <div class="w-full md:w-5/6 mt-10 mx-auto flex gap-4 justify-center md:justify-end pb-4 md:pb-0">
+       
         <button
-          class="text-white border border-white px-4 py-2 hover:bg-white/30 hover:scale duration-100 ease-in rounded-md fill-white flex gap-2"
-        >
-        <span class="hidden md:block">Todos</span> 
-          <IconsBlock class="w-5 pt-0.5" />
-        </button>
-        <button
-          class="text-white border border-white px-4 py-2 hover:bg-white/30 hover:scale duration-100 ease-in rounded-md fill-white flex gap-2"
+          class="text-PRP border border-PRP px-4 hover:fill-white hover:text-white py-2 hover:bg-PRP hover:scale duration-100 ease-in rounded-md fill-PRP flex gap-2"
         >
          <span class="hidden md:block">Cocina</span> 
           <IconsCocina class="w-5" />
         </button>
         <button
-          class="text-white border border-white px-4 py-2 hover:bg-white/30 hover:scale duration-100 ease-in rounded-md fill-white flex gap-2"
+          class="text-PRP border border-PRP  px-4 hover:text-white py-2 hover:bg-PRP hover:scale duration-100 ease-in rounded-md fill-PRP flex gap-2"
         >
         <span class="hidden md:block">Decorativo</span> 
           <IconsSun class="w-5 pt-0.5" />
         </button>
         <button
-          class="text-white border border-white px-4 py-2 hover:bg-white/30 hover:scale duration-100 ease-in rounded-md fill-white flex gap-2"
+          class="text-PRP border border-PRP px-4 hover:fill-white hover:text-white py-2 hover:bg-PRP hover:scale duration-100 ease-in rounded-md fill-PRP flex gap-2"
         >
         <span class="hidden md:block">Utilitario</span> 
           <IconsPortaLapiz class="w-5" />
         </button>
         <button
-          class="text-white border border-white px-4 py-2 hover:bg-white/30 hover:scale duration-100 ease-in rounded-md fill-white flex gap-2"
+          class="text-PRP border border-PRP px-4 hover:fill-white hover:text-white py-2 hover:bg-PRP hover:scale duration-100 ease-in rounded-md fill-PRP flex gap-2"
         >
         <span class="hidden md:block">Materas</span>
           <IconsMatera class="w-4 pt-1" />
         </button>
+        <button
+          class="text-PRP border border-PRP px-4 hover:text-white py-2 hover:bg-PRP hover:scale duration-100 ease-in rounded-md fill-PRP flex gap-2"
+        >
+        <span class="hidden md:block">Todos</span> 
+          <IconsBlock class="w-5 pt-0.5" />
+        </button>
       </div>
-      <FooterImg class="fill-gray-200 mt-2" />
-      
-    </div>
-    <div class="bg-gray-200">
       <div
         class="grid grid-cols  lg:grid-cols-3 gap-6 w-5/6 mx-auto py-10"
       >

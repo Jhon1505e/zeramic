@@ -13,7 +13,10 @@ const content = computed(() => {
 
     <div class="bg-PRP h-screen">
       <div class="flex justify-center w-full md:w-1/2 h-1/2 pt-6 mx-auto">
+        
         <NuxtImg format="webp" src="/img/logo_zeramic.webp" alt="" />
+        
+        
       </div>
       <div class="w-full bg-PRP">
         <NuxtImg format="webp" src="/img/products_index.webp" class="mx-auto w-full md:w-3/4" alt="" />
