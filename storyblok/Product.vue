@@ -1,13 +1,5 @@
 <template>
   <div v-editable="blok" class="bg-gray-200">
-    <div
-      v-if="modal"
-      class="bg-black/50 h-screen w-full fixed inset-0 flex justify-center items-center"
-    >
-      <div class="w-1/2 h-1/2 bg-white rounded-lg">
-        <button @click="modal = false">s</button>
-      </div>
-    </div>
     <div class="mx-auto">
       <div class="w-full">
         <NuxtImg
@@ -28,11 +20,11 @@
       <p class="p-4 font-light mt-2 text-gray-500 text-xl md:text-2xl">
         {{ Descripcion }}
       </p>
+
       <button
-        @click="modal = true"
         class="text-white bg-PRP font-thin mt-4 px-6 py-2 text-xl md:text-2xl hover:scale-105 duration-100 ease-in rounded-md"
       >
-        Comprar Producto
+        Añadir al carrito
       </button>
     </div>
     <FooterImg class="fill-PRP" />
