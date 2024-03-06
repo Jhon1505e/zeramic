@@ -12,11 +12,11 @@ const content = computed(() => {
 
 
     <div class="bg-PRP h-screen">
-      <div class="flex justify-center w-1/2 pt-6 mx-auto">
+      <div class="flex justify-center w-full md:w-1/2 h-1/2 pt-6 mx-auto">
         <NuxtImg format="webp" src="/img/logo_zeramic.webp" alt="" />
       </div>
       <div class="w-full bg-PRP">
-        <NuxtImg format="webp" src="/img/products_index.webp" class="mx-auto" alt="" />
+        <NuxtImg format="webp" src="/img/products_index.webp" class="mx-auto w-full md:w-3/4" alt="" />
       </div>
     <div
       class="relative bg-fixed bg-cover bg-center h-screen"
@@ -63,7 +63,7 @@ const content = computed(() => {
       </div>
     </div>
     <div class="w-full md:w-1/2 mx-auto px-6 md:px-0 py-10">
-      <NuxtImg format="webp" src="/img/logos_index.png" alt="" />
+      <NuxtImg format="webp" src="/img/logos_index.png" class="w-full" alt="" />
     </div>
 
     <FooterImg class="fill-slate-900 ro" />

@@ -64,7 +64,9 @@
       </div>
       
     </div>
+    
     <div class="py-6 w-3/4 mx-auto">
+      <hr class="border-white opacity-60 pb-4 md:pb-3  md:pt-0 flex md:hidden " />
       <div class="flex md:hidden justify-center gap-4 mt-6">
         <div class="hover:scale-110 duration-200 hover:opacity-100 opacity-80">
           <a href="https://www.instagram.com/zeramic.guatape/" target="_blank">
@@ -87,7 +89,7 @@
           </a>
         </div>
       </div>
-      <hr class="border-white opacity-60 pb-4 md:pb-3 pt-14 md:pt-0" />
+      <hr class="hidden md:block border-white opacity-60 pb-4 md:pb-3 pt-14 md:pt-0 " />
       <h2 class="text-center text-white text-xl mt-4 pb-4 font-thin ">
         Designed by: Tailors dev
       </h2>
