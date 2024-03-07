@@ -9,29 +9,37 @@ const content = computed(() => {
 </script>
 
 <template>
+  <div class="bg-PRP h-screen">
+    <div class="flex justify-center w-full md:w-1/2 h-1/2 pt-6 mx-auto">
+      <NuxtImg format="webp" src="/img/logo_zeramic.webp" alt="" />
+    </div>
 
+    <NuxtImg
+      format="webp"
+      src="/img/products_index.webp"
+      class="mx-auto w-full md:w-3/4 z-10"
+      alt=""
+    />
 
-    <div class="bg-PRP h-screen">
-      <div class="flex justify-center w-full md:w-1/2 h-1/2 pt-6 mx-auto">
-        
-        <NuxtImg format="webp" src="/img/logo_zeramic.webp" alt="" />
-        
-        
-      </div>
-      <div class="w-full bg-PRP">
-        <NuxtImg format="webp" src="/img/products_index.webp" class="mx-auto w-full md:w-3/4" alt="" />
-      </div>
+    
+      <ImgRounded2 class="w-full fill-white absolute bottom-0" />
+    
     <div
       class="relative bg-fixed bg-cover bg-center h-screen"
       style="background-image: url('/img/background.png')"
     >
       <div class="absolute inset-0 backdrop-brightness-50"></div>
-      <PagesImg class="rotate-180 fill-PRP" />
+      <ImgRounded class="rotate-180 fill-PRP" />
       <div
         class="w-full flex justify-center text-center items-center absolute inset-0"
       >
         <div>
-          <NuxtImg format="webp" src="/img/text_index.webp" class="w-2/3 mx-auto" alt="" />
+          <NuxtImg
+            format="webp"
+            src="/img/text_index.webp"
+            class="w-2/3 mx-auto"
+            alt=""
+          />
           <h4 class="text-white text-md mt-8 py-3 px-5 font-bold">
             NOS INSPIRA A CREAR BELLAS PIEZAS QUE GUARDAN SU ESENCIA, SUS
             FORMAS, SUS COLORES...
@@ -62,7 +70,12 @@ const content = computed(() => {
         </p>
       </div>
       <div class="w-full">
-        <NuxtImg format="webp" src="/img/wave.png" class="w-full h-16 rotate-180" alt="" />
+        <NuxtImg
+          format="webp"
+          src="/img/wave.png"
+          class="w-full h-16 rotate-180"
+          alt=""
+        />
       </div>
     </div>
     <div class="w-full md:w-1/2 mx-auto px-6 md:px-0 py-10">
