@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-PRP drop-shadow-xl fixed w-full z-20">
+  <div class="bg-PRP drop-shadow-xl sticky top-0 w-full z-20">
     <div class="w-full justify-around flex py-4">
       <div class="w-1/3 pl-10 md:pl-32">
         <NuxtImg

@@ -1,7 +1,19 @@
 <script setup lang="ts">
+import ButtonCategory from "~/components/ButtonCategory.vue";
+
 const { products, fetchProducts } = useProducts();
 
+const categoria = ref("Todos");
+
+const categorias = ["Cocina", "Decorativo", "Utilitario", "Materas", "Todos"];
+
 fetchProducts();
+
+const filterProducts = computed(() => {
+  return products.value.filter(
+    (item) => item.content?.Categoria === categoria.value || categoria.value === "Todos"
+  );
+});
 </script>
 <template>
   <div class="bg-gray-200">
@@ -17,46 +29,28 @@ fetchProducts();
       <div
         class="w-full mt-10 mx-auto flex gap-4 justify-center md:justify-end pb-4 md:pb-0"
       >
-        <button
-          class="text-PRP border border-PRP px-4 hover:fill-white hover:text-white py-2 hover:bg-PRP hover:scale duration-100 ease-in rounded-md fill-PRP flex gap-2"
-        >
-          <span class="hidden md:block">Cocina</span>
-          <IconsCocina class="w-5" />
-        </button>
-        <button
-          class="text-PRP border border-PRP px-4 hover:text-white py-2 hover:bg-PRP hover:scale duration-100 ease-in rounded-md fill-PRP flex gap-2"
-        >
-          <span class="hidden md:block">Decorativo</span>
-          <IconsSun class="w-5 pt-0.5" />
-        </button>
-        <button
-          class="text-PRP border border-PRP px-4 hover:fill-white hover:text-white py-2 hover:bg-PRP hover:scale duration-100 ease-in rounded-md fill-PRP flex gap-2"
-        >
-          <span class="hidden md:block">Utilitario</span>
-          <IconsPortaLapiz class="w-5" />
-        </button>
-        <button
-          class="text-PRP border border-PRP px-4 hover:fill-white hover:text-white py-2 hover:bg-PRP hover:scale duration-100 ease-in rounded-md fill-PRP flex gap-2"
-        >
-          <span class="hidden md:block">Materas</span>
-          <IconsMatera class="w-4 pt-1" />
-        </button>
-        <button
-          class="text-PRP border border-PRP px-4 hover:text-white py-2 hover:bg-PRP hover:scale duration-100 ease-in rounded-md fill-PRP flex gap-2"
-        >
-          <span class="hidden md:block">Todos</span>
-          <IconsBlock class="w-5 pt-0.5" />
-        </button>
+        <template v-for="cat in categorias">
+          <ButtonCategory v-model="categoria" :categoria="cat">
+            <IconsCocina class="w-5" />
+          </ButtonCategory>
+        </template>
       </div>
-      <div class="grid grid-cols lg:grid-cols-3 gap-6 mx-auto py-10">
-        <ProductoCard
-          v-for="{ content, uuid, slug } in products"
-          :uuid="uuid"
-          :key="uuid"
-          :content="content"
-          :slug="slug"
-        />
+      <!-- <div class="grid grid-cols lg:grid-cols-3 gap-6 mx-auto py-10"> -->
+      <div class="w-full grid grid-cols-3 grid-flow-row gap-6 py-10 justify-center">
+        <transition-group mode="out-in"
+        leave-to-class="scale-95 opacity-0 transition-all"
+        leave-active-class="transition-all duration-300"
+        >
+          <ProductoCard
+            v-for="{ content, uuid, slug } in filterProducts"
+            :uuid="uuid"
+            :key="uuid"
+            :content="content"
+            :slug="slug"
+          />
+        </transition-group>
       </div>
+      <!-- </div> -->
     </div>
     <div></div>
     <FooterImg class="fill-slate-900" />

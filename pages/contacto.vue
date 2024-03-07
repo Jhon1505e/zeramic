@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen bg-PRP">
+  <div class="bg-PRP">
     <div class="pt-20 text-center">
       <h2 class="text-4xl font-bold pb-4 text-white">¡Contactanos!</h2>
       <div class="w-full sm:w-1/3 mx-auto px-10 sm:px-0">

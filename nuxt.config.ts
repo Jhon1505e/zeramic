@@ -2,6 +2,9 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@storyblok/nuxt', "@nuxtjs/tailwindcss", "@nuxt/image-edge"],
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' }
+  },
   tailwindcss: {
     configPath: './tailwind.config.js',
     cssPath: './assets/css/main.css'

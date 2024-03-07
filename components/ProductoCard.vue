@@ -20,7 +20,7 @@ const isInCart = computed(() => cart.value.has(props.uuid));
       />
       <NuxtImg
         v-if="content?.Imagen.filename"
-        class="rounded-lg w-full h-44 object-cover aspect-video"
+        class="rounded-t-lg w-full h-44 object-cover aspect-video"
         provider="storyblok"
         :src="content.Imagen.filename"
         alt=""
@@ -75,5 +75,6 @@ const isInCart = computed(() => cart.value.has(props.uuid));
         </div> 
       </div> -->
     </NuxtLink>
+    <div class="text-center bg-PRP rounded-b-lg p-1 text-white font-semibold">{{ content?.Nombre }}</div>
   </article>
 </template>
