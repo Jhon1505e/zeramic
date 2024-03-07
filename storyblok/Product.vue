@@ -4,7 +4,7 @@
       <div class="w-full">
         <NuxtImg
           v-if="Imagen?.filename"
-          class="h-full w-full mx-auto bg-gray-300 rounded-lg"
+          class="w-full max-w-7xl mx-auto bg-gray-300 rounded-lg aspect-video"
           :src="Imagen?.filename"
           alt=""
         />
@@ -22,11 +22,22 @@
       </p>
 
       <button
+        @click="addToShop"
         class="text-white bg-PRP font-thin mt-4 px-6 py-2 text-xl md:text-2xl hover:scale-105 duration-100 ease-in rounded-md"
       >
         Añadir al carrito
       </button>
+      <div
+        v-if="isInCart"
+        class="flex justify-center mx-auto w-fit items-center gap-2 p-1"
+      >
+        <IconsBag
+          class="h-11 w-11 p-2 stroke-white bg-PRP mx-auto rounded-full"
+        />
+        <NuxtLink to="/compras">Ver en el carrito</NuxtLink>
+      </div>
     </div>
+
     <FooterImg class="fill-PRP" />
     <div class="bg-PRP">
       <div v-editable="blok" class="px-10">
@@ -42,9 +53,23 @@
 </template>
 
 <script setup>
-const modal = ref(false);
-const props = defineProps({ blok: Object });
-const { Imagen, Nombre, Descripcion, ImgMedidas, Medidas, Uso, Body } = toRefs(
-  props.blok
-);
+const { slug } = useRoute().params;
+const props = defineProps({ blok: Object, uuid: String });
+const { Imagen, Descripcion, Precio, Nombre } = toRefs(props.blok);
+
+const { cart, addProduct } = useShopping();
+
+const isInCart = computed(() => cart.value.has(props.uuid));
+
+function addToShop() {
+  const product = {
+    uuid: props.uuid,
+    producto: Nombre.value,
+    valor: Precio.value,
+    cantidad: 1,
+    imagen: Imagen.value.filename,
+    slug: slug.join("/"),
+  };
+  addProduct(product);
+}
 </script>

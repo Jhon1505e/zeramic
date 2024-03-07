@@ -1,6 +1,12 @@
 const state = reactive({
-    products: [],
+    products: [] as IProduct[],
 })
+
+interface IProduct {
+    uuid: string
+    content: any
+    slug: string
+}
 
 export function useProducts() {
     const storyblokApi = useStoryblokApi()
@@ -15,7 +21,7 @@ export function useProducts() {
         const { data } = await storyblokApi.get("cdn/stories/", params as any)
 
         state.products = data.stories.map(
-            ({uuid, content, slug}: any) => { return { uuid, content, slug } }
+            ({uuid, content, slug}: IProduct) => { return { uuid, content, slug } }
         )
     }
 
