@@ -4,6 +4,7 @@ const { open } = useShopping();
 <template>
   <div
     v-if="open"
+    :class="open ? 'block' : 'hidden'"
     class="bg-black/50 h-screen w-full fixed inset-0 flex justify-center items-center"
   >
     <div class="bg-white rounded-xl shadow w-1/2">
