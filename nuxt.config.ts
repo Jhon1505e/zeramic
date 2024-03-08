@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   modules: ['@storyblok/nuxt', "@nuxtjs/tailwindcss", "@nuxt/image-edge"],
   app: {
     pageTransition: { name: 'page', mode: 'out-in' }
