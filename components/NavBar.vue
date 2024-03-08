@@ -44,11 +44,16 @@
       <div class="w-1/2 md:w-1/3 hidden md:flex justify-end pt-1 md:pt-2 pr-10">
         <NuxtLink
           to="/compras"
+
+ 
+        <button
+        @click="open = true"
+
           class="flex rounded-full border border-white hover:scale-105 duration-100 ease-in text-white bg-white/20 px-4 md:px-6 py-1 md:pt-2 gap-2 md:h-10"
         >
           <span class="hidden md:block">Carrito {{ cart.size }}</span>
           <IconsBag class="w-8 md:w-6 stroke-white" />
-        </NuxtLink>
+        </button>
       </div>
     </div>
     
@@ -56,5 +61,5 @@
 </template>
 <script setup lang="ts">
 const modal = ref(false);
-const { cart } = useShopping();
+const { open, cart } = useShopping();
 </script>
