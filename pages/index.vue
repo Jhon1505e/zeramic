@@ -10,22 +10,27 @@ const content = computed(() => {
 
 <template>
   <div class="bg-PRP">
-    <div class="flex justify-center w-full md:w-1/2 h-1/2 pt-6 mx-auto">
-      <NuxtImg format="webp" src="/img/logo_zeramic.webp" alt="" />
+    <div class="flex justify-center pt-6 mx-auto">
+      <NuxtImg
+        format="webp"
+        src="/img/logo_zeramic.webp"
+        class="w-1/2 md:w-1/5"
+        alt=""
+      />
+    </div>
+    <div class="flex justify-center">
+      <NuxtImg
+        format="webp"
+        src="/img/products_index.webp"
+        class="w-full md:w-3/4 z-10 absolute"
+        alt=""
+      />
+
+      <ImgRounded2 class="w-full fill-white" />
     </div>
 
-    <NuxtImg
-      format="webp"
-      src="/img/products_index.webp"
-      class="mx-auto w-full md:w-3/4 z-10"
-      alt=""
-    />
-
-    
-      <ImgRounded2 class="w-full fill-white absolute bottom-0" />
-    
     <div
-      class="relative bg-fixed bg-cover bg-center h-screen"
+      class="relative bg-fixed bg-cover bg-center h-[500px] md:h-screen"
       style="background-image: url('/img/background.png')"
     >
       <div class="absolute inset-0 backdrop-brightness-50"></div>
@@ -78,10 +83,16 @@ const content = computed(() => {
         />
       </div>
     </div>
-    <div class="w-full md:w-1/2 mx-auto px-6 md:px-0 py-10">
-      <NuxtImg format="webp" src="/img/logos_index.png" class="w-full" alt="" />
+    <div class="bg-white">
+      <div class="w-fullmd:w-1/2 mx-auto px-6 md:px-0 py-10 md:py-20">
+        <NuxtImg
+          format="webp"
+          src="/img/logos_index.png"
+          class="w-full md:w-1/2 mx-auto"
+          alt=""
+        />
+      </div>
+      <FooterImg class="fill-slate-900" />
     </div>
-
-    <FooterImg class="fill-slate-900" />
   </div>
 </template>

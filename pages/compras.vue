@@ -86,6 +86,7 @@ function handleLoginError() {
       <div>PENDIENTE</div>
       <div>{{ message }}</div>
       <div>Formulario de compra Usuario</div>
+
       <div class="flex justify-center gap-3 p-2">
         <input v-model="dataClient.name" type="text" placeholder="Nombre" />
         <input v-model="dataClient.email" type="email" placeholder="Email" />
@@ -128,7 +129,5 @@ function handleLoginError() {
         Comprar
       </button>
     </div>
-
-    <ImgRounded class="w-full fill-slate-900" />
   </div>
 </template>
