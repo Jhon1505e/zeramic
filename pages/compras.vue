@@ -1,7 +1,3 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
   <div class="bg-PRP">
     <h2 class="text-center text-white text-4xl">Carrito de compras</h2>
@@ -19,20 +15,20 @@
     <div class="text-center p-6">
       <div>PENDIENTE</div>
       <div>Formulario de compra Usuario</div>
-      <div class="flex justify-center gap-3 p-2">
-        <input type="text" placeholder="Nombre">
-        <input type="email" placeholder="Email">
-        <input type="email" placeholder="Telefono">
-      </div>
-      <div class="flex justify-center gap-3 p-2">
-        <input type="text" placeholder="Tipo Documento">
-        <input type="email" placeholder="ID">
-        <input type="email" placeholder="Dirección">
-      </div>
+      <form action="">
+        <div class="flex-col md:flex-row flex justify-center gap-3 p-2">
+          <input type="text" placeholder="Nombre">
+          <input type="email" placeholder="Email">
+          <input type="email" placeholder="Telefono">
+        </div>
+        <div class="flex-col md:flex-row flex justify-center gap-3 p-2">
+          <input type="text" placeholder="Tipo Documento">
+          <input type="email" placeholder="ID">
+          <input type="email" placeholder="Dirección">
+        </div>
+      </form>
       <div>Medios de Pago - logos - ir a Wompi pasarela</div>
       <button class="bg-white/20 border border-white text-white px-6 py-2 mt-6 rounded-lg">Comprar</button>
     </div>
-
-    <ImgRounded class="w-full fill-slate-900" />
   </div>
 </template>
