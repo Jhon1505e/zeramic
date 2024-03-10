@@ -1,12 +1,5 @@
 <script setup lang="ts">
-const { cart, addProduct, delProduct } = useShopping();
-
-const cartProducts = computed(() => {
-  return Array.from(cart.value, ([clave, valor]) => {
-    valor["uuid"] = clave;
-    return valor;
-  });
-});
+const { cart, cartProducts, addProduct, delProduct } = useShopping();
 
 const total = computed(() => {
   let total = 0;
@@ -50,7 +43,7 @@ function formatMoneda(value: number) {
     </div>
   </div>
 
-  <div v-else class="border max-w-4xl mx-auto mt-10 rounded p-1">
+  <div v-else class="border max-w-4xl mx-auto mt-10 bg-white rounded p-1">
     <div class="flex w-full p-2 bg-slate-400/50 text-center">
       <strong class="w-2/5">Producto</strong>
       <strong class="w-1/5">Cantidad</strong>
@@ -85,5 +78,4 @@ function formatMoneda(value: number) {
       <div>$ {{ formatMoneda(total) }}</div>
     </div>
   </div>
-
 </template>
