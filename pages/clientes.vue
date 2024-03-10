@@ -3,7 +3,7 @@ const documents = ref();
 const productos = ref();
 
 async function getDataClients() {
-  const { data } = await useFetch("/api/find", {
+  const { data } = await useFetch("/api/pedidos/find", {
     method: "POST",
     body: {
       name: "",
@@ -13,7 +13,7 @@ async function getDataClients() {
 }
 
 async function deleteClient(id: string) {
-  const { data } = await useFetch("/api/deleteone", {
+  const { data } = await useFetch("/api/pedidos/deleteOne", {
     method: "POST",
     body: {
       _id: id,

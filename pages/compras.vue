@@ -15,6 +15,7 @@ const dataClient = ref({
 });
 
 const message = ref();
+const infoGoogle = ref();
 
 const states = computed(() => Object.keys(statesColombia));
 
@@ -23,7 +24,7 @@ const cities = computed(() => statesColombia[dataClient.value.state]);
 async function goToCheckout() {
   console.log(cartProducts.value);
   try {
-    const { data, error } = await useFetch("/api/insertone", {
+    const { data, error } = await useFetch("/api/pedidos/insertOne", {
       method: "POST",
       query: {
         ...dataClient.value,
@@ -38,7 +39,7 @@ async function goToCheckout() {
 }
 
 async function saveDataClient() {
-  const { data, error } = await useFetch("/api/insertone", {
+  const { data, error } = await useFetch("/api/pedidos/insertOne", {
     method: "POST",
     query: {
       ...dataClient.value,
@@ -48,13 +49,20 @@ async function saveDataClient() {
   message.value = data.value || error.value;
 }
 
-function handleLoginSuccess(response: any) {
+async function handleLoginSuccess(response: any) {
   const { credential } = response;
   console.log("Access token: ", credential);
   // hacer fetch al api del servidor nuxt
   // para verificar token con google-auth-library
   // devuelve el email y nombre
   // y consultar en la base de datos
+  const { data, error } = await useFetch("/api/googlelogin", {
+    method: "POST",
+    body: {
+      token: credential,
+    },
+  })
+  infoGoogle.value = data.value || error.value;
 }
 function handleLoginError() {
   console.error("Login failed");
@@ -80,6 +88,7 @@ function handleLoginError() {
         @success="handleLoginSuccess"
         @error="handleLoginError"
       ></GoogleSignInButton>
+      <small><pre>{{ infoGoogle }}</pre></small>
     </div>
 
     <div class="text-center p-6">

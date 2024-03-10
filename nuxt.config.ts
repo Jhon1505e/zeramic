@@ -12,6 +12,7 @@ export default defineNuxtConfig({
   },
   googleSignIn: {
     clientId: process.env.GOOGLE_CLIENT_ID,
+    // clientId: '177843279083-s12hkag38sotldsmk7g0bn8l5cibnfao.apps.googleusercontent.com',
   },
   tailwindcss: {
     configPath: "./tailwind.config.js",
