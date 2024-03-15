@@ -9,26 +9,42 @@ const content = computed(() => {
 </script>
 
 <template>
+  <div class="bg-PRP">
+    <div class="flex justify-center pt-6 mx-auto">
+      <NuxtImg
+        format="webp"
+        src="/img/logo_zeramic.webp"
+        class="w-1/2 md:w-1/5"
+        alt=""
+      />
+    </div>
+    <div class="flex justify-center">
+      <NuxtImg
+        format="webp"
+        src="/img/products_index.webp"
+        class="w-full md:w-3/4 z-10 absolute"
+        alt=""
+      />
 
+      <ImgRounded2 class="w-full fill-white" />
+    </div>
 
-    <div class="bg-PRP h-screen">
-      <div class="flex justify-center w-1/2 pt-6 mx-auto">
-        <NuxtImg format="webp" src="/img/logo_zeramic.webp" alt="" />
-      </div>
-      <div class="w-full bg-PRP">
-        <NuxtImg format="webp" src="/img/products_index.webp" class="mx-auto" alt="" />
-      </div>
     <div
-      class="relative bg-fixed bg-cover bg-center h-screen"
+      class="relative bg-fixed bg-cover bg-center h-[500px] md:h-screen"
       style="background-image: url('/img/background.png')"
     >
       <div class="absolute inset-0 backdrop-brightness-50"></div>
-      <PagesImg class="rotate-180 fill-PRP" />
+      <ImgRounded class="rotate-180 fill-PRP" />
       <div
         class="w-full flex justify-center text-center items-center absolute inset-0"
       >
         <div>
-          <NuxtImg format="webp" src="/img/text_index.webp" class="w-2/3 mx-auto" alt="" />
+          <NuxtImg
+            format="webp"
+            src="/img/text_index.webp"
+            class="w-2/3 mx-auto"
+            alt=""
+          />
           <h4 class="text-white text-md mt-8 py-3 px-5 font-bold">
             NOS INSPIRA A CREAR BELLAS PIEZAS QUE GUARDAN SU ESENCIA, SUS
             FORMAS, SUS COLORES...
@@ -59,14 +75,24 @@ const content = computed(() => {
         </p>
       </div>
       <div class="w-full">
-        <NuxtImg format="webp" src="/img/wave.png" class="w-full h-16 rotate-180" alt="" />
+        <NuxtImg
+          format="webp"
+          src="/img/wave.png"
+          class="w-full h-16 rotate-180"
+          alt=""
+        />
       </div>
     </div>
-    <div class="w-full md:w-1/2 mx-auto px-6 md:px-0 py-10">
-      <NuxtImg format="webp" src="/img/logos_index.png" alt="" />
+    <div class="bg-white">
+      <div class="w-fullmd:w-1/2 mx-auto px-6 md:px-0 py-10 md:py-20">
+        <NuxtImg
+          format="webp"
+          src="/img/logos_index.png"
+          class="w-full md:w-1/2 mx-auto"
+          alt=""
+        />
+      </div>
+      <FooterImg class="fill-slate-900" />
     </div>
-
-    <FooterImg class="fill-slate-900 ro" />
-    <Footer />
   </div>
 </template>

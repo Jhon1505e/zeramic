@@ -1,10 +1,13 @@
+
 <template>
-  <div>
+  <main class="min-h-screen relative">
     <NavBar />
-    <NuxtPage class="pt-20" />
-    
-    <div v-if="$route.path !== '/'">
-      <Footer />
-    </div>
-  </div>
+    <ModalCart>
+      <CartInfo />
+    </ModalCart>
+    <slot />
+    <ButtonsMobile />
+   
+    <Footer />
+  </main>
 </template>
