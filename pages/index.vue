@@ -26,7 +26,7 @@ const content = computed(() => {
         alt=""
       />
 
-      <ImgRounded2 class="w-full fill-white" />
+      <img src="/img/ImgRounded2.svg" class="invert" alt="">
     </div>
 
     <div

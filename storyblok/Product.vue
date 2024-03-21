@@ -26,17 +26,10 @@
         @click="addToShop"
         class="text-white bg-PRP font-thin mt-4 px-6 py-2 text-xl md:text-2xl hover:scale-105 duration-100 ease-in rounded-md"
       >
-        Añadir al carrito
+      {{ isInCart ? 'En el carrito' : 'Comprar Producto' }}
+        
       </button>
-      <div
-        v-if="isInCart"
-        class="flex justify-center mx-auto w-fit items-center gap-2 p-1"
-      >
-        <IconsBag
-          class="h-11 w-11 p-2 stroke-white bg-PRP mx-auto rounded-full"
-        />
-        <NuxtLink to="/compras">Ver en el carrito</NuxtLink>
-      </div>
+      
     </div>
 
     <FooterImg class="fill-PRP" />

@@ -55,9 +55,18 @@
             $route.path === '/compras',
         }"
       >
-        <IconsBag class="w-7 mx-auto" />
+        <span
+          class="text-white rounded-full px-2 py-1 text-xs bg-PRP shadow-sm shadow-black absolute ml-3"
+        >
+          {{ cart.size }}
+        </span>
+
+        <IconsBag class="w-7 mx-auto fill-white" />
         <h3 class="pt-1 text-sm">Carrito</h3>
       </NuxtLink>
     </div>
   </div>
 </template>
+<script setup lang="ts">
+const { cart } = useShopping();
+</script>

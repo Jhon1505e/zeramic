@@ -2,14 +2,10 @@
   <div class="bg-PRP drop-shadow-xl sticky top-0 w-full z-20">
     <div class="w-full justify-around flex py-4">
       <div class="w-full md:w-1/3 pl-0 md:pl-32">
-        <NuxtImg
-          format="webp"
-          src="/img/zeramicText.png"
-          class="w-36 mx-auto md:mx-0"
-          alt=""
-        />
+        <ZeramicText class="w-56 mx-auto md:mx-0" />
+      
       </div>
-      <ul class="hidden lg:flex gap-5 w-1/3 justify-center pt-2 pl-12">
+      <ul class="hidden lg:flex gap-5 w-full pr-6 justify-end pt-4 pl-12">
         <li>
           <NuxtLink
             class="text-white text-2xl pb-1 border-b border-PRP hover:border-white duration-100 ease-in font-thin opacity-80 hover:opacity-100"
@@ -40,19 +36,25 @@
         </li>
       </ul>
 
-      <div class="w-1/2 md:w-1/3 hidden md:flex justify-end pt-1 md:pt-2 pr-10" v-if="$route.path !== '/compras'">
+      <div class="w-auto hidden hover:scale-110 duration-200 ease-in md:flex justify-end pt-1  pr-10" v-if="$route.path !== '/compras'">
         <NuxtLink
           @click="open = true"
-          class="flex rounded-full border border-white hover:scale-105 duration-100 ease-in text-white bg-white/20 px-4 md:px-6 py-1 md:pt-2 gap-2 md:h-10"
+          class="flex cursor-pointer"
+          
         >
-          <span class="hidden md:block">Carrito {{ cart.size }}</span>
-          <IconsBag class="w-8 md:w-6 stroke-white" />
+        <span class="text-white rounded-full px-2 py-1 text-xs bg-PRP/30 shadow-sm shadow-black absolute ml-5  ">
+
+          {{ cart.size }}
+        </span>
+          <IconsBag class="w-7  fill-white" />
         </NuxtLink>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+import ZeramicText from './ZeramicText.vue';
+
 const modal = ref(false);
 const { open, cart } = useShopping();
 </script>
