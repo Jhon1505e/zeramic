@@ -40,7 +40,7 @@
         </li>
       </ul>
 
-      <div class="w-1/2 md:w-1/3 hidden md:flex justify-end pt-1 md:pt-2 pr-10">
+      <div class="w-1/2 md:w-1/3 hidden md:flex justify-end pt-1 md:pt-2 pr-10" v-if="$route.path !== '/compras'">
         <NuxtLink
           @click="open = true"
           class="flex rounded-full border border-white hover:scale-105 duration-100 ease-in text-white bg-white/20 px-4 md:px-6 py-1 md:pt-2 gap-2 md:h-10"

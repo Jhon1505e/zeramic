@@ -1,6 +1,7 @@
 <template>
   <div v-editable="blok" class="bg-gray-200">
     <div class="mx-auto">
+      
       <div class="w-full">
         <NuxtImg
           v-if="Imagen?.filename"
