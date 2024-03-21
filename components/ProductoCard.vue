@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { cart } = useShopping();
-const props = defineProps<{
-  uuid: string;
+const props = defineProps <{
+  uuid: string
   content: any;
   slug: string;
 }>();
@@ -16,13 +16,13 @@ const isInCart = computed(() => cart.value.has(props.uuid));
     <NuxtLink :to="`/productos/${slug}`" class="relative">
       <IconsBag
         v-if="isInCart"
-        class="h-10 w-10 absolute stroke-PRP p-0.5 bg-white/80 mx-auto rounded-full end-1 top-1"
+        class="h-10 w-10 absolute fill-PRP p-0.5 bg-white/80 mx-auto rounded-full end-1 top-1"
       />
       <NuxtImg
-        v-if="content?.Imagen.filename"
+        v-if="content?.Imagen2.filename"
         class="rounded-t-lg w-full h-44 object-cover aspect-video"
         provider="storyblok"
-        :src="content.Imagen.filename"
+        :src="content.Imagen2.filename"
         alt=""
       />
 
@@ -40,11 +40,11 @@ const isInCart = computed(() => cart.value.has(props.uuid));
         >
           <div>
             <h2 class="text-white font-normal justify-center pr-4 text-lg flex">
-              <IconsBag class="w-5 stroke-2" /> : {{ content?.Precio }}
+              <IconsBag class="w-6 fill-white" /> : {{ content?.Precio }}
             </h2>
             <hr class="mb-2" />
             <button class="bg-PRP px-4 py-2 rounded-lg text-white">
-              Comprar Producto
+              Ver Producto
             </button>
           </div>
         </div>
