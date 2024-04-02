@@ -35,93 +35,99 @@ function formatMoneda(value: number) {
     v-if="cart.size === 0"
     class="w-full md:w-1/2 h-full flex justify-center items-center pb-32 mx-auto"
   >
-    <div class="text-center text-PRP mt-10">
+    <div class="text-center text-gray-500 mt-10">
       <h2
-        class="font-bold"
+        class="font-extralight"
         :class="$route.path === '/compras' ? 'text-4xl' : 'text-3xl'"
       >
         Carrito vacío
       </h2>
-      <IconsShopping class="w-28 mt-5 mb-8 mx-auto fill-PRP" />
+      <IconsShopping class="w-28 mt-5 mb-8 mx-auto fill-gray-500" />
       <NuxtLink
         to="/productos"
         @click="open = false"
-        class="px-6 py-2 ml-5 rounded-lg bg-PRP text-white"
+        class="px-6 py-2 ml-5 rounded-lg font-extralight bg-gray-500 text-white"
       >
         Ver productos
       </NuxtLink>
     </div>
   </div>
 
-  <div v-else class="max-w-4xl mx-auto rounded p-1">
+  <div v-else class="max-w-4xl mx-auto rounded p-1 overflow-auto"
+  :class="$route.path === '/compras' ? 'h-[60vh]' : 'h-[80vh]' ">
+    <div class="flex justify-between ">
+      <div class="w-2/5  pl-6">
+        <h2 class="text-lg text-white font-extralight">Producto</h2>
+      </div>
+      <div class=" w-1/3">
+        <h2 class="text-lg text-white text-center pr-12 font-extralight">Cantidad</h2>
+      </div>
+      <div class=" w-1/5">
+        <h2 class="text-lg text-white font-extralight">Precio</h2>
+      </div>
+      <div class=" w-1/5">
+        <h2 class="text-lg text-white text-center pl-6   font-extralight">Total</h2>
+      </div>
+    </div>
     <hr />
     <div
-      class="flex w-full p-2 hover:bg-gray-200 border-b"
+      class="flex w-full p-2 border-b"
+      :class="$route.path === '/compras' ? ' hover:bg-purple-900/20' : 'hover:bg-gray-200'"
       v-for="item in cartProducts"
       :key="item.slug"
     >
       <NuxtLink :to="item.slug" class="flex gap-2 items-center">
         <img :src="item.imagen" class="h-16 aspect-video rounded" alt="" />
       </NuxtLink>
-      <div class="px-4 w-full">
-        <div>
-          <span class="font-normal w-full text-center text-gray-800">{{
+      <div class="px-4   mt-2 w-full"
+      :class="$route.path === '/compras' ? 'flex ' : '' ">
+        <div
+        :class="$route.path === '/compras' ? 'w-full md:w-1/3' : '' ">
+          <span class="font-normal w-full text-center "
+          :class="$route.path === '/compras' ? 'text-white' : 'text-gray-800'">{{
             item.producto
           }}</span>
         </div>
-        <div class="flex">
-          <div class="flex gap-3 w-1/2 pb-3 h-10 mt-5">
-            <button @click="less(item)" class="bg-gray-300 rounded-md">
+        <div class="flex  text-center "
+        :class="$route.path === '/compras' ? 'w-full md:w-3/5' : '' ">
+          <div class="flex gap-3 w-3/5 pb-3 h-10 mt-3 justify-center">
+            <button @click="less(item)" class="bg-gray-300 rounded-md"
+            :class="$route.path === '/compras' ? 'bg-transparent border hover:bg-white/20' : 'bg-gray-300'">
               <IconsMinus
                 v-if="item.cantidad > 1"
-                class="w-4 mx-1 stroke-black"
+                class="w-4 mx-1 "
+                :class="$route.path === '/compras' ? 'stroke-white' : 'stroke-black'"
+                
               />
-              <IconsDelete v-else class="w-4 mx-1 stroke-black" />
+              <IconsDelete v-else class="w-4 mx-1 "
+              :class="$route.path === '/compras' ? 'stroke-white' : 'stroke-black'" />
             </button>
-            <p class="text-gray-600 font-normal text-lg">
+            <p class=" font-normal text-lg"
+            :class="$route.path === '/compras' ? 'text-gray-300' : 'text-gray-700'">
               {{ item.cantidad }}
             </p>
-            <button @click="more(item)" class="bg-gray-300 rounded-md">
-              <IconsPlus class="w-4 mx-1 stroke-black" />
+            <button @click="more(item)" class="rounded-md"
+            :class="$route.path === '/compras' ? 'bg-transparent border hover:bg-white/20' : 'bg-gray-300'">
+              <IconsPlus class="w-4 mx-1 "
+              :class="$route.path === '/compras' ? 'stroke-white' : 'stroke-black'" />
             </button>
           </div>
-          <div>
-            <h3 class="text-end font-bold text-sm mt-3">
+          <div class="w-1/2">
+            <h3 class="text-center font-bold text-sm mt-1"
+            :class="$route.path === '/compras' ? 'text-white' : 'text-gray-700'">
               $ {{ formatMoneda(item.valor) }}
             </h3>
           </div>
         </div>
-        <!--    <div class=" flex bg-red-900">
-          <div class="flex w-full gap-2">
-
-            
-            
-            <button @click="less(item)" class="bg-gray-400 rounded-md">
-              <IconsMinus v-if="item.cantidad > 1" class="w-5 mx-1 stroke-black" />
-                <IconsDelete v-else class="w-5 mx-1 py-1 stroke-black" />
-              </button>
-              <h3 class="text-gray-600 font-normal text-lg mb-2">
-                
-                {{ item.cantidad }}
-              </h3>
-              <button @click="more(item)" class="bg-gray-400 rounded-md">
-                <IconsPlus class="w-5 mx-1 py-1 stroke-black" />
-              </button>
-              
-            </div>
-            <div>
-
-              <h3 class="text-end font-normal text-sm">
-                $ {{ formatMoneda(item.valor) }}
-              </h3>
-            </div>
-        </div> -->
-        <div class="flex justify-end"></div>
+        
       </div>
-      <!--   <div class="text-center w-1/5">$ {{ formatMoneda(item.valor) }}</div>
-      <div class="text-center w-1/5">
-        $ {{ formatMoneda(item.valor * item.cantidad) }}
-      </div> -->
+      
+      <div class="text-center w-1/5 " :class="$route.path === '/compras' ? '' : 'hidden' " >
+        <h3 class="text-end font-bold text-sm mt-3"
+            :class="$route.path === '/compras' ? 'text-white' : 'text-gray-700'">
+              $ {{ formatMoneda(item.valor * item.cantidad) }}
+            </h3>
+      </div> 
     </div>
     <div
       v-if="$route.path !== '/compras'"

@@ -10,8 +10,8 @@ const { open } = useShopping();
   >
     <div class="bg-white rounded-l-lg shadow w-full sm:w-1/2 lg:w-1/3">
       <div class="flex">
-        <IconsBag class="w-10 ml-4 mt-1 fill-PRP" />
-        <h2 class="w-full text-center font-extralight text-PRP">
+        <IconsBag class="w-10 ml-4 mt-1 " />
+        <h2 class="w-full text-center font-extralight text-black">
           Resumen de compra
         </h2>
 
@@ -19,11 +19,12 @@ const { open } = useShopping();
           class="top-0 rounded-full right-0 mt-2 mr-3"
           @click="open = false"
         >
-          <IconsClose class="w-7 stroke-PRP" />
+          <IconsClose class="w-7" />
         </button>
       </div>
 
-      <div class="h-[80vh] overflow-y-scroll">
+      <div class=" overflow-y-scroll "
+      >
         <slot />
       </div>
       <div

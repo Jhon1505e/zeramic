@@ -23,7 +23,6 @@ const states = computed(() => Object.keys(statesColombia));
 
 const cities = computed(() => statesColombia[dataClient.value.state]);
 
-
 async function goToCheckout() {
   console.log(cartProducts.value);
   try {
@@ -64,7 +63,7 @@ async function handleLoginSuccess(response: any) {
     body: {
       token: credential,
     },
-  })
+  });
   infoGoogle.value = data.value || error.value;
 }
 function handleLoginError() {
@@ -73,27 +72,55 @@ function handleLoginError() {
 </script>
 
 <template>
-  <div class="bg-gray-200">
-    <div class="flex justify-center gap-32 pt-8 ">
-      <div >
-        <IconsShopping class="w-10 fill-PRP mx-auto"
-        :class="resumen ? 'fill-PRP' : 'fill-gray-400'" />
-        <h3 class="text-sm"
-        :class="resumen ? 'text-PRP' : 'text-gray-400'">Resumen de compra</h3>
-      </div>
-      <div >
-        <IconsDocument class="w-10  mx-auto" :class="pagos ? 'fill-PRP' : 'fill-gray-400'" />
-        <h3 class=" text-sm" :class="pagos ? 'text-PRP' : 'text-gray-400'">Información de envío</h3>
-      </div>
-    </div>
-    <div class="max-w-5xl mx-auto block md:flex gap-6 pb-20 pt-10" v-if="resumen" >
-      <div class="w-full md:w-3/5 mx-auto">
+  <div class="bg-PRP">
+    <div class="flex justify-center gap-10 py-4">
+      <button
+        @click="
+          resumen = true;
+          pagos = false;
+        "
+      >
+        <div class="flex gap-2 ">
+          <div class="text-lg w-10 h-10 rounded-full pt-1.5  mt-2 "
+          :class="resumen ? 'text-PRP bg-white' : 'bg-gray-400 text-white'">1</div>
 
+          <h3
+            class="text-md  font-normal mt-0.5"
+            :class="resumen ? 'text-white' : 'text-gray-400'"
+          >
+            RESUMEN DE COMPRA
+          </h3>
+        </div>
+      </button>
+      <div>
+        
+      </div>
+      <button
+        @click="
+          resumen = false;
+          pagos = true;
+        "
+      >
+        <div class="flex gap-2">
+          <div class="text-lg w-10 h-10 rounded-full pt-1.5  mt-2 "
+          :class="pagos ? 'text-PRP bg-white' : 'bg-gray-400 text-white'">2</div>
+
+          <h3
+            class="text-md  font-normal mt-0.5"
+            :class="pagos ? 'text-white' : 'text-gray-400'"
+          >
+          ENVIO Y PAGO
+          </h3>
+        </div>
+      </button>
+    </div>
+    <div class="mx-auto block md:flex gap-6 pb-20 pt-4" v-if="resumen">
+      <div class="w-full">
         <CartInfo />
       </div>
-      <div class="w-full md:w-2/5" v-if="cartProducts.length > 0">
-        <div class="text-center bg-white rounded-md  px-10">
-          <h1 class="text-2xl font-bold text-gray-500">Valor a Pagar</h1>
+      <!--  <div class="w-full md:w-1/3" v-if="cartProducts.length > 0">
+        <div class="text-center bg-transparent border rounded-md  px-10">
+          <h1 class="text-2xl font-bold text-gray-200">Valor a Pagar</h1>
           <div class="flex justify-between pt-8">
             <h2 class="text-xl font-normal">Subtotal </h2>
             <h2 class="text-xl font-normal "> $ 21000</h2>
@@ -105,10 +132,8 @@ function handleLoginError() {
           </div>
         </div>
         <button @click="pagos = true ; resumen = false" class="w-full mt-5 bg-gray-600 text-white p-2 rounded-lg">Comprar Ahora</button>
-      </div>
-
+      </div> -->
     </div>
-
 
     <div v-if="pagos">
       <div class="text-center">
@@ -116,14 +141,16 @@ function handleLoginError() {
           @success="handleLoginSuccess"
           @error="handleLoginError"
         ></GoogleSignInButton>
-        <small><pre>{{ infoGoogle }}</pre></small>
+        <small>
+          <pre>{{ infoGoogle }}</pre>
+        </small>
       </div>
-  
+
       <div class="text-center p-6">
         <div>PENDIENTE</div>
         <div>{{ message }}</div>
         <div>Formulario de compra Usuario</div>
-  
+
         <div class="flex justify-center gap-3 p-2">
           <input v-model="dataClient.name" type="text" placeholder="Nombre" />
           <input v-model="dataClient.email" type="email" placeholder="Email" />
@@ -166,8 +193,6 @@ function handleLoginError() {
           Comprar
         </button>
       </div>
-
     </div>
-    <ImgRounded class="w-full fill-slate-900" />
   </div>
 </template>
