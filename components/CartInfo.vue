@@ -35,27 +35,30 @@ function formatMoneda(value: number) {
     v-if="cart.size === 0"
     class="w-full md:w-1/2 h-full flex justify-center items-center pb-32 mx-auto"
   >
-    <div class="text-center text-gray-500 mt-10">
+    <div class="text-center  mt-10">
       <h2
         class="font-extralight"
-        :class="$route.path === '/compras' ? 'text-4xl' : 'text-3xl'"
+        :class="$route.path === '/compras' ? 'text-4xl text-white' : 'text-gray-500 text-3xl'"
       >
         Carrito vacío
       </h2>
-      <IconsShopping class="w-28 mt-5 mb-8 mx-auto fill-gray-500" />
+      <IconsShopping class="w-28 mt-5 mb-8 mx-auto"
+      :class="$route.path === '/compras' ? 'fill-white' : 'fill-gray-400'" />
       <NuxtLink
         to="/productos"
         @click="open = false"
-        class="px-6 py-2 ml-5 rounded-lg font-extralight bg-gray-500 text-white"
+        :class="$route.path === '/compras' ? 'bg-transparent border hover:bg-white/20' : 'bg-gray-500'"
+        class="px-6 py-2 ml-5 rounded-lg font-extralight  text-white"
       >
         Ver productos
       </NuxtLink>
     </div>
   </div>
 
-  <div v-else class="max-w-4xl mx-auto rounded p-1 overflow-auto"
-  :class="$route.path === '/compras' ? 'h-[60vh]' : 'h-[80vh]' ">
-    <div class="flex justify-between ">
+  <div v-else class="max-w-4xl mx-auto rounded-xl p-1 overflow-auto"
+  
+  :class="$route.path === '/compras' ? 'bg-purple-900/20' : 'h-[80vh]' ">
+    <div class="flex justify-between pb-1" v-if="$route.path === '/compras'">
       <div class="w-2/5  pl-6">
         <h2 class="text-lg text-white font-extralight">Producto</h2>
       </div>
@@ -79,18 +82,18 @@ function formatMoneda(value: number) {
       <NuxtLink :to="item.slug" class="flex gap-2 items-center">
         <img :src="item.imagen" class="h-16 aspect-video rounded" alt="" />
       </NuxtLink>
-      <div class="px-4   mt-2 w-full"
+      <div class="px-4  mr-2 mt-2 w-full"
       :class="$route.path === '/compras' ? 'flex ' : '' ">
         <div
         :class="$route.path === '/compras' ? 'w-full md:w-1/3' : '' ">
-          <span class="font-normal w-full text-center "
+          <span class="font-normal  text-center "
           :class="$route.path === '/compras' ? 'text-white' : 'text-gray-800'">{{
             item.producto
           }}</span>
         </div>
         <div class="flex  text-center "
         :class="$route.path === '/compras' ? 'w-full md:w-3/5' : '' ">
-          <div class="flex gap-3 w-3/5 pb-3 h-10 mt-3 justify-center">
+          <div class="flex gap-3 w-1/2 pb-3 h-10 mt-3 justify-center">
             <button @click="less(item)" class="bg-gray-300 rounded-md"
             :class="$route.path === '/compras' ? 'bg-transparent border hover:bg-white/20' : 'bg-gray-300'">
               <IconsMinus
@@ -112,7 +115,7 @@ function formatMoneda(value: number) {
               :class="$route.path === '/compras' ? 'stroke-white' : 'stroke-black'" />
             </button>
           </div>
-          <div class="w-1/2">
+          <div class="w-auto pl-4">
             <h3 class="text-center font-bold text-sm mt-1"
             :class="$route.path === '/compras' ? 'text-white' : 'text-gray-700'">
               $ {{ formatMoneda(item.valor) }}
@@ -120,30 +123,34 @@ function formatMoneda(value: number) {
           </div>
         </div>
         
+        <div class=" w-1/4 " :class="$route.path === '/compras' ? '' : 'hidden' " >
+          <h3 class="text-end font-bold text-sm mt-1"
+              :class="$route.path === '/compras' ? 'text-white' : 'text-gray-700'">
+                $ {{ formatMoneda(item.valor * item.cantidad) }}
+              </h3>
+        </div> 
       </div>
       
-      <div class="text-center w-1/5 " :class="$route.path === '/compras' ? '' : 'hidden' " >
-        <h3 class="text-end font-bold text-sm mt-3"
-            :class="$route.path === '/compras' ? 'text-white' : 'text-gray-700'">
-              $ {{ formatMoneda(item.valor * item.cantidad) }}
-            </h3>
-      </div> 
     </div>
     <div
       v-if="$route.path !== '/compras'"
-      class="flex  bg-gray-100 text-lg "
+      class="flex  text-lg"
+      :class="$route.path === '/compras' ? 'bg-purple-900/30 rounded-b-xl text-white' : 'bg-gray-100'"
     >
       <div class="w-full mx-auto justify-between flex px-4 py-2">
         <div class="w-1/3">
-          <p class="mt-1 text-xl font-extralight">Valor total</p>
+          <p class="mt-1 text-xl font-thin">Subtotal</p>
+          <p class="mt-1 text-xl font-normal">Valor total</p>
           
           
         </div>
         <div class="w-2/3 text-end">
-          <p class="mt-1 font-extralight">$ {{ formatMoneda(total) }}</p>
+          <p class="mt-1 font-thin">$ {{ formatMoneda(total) }}</p>
+          <p class="mt-1 font-normal">$ {{ formatMoneda(total) }}</p>
           
         </div>
       </div>
     </div>
   </div>
+  
 </template>
