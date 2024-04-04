@@ -1,10 +1,10 @@
 <template>
   <div class="bg-PRP drop-shadow-xl sticky top-0 w-full z-20">
     <div class="w-full justify-around flex py-4">
-      <div class="w-full md:w-1/3 pl-0 md:pl-32">
+      <NuxtLink to="/" class="w-full md:w-1/3 pl-0 md:pl-32">
         <ZeramicText class="w-56 mx-auto md:mx-0" />
       
-      </div>
+      </NuxtLink>
       <ul class="hidden lg:flex gap-5 w-full pr-6 justify-end pt-4 pl-12">
         <li>
           <NuxtLink
@@ -42,7 +42,7 @@
           class="flex cursor-pointer"
           
         >
-        <span class="text-white rounded-full px-2 py-1 text-xs bg-PRP/30 shadow-sm shadow-black absolute ml-5  ">
+        <span class="text-white border rounded-full px-2 py-1 text-xs bg-purple-500 absolute ml-5  ">
 
           {{ cart.size }}
         </span>
