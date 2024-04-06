@@ -35,7 +35,8 @@ function formatMoneda(value: number) {
     v-if="cart.size === 0"
     class="w-full md:w-1/2 h-full flex justify-center items-center pb-32 mx-auto"
   >
-    <div class="text-center  mt-10">
+    <div class="text-center "
+    :class="$route.path === '/compras' ? 'mt-8' : 'mt-10'">
       <h2
         class="font-extralight"
         :class="$route.path === '/compras' ? 'text-4xl text-white' : 'text-gray-500 text-3xl'"
@@ -91,9 +92,9 @@ function formatMoneda(value: number) {
             item.producto
           }}</span>
         </div>
-        <div class="flex  text-center "
-        :class="$route.path === '/compras' ? 'w-full md:w-3/5' : '' ">
-          <div class="flex gap-3 w-1/2 pb-3 h-10 mt-3 justify-center">
+        <div class="flex text-center "
+        :class="$route.path === '/compras' ? 'w-full md:w-3/5' : 'w-full ml-2' ">
+          <div class="flex gap-3 w-1/2 pb-3 h-10  mt-3 justify-center">
             <button @click="less(item)" class="bg-gray-300 rounded-md"
             :class="$route.path === '/compras' ? 'bg-transparent border hover:bg-white/20' : 'bg-gray-300'">
               <IconsMinus
@@ -115,9 +116,9 @@ function formatMoneda(value: number) {
               :class="$route.path === '/compras' ? 'stroke-white' : 'stroke-black'" />
             </button>
           </div>
-          <div class="w-auto pl-4">
-            <h3 class="text-center font-bold text-sm mt-1"
-            :class="$route.path === '/compras' ? 'text-white' : 'text-gray-700'">
+          <div class="w-full ">
+            <h3 class=" font-bold text-sm mt-1"
+            :class="$route.path === '/compras' ? 'text-white text-center pl-4' : 'text-gray-700 text-end'">
               $ {{ formatMoneda(item.valor) }}
             </h3>
           </div>
