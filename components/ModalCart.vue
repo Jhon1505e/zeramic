@@ -10,8 +10,8 @@ const { open } = useShopping();
     <div class="w-full h-full bg-black opacity-50" @click="open = false"></div>
     <div class="bg-white rounded-l-lg shadow max-w-lg w-full">
       <div class="flex">
-        <IconsBag class="w-10 ml-4 mt-1 " />
-        <h2 class="w-full text-center font-extralight text-black">
+        
+        <h2 class="w-full text-center font-extralight pl-8 text-black">
           Resumen de compra
         </h2>
 
@@ -35,10 +35,8 @@ const { open } = useShopping();
           to="/compras"
           class="flex font-thin text-xl justify-center"
         >
-          <IconsBag class="w-7 fill-white ml-4" />
-          <hr class="w-7 mt-3 rotate-90" />
-
-          Continuar compra
+         
+          Terminar compra
         </NuxtLink>
       </div>
     </div>

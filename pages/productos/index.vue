@@ -3,9 +3,11 @@ const { products, fetchProducts } = useProducts();
 
 const categoria = ref("Todos");
 
-const categorias = ["Cocina", "Decorativo", "Utilitario", "Materas", "Todos"];
+const categorias = ["Todos", "Cocina", "Decorativo", "Utilitario", "Materas" ];
 
 await fetchProducts();
+
+
 
 const filterProducts = computed(() => {
   return products.value.filter(
@@ -25,7 +27,7 @@ const filterProducts = computed(() => {
     <FooterImg class="fill-gray-400 rotate-180" />
     <div class="bg-gray-200 max-w-7xl mx-auto">
       <div
-        class="w-full mt-10 mx-auto  flex gap-4 justify-center md:justify-end pb-4 md:pb-0"
+        class="w-4/5 mt-10 mx-auto  flex gap-4 justify-center md:justify-start pb-4 md:pb-0"
       >
         <template v-for="cat in categorias">
           <ButtonCategory v-model="categoria" :categoria="cat">

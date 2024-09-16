@@ -154,7 +154,6 @@ function handleLoginError() {
       </button>
     </div>
     
-    {{ dataClient }}
 
     <div
       class="mx-auto max-w-6xl block md:flex gap-6 pb-20 pt-4"
@@ -196,8 +195,8 @@ function handleLoginError() {
     </div>
 
     <div v-if="login">
-      <div class="max-w-5xl text-center mx-auto pb-10">
-        <h1 class="text-2xl font-thin text-white">
+      <div class="max-w-5xl text-center mx-auto pt-14 pb-32">
+        <h1 class="text-2xl font-semibold text-white">
           Ingresa tu correo electrónico para continuar la compra.
         </h1>
         <div class="text-center mt-4">
@@ -220,7 +219,7 @@ function handleLoginError() {
               pagos = true;
               resumen = false;
             "
-            class="bg-white/30 border border-white ml-2 text-white px-6 py-2 mt-6 rounded-lg"
+            class="bg-white/20 border border-white ml-2 text-white px-6 py-2 mt-6 rounded-lg"
           >
             Continuar
           </button>
