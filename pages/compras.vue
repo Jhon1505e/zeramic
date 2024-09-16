@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { statesColombia } from "@/utils/datalist";
+import { type IClient }  from "~/types/clients"
 
 const { cartProducts } = useShopping();
 
-const dataClient = ref({
+const dataClient = ref<IClient>({
+  _id: undefined,
   name: "",
   email: "",
+  picture: "",
   phone: "",
   docType: "",
   docId: "",
@@ -42,14 +45,20 @@ async function goToCheckout() {
 }
 
 async function saveDataClient() {
-  const { data, error } = await useFetch("/api/pedidos/insertOne", {
+  /* const { data, error } = await useFetch("/api/pedidos/insertOne", {
     method: "POST",
     query: {
       ...dataClient.value,
       productos: cartProducts.value,
     },
   });
-  message.value = data.value || error.value;
+  message.value = data.value || error.value; */
+  const data = await $fetch("/api/clientes/update", {
+    method: "POST",
+    body: dataClient.value,
+  })
+
+  console.log(data);
 }
 
 async function handleLoginSuccess(response: any) {
@@ -59,13 +68,13 @@ async function handleLoginSuccess(response: any) {
   // para verificar token con google-auth-library
   // devuelve el email y nombre
   // y consultar en la base de datos
-  const { data, error } = await useFetch("/api/googlelogin", {
+  const data = await $fetch("/api/googlelogin", {
     method: "POST",
     body: {
       token: credential,
     },
   });
-  infoGoogle.value = data.value || error.value;
+  dataClient.value = data as any;
   pagos.value = true;
   resumen.value = false;
   login.value = false;
@@ -144,6 +153,9 @@ function handleLoginError() {
         </div>
       </button>
     </div>
+    
+    {{ dataClient }}
+
     <div
       class="mx-auto max-w-6xl block md:flex gap-6 pb-20 pt-4"
       v-if="resumen"
@@ -246,17 +258,17 @@ function handleLoginError() {
           Completa el formulario
         </h2>
 
-        <form >
+        <form @submit.prevent="saveDataClient">
           <div class="flex justify-center gap-3 p-2">
             <input
-              v-model="infoGoogle.name"
+              v-model="dataClient.name"
               type="text"
               required
               class="w-1/2 py-2 px-4 rounded-lg text-gray-600"
               placeholder="Nombres y Apellidos"
             />
             <input
-              v-model="infoGoogle.email"
+              v-model="dataClient.email"
               required
               type="email"
               class="w-1/2 py-2 px-4 rounded-lg text-gray-600"
@@ -290,7 +302,7 @@ function handleLoginError() {
           </div>
           <div class="flex justify-center gap-3 p-2">
             <input
-            required
+              required
               v-model="dataClient.address"
               type="text"
               class="w-1/2 py-2 px-4 rounded-lg"
@@ -307,7 +319,7 @@ function handleLoginError() {
               </option>
             </select>
             <select
-            required
+              required
               v-model="dataClient.city"
               class="w-1/2 py-2 px-4 rounded-lg text-gray-600"
             >
@@ -325,15 +337,15 @@ function handleLoginError() {
               <IconsEfectivo class="w-10" />
             </div>
           </div>
-          
+
           <!-- @click="goToCheckout" -->
           <button
-          @click="saveDataClient"
-          class="bg-white/20 border border-white text-white px-6 py-2 mt-6 rounded-lg"
+            type="submit"
+            class="bg-white/20 border border-white text-white px-6 py-2 mt-6 rounded-lg"
           >
-          Ir a Pagar
-        </button>
-      </form>
+            Ir a Pagar
+          </button>
+        </form>
       </div>
     </div>
   </div>

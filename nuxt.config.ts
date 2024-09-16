@@ -1,6 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  runtimeConfig: {
+    mongoURI: process.env.MONGO_URI,
+  },
   modules: [
     "@storyblok/nuxt",
     "@nuxtjs/tailwindcss",
