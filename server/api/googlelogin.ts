@@ -10,12 +10,18 @@ export default defineEventHandler(async (event) => {
     }
 
     const payload = await verify(body.token)
-    if (!payload) {
+    if (!payload?.email) {
         return
     }
 
+    const { findClient, insertClient } = fetchClient()
     const { email, name, picture } = payload
-    return { email, name, picture }
+    const exist = await findClient(email)
+    if (!exist) {
+        const data = await insertClient({ email, name, picture })
+        return { email, name, picture }
+    }
+    return exist
 })
 
 async function verify(token: string) {

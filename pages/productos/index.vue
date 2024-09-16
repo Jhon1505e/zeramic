@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import ButtonCategory from "~/components/ButtonCategory.vue";
-
 const { products, fetchProducts } = useProducts();
 
 const categoria = ref("Todos");
 
 const categorias = ["Cocina", "Decorativo", "Utilitario", "Materas", "Todos"];
 
-fetchProducts();
+await fetchProducts();
 
 const filterProducts = computed(() => {
   return products.value.filter(
