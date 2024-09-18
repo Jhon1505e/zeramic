@@ -31,18 +31,18 @@ function formatMoneda(value: number) {
 </script>
 
 <template>
-  <div v-if="cart.size === 0" class="w-full md:w-1/2 h-full flex justify-center items-center pb-32 mx-auto">
+  <div v-if="cart.size === 0" class="w-full md:w-1/2 flex justify-center items-center pb-52 mx-auto" :class="cart.size === 0 ? 'h-screen' : 'h-full'">
     <div class="text-center " :class="$route.path === '/compras' ? 'mt-8' : 'mt-10'">
-      <h2 class="font-extralight"
-        :class="$route.path === '/compras' ? 'text-4xl text-white' : 'text-gray-500 text-3xl'">
+      <h2 class="font-semibold"
+        :class="$route.path === '/compras' ? 'text-4xl text-white' : 'text-PRP text-3xl'">
         Carrito vacío
       </h2>
       <IconsShopping class="w-28 mt-5 mb-8 mx-auto"
-        :class="$route.path === '/compras' ? 'fill-white' : 'fill-gray-400'" />
+        :class="$route.path === '/compras' ? 'fill-white' : 'fill-PRP'" />
       <NuxtLink to="/productos" @click="open = false"
-        :class="$route.path === '/compras' ? 'bg-transparent border hover:bg-white/20' : 'bg-gray-500'"
+        :class="$route.path === '/compras' ? 'bg-transparent border hover:bg-white/20' : 'bg-PRP '"
         class="px-6 py-2 ml-5 rounded-lg font-extralight  text-white">
-        Ver productos
+        Añadir productos
       </NuxtLink>
     </div>
   </div>
@@ -78,20 +78,20 @@ function formatMoneda(value: number) {
             }}</span>
         </div>
         <div class="flex text-center " :class="$route.path === '/compras' ? 'w-full md:w-3/5' : 'w-full ml-2'">
-          <div class="flex gap-3 w-1/2 pb-3 h-10  mt-3 justify-center">
+          <div class="flex  gap-3 w-1/2 pb-3 h-10  mt-3 justify-start">
             <button @click="less(item)" class="bg-gray-300 rounded-md"
               :class="$route.path === '/compras' ? 'bg-transparent border hover:bg-white/20' : 'bg-gray-300'">
               <IconsMinus v-if="item.cantidad > 1" class="w-4 mx-1 "
-                :class="$route.path === '/compras' ? 'stroke-white' : 'stroke-black'" />
+                :class="$route.path === '/compras' ? 'stroke-white' : 'stroke-red-600'" />
               <IconsDelete v-else class="w-4 mx-1 "
-                :class="$route.path === '/compras' ? 'stroke-white' : 'stroke-black'" />
+                :class="$route.path === '/compras' ? 'stroke-white' : 'stroke-red-600'" />
             </button>
             <p class=" font-normal text-lg" :class="$route.path === '/compras' ? 'text-gray-300' : 'text-gray-700'">
               {{ item.cantidad }}
             </p>
             <button @click="more(item)" class="rounded-md"
               :class="$route.path === '/compras' ? 'bg-transparent border hover:bg-white/20' : 'bg-gray-300'">
-              <IconsPlus class="w-4 mx-1 " :class="$route.path === '/compras' ? 'stroke-white' : 'stroke-black'" />
+              <IconsPlus class="w-4 mx-1 " :class="$route.path === '/compras' ? 'stroke-white' : 'stroke-green-800'" />
             </button>
           </div>
           <div class="w-full ">
@@ -111,7 +111,7 @@ function formatMoneda(value: number) {
       </div>
 
     </div>
-    <div v-if="$route.path !== '/compras'" class="flex  text-lg"
+    <div v-if="$route.path !== '/compras'" class="flex  text-lg "
       :class="$route.path === '/compras' ? 'bg-purple-900/30 rounded-b-xl text-white' : 'bg-gray-100'">
       <div class="w-full mx-auto justify-between flex px-4 py-2">
         <div class="w-1/3">
