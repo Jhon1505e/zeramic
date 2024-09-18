@@ -3,7 +3,7 @@
     <div class="w-3/4 mx-auto block md:flex pt-12">
       
       <div class="w-full mt-2">
-        <NuxtImg format="webp" src="/img/logo_zeramic.webp" class="w-52  mx-auto" alt="Picoro Running Team" />
+        <NuxtImg format="webp" src="/img/logo_zeramic.webp" class="w-52  mx-auto" alt="Zeramic" />
         
       </div>
       <div

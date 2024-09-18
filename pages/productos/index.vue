@@ -3,9 +3,11 @@ const { products, fetchProducts } = useProducts();
 
 const categoria = ref("Todos");
 
-const categorias = ["Cocina", "Decorativo", "Utilitario", "Materas", "Todos"];
+const categorias = ["Todos", "Cocina", "Decorativo", "Utilitario", "Materas" ];
 
 await fetchProducts();
+
+
 
 const filterProducts = computed(() => {
   return products.value.filter(
@@ -19,13 +21,13 @@ const filterProducts = computed(() => {
       <h2
         class="text-4xl md:text-6xl py-10 md:py-20 w-3/4 mx-auto text-center font-bold text-white"
       >
-        ¡ Todo lo que necesitas para decorar tu hogar !
+        ¡ Todo lo que necesitas <br> para decorar tu hogar !
       </h2>
     </div>
     <FooterImg class="fill-gray-400 rotate-180" />
-    <div class="bg-gray-200 max-w-7xl mx-auto">
+    <div class="bg-gray-200 max-w-7xl mx-auto py-10">
       <div
-        class="w-full mt-10 mx-auto  flex gap-4 justify-center md:justify-end pb-4 md:pb-0"
+        class="w-4/5 mt-10 mx-auto  flex gap-4 justify-center md:justify-start pb-4 md:pb-0"
       >
         <template v-for="cat in categorias">
           <ButtonCategory v-model="categoria" :categoria="cat">
@@ -51,6 +53,5 @@ const filterProducts = computed(() => {
       <!-- </div> -->
     </div>
     <div></div>
-    <FooterImg class="fill-slate-900" />
   </div>
 </template>

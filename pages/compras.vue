@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { statesColombia } from "@/utils/datalist";
+import Loading from "~/components/Loading.vue";
 import { type IClient }  from "~/types/clients"
 
 const { cartProducts } = useShopping();
@@ -18,6 +19,7 @@ const dataClient = ref<IClient>({
 });
 
 const message = ref();
+const loading = ref(false);
 const infoGoogle = ref();
 const resumen = ref(true);
 const login = ref(false);
@@ -62,6 +64,7 @@ async function saveDataClient() {
 }
 
 async function handleLoginSuccess(response: any) {
+  loading.value = true;
   const { credential } = response;
   console.log("Access token: ", credential);
   // hacer fetch al api del servidor nuxt
@@ -75,8 +78,9 @@ async function handleLoginSuccess(response: any) {
     },
   });
   dataClient.value = data as any;
-  pagos.value = true;
   resumen.value = false;
+  loading.value = false;
+  pagos.value = true;
   login.value = false;
 }
 function handleLoginError() {
@@ -85,11 +89,13 @@ function handleLoginError() {
 </script>
 
 <template>
-  <div class="bg-PRP">
-    <div class="flex justify-center gap-10 py-4">
+  <div class="bg-PRP h-screen">
+    <Loading v-if="loading" />
+    <div class="flex justify-center gap-10 pt-10 pb-16">
       <button
         @click="
           resumen = true;
+          login = false;
           pagos = false;
         "
       >
@@ -115,7 +121,7 @@ function handleLoginError() {
         />
         <div
           class="h-1 w-32 rounded-full mt-5"
-          :class="resumen ? 'bg-gray-400' : login ? 'bg-white' : 'bg-green-500'"
+          :class="resumen ? 'bg-gray-400' : login ? 'bg-green-500' : 'bg-green-500'"
         ></div>
         <IconsCircle
           class="w-4 mt-2"
@@ -124,12 +130,12 @@ function handleLoginError() {
           "
         />
         <div
-          class="bg-white h-1 w-32 rounded-full mt-5"
-          :class="pagos ? 'bg-white' : 'bg-gray-400'"
+          class=" h-1 w-32 rounded-full mt-5"
+          :class="pagos  ? 'bg-green-500' : resumen ? 'bg-gray-400' : 'bg-gray-400'"
         ></div>
         <IconsCircle
           class="w-4 mt-2"
-          :class="pagos ? 'fill-white' : 'fill-gray-400'"
+          :class="pagos ? 'fill-white' : resumen ? 'fill-gray-400' : 'fill-gray-400'"
         />
       </div>
       <button
@@ -154,7 +160,6 @@ function handleLoginError() {
       </button>
     </div>
     
-    {{ dataClient }}
 
     <div
       class="mx-auto max-w-6xl block md:flex gap-6 pb-20 pt-4"
@@ -196,8 +201,8 @@ function handleLoginError() {
     </div>
 
     <div v-if="login">
-      <div class="max-w-5xl text-center mx-auto pb-10">
-        <h1 class="text-2xl font-thin text-white">
+      <div class="max-w-5xl text-center mx-auto pt-14 pb-32">
+        <h1 class="text-2xl font-semibold text-white">
           Ingresa tu correo electrónico para continuar la compra.
         </h1>
         <div class="text-center mt-4">
@@ -206,7 +211,7 @@ function handleLoginError() {
             @error="handleLoginError"
           ></GoogleSignInButton>
         </div>
-        <form>
+        <form >
           <input
             type="text"
             required
@@ -220,7 +225,7 @@ function handleLoginError() {
               pagos = true;
               resumen = false;
             "
-            class="bg-white/30 border border-white ml-2 text-white px-6 py-2 mt-6 rounded-lg"
+            class="bg-white/20 border border-white ml-2 text-white px-6 py-2 mt-6 rounded-lg"
           >
             Continuar
           </button>
@@ -341,7 +346,7 @@ function handleLoginError() {
           <!-- @click="goToCheckout" -->
           <button
             type="submit"
-            class="bg-white/20 border border-white text-white px-6 py-2 mt-6 rounded-lg"
+            class="bg-white/10 border border-white text-white px-6 py-2 mt-6 rounded-lg"
           >
             Ir a Pagar
           </button>

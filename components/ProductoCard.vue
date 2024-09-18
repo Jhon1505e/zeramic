@@ -1,7 +1,8 @@
 <script setup lang="ts">
 const { cart } = useShopping();
-const props = defineProps <{
-  uuid: string
+
+const props = defineProps<{
+  uuid: string;
   content: any;
   slug: string;
 }>();
@@ -13,7 +14,7 @@ const isInCart = computed(() => cart.value.has(props.uuid));
     class="shadow-lg rounded-t-lg hover:scale-105 duration-300"
     :key="uuid"
   >
-    <NuxtLink :to="`/productos/${slug}`" class="relative">
+    <NuxtLink class="relative">
       <IconsBag
         v-if="isInCart"
         class="h-10 w-10 absolute fill-PRP p-0.5 bg-white/80 mx-auto rounded-t-lg end-1 top-1"
@@ -39,17 +40,29 @@ const isInCart = computed(() => cart.value.has(props.uuid));
           class="opacity-0 hover:opacity-100 duration-300 h-full w-full flex justify-center items-center"
         >
           <div>
-            <h2 class="text-white font-normal justify-center pr-4 text-lg flex">
-              <IconsBag class="w-6 fill-white" /> : {{ content?.Precio }}
+            <h2 class="text-white font-bold justify-center mt-4 flex">
+              $ {{ content?.Precio }}
             </h2>
             <hr class="mb-2" />
-            <button class="bg-PRP px-4 py-2 rounded-lg text-white">
-              Ver Producto
-            </button>
+            <div class="flex gap-2 justify-center">
+              <NuxtLink
+                class="bg-black/50 p-2 border rounded-lg text-white"
+                :to="`/productos/${slug}`"
+              >
+                <IconsEye class="h-6 w-6 mx-auto rounded-t-lg" />
+              </NuxtLink>
+              <button class="bg-black/50 border p-2 rounded-lg text-white">
+                <IconsBag class="h-6 w-6 mx-auto rounded-t-lg" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </NuxtLink>
-    <p class="font-thin text-lg text-center bg-PRP rounded-b-lg py-2 text-white">{{ content?.Nombre }}</p>
+    <p
+      class="font-thin text-lg text-center bg-PRP rounded-b-lg py-2 text-white"
+    >
+      {{ content?.Nombre }}
+    </p>
   </article>
 </template>
