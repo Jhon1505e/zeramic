@@ -1,48 +1,70 @@
 <template>
   <div v-editable="blok" class="bg-gray-200">
-    <div class="mx-auto">
+    <div class="mx-auto ">
       
-      <div class="w-full">
-        <NuxtImg
+      <div class="w-full   rounded-lg">
+        <div class="w-full bg-PRP">
+          <div v-editable="blok">
+            <div class="w-2/3 pl-8 pt-8 mx-auto ">
+
+              <NuxtLink to="/productos" class="text-white font-semibold text-xl flex gap-2"> <IconsArrow class="w-2" />   Volver a Productos</NuxtLink>
+            </div>
+            
+        <StoryblokComponent
+          v-for="blok in blok.Body"
+          :key="blok._uid"
+          :blok="blok"
+        />
+        <div class=" w-2/3 pb-10 pl-8 mx-auto">
+
+          <button
+          @click="addToShop"
+          class="text-white border border-white font-thin px-6 py-2 text-xl  rounded-md"
+          >
+          {{ isInCart ? 'En el carrito' : 'Comprar Producto' }}
+          
+        </button>
+      </div>
+     
+      
+
+        <!--   <NuxtImg
           v-if="Imagen?.filename"
-          class="w-full max-w-7xl mx-auto bg-gray-300 rounded-lg aspect-video"
+          class="w-full max-w-7xl mx-auto bg-gray-300  aspect-video"
           :src="Imagen?.filename"
           alt=""
-        />
-        <NuxtImg
+          />
+          <NuxtImg
           v-else
           class="w-full bg-gray-300"
           src="/img/logo_zeramic.webp"
           alt=""
-        />
+          /> -->
+        </div>
       </div>
+    </div>
     </div>
     <div class="w-full md:w-2/3 text-center mx-auto pb-20 px-10 pt-8 md:pt-16">
       <p class="p-4 font-light mt-2 text-gray-500 text-xl md:text-2xl">
         {{ Descripcion }}
       </p>
 
-      <button
-        @click="addToShop"
-        class="text-white bg-PRP font-thin mt-4 px-6 py-2 text-xl md:text-2xl hover:scale-105 duration-100 ease-in rounded-md"
-      >
-      {{ isInCart ? 'En el carrito' : 'Comprar Producto' }}
-        
-      </button>
+   <NuxtImg
+          v-if="Imagen?.filename"
+          class="w-full max-w-7xl mx-auto rounded-lg mt-10 bg-gray-300  aspect-video"
+          :src="Imagen?.filename"
+          alt=""
+          />
+          <NuxtImg
+          v-else
+          class="w-full bg-gray-300"
+          src="/img/logo_zeramic.webp"
+          alt=""
+          /> 
       
     </div>
 
-    <FooterImg class="fill-PRP" />
-    <div class="bg-PRP">
-      <div v-editable="blok" class="px-10">
-        <StoryblokComponent
-          v-for="blok in blok.Body"
-          :key="blok._uid"
-          :blok="blok"
-        />
-      </div>
-      <FooterImg class="fill-slate-900" />
-    </div>
+  
   </div>
 </template>
 

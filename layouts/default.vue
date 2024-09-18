@@ -8,6 +8,6 @@
     <slot />
     <ButtonsMobile />
    
-    <Footer />
+    <Footer v-if="$route.path !== '/compras'" />
   </main>
 </template>

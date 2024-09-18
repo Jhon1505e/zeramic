@@ -10,7 +10,7 @@ const content = computed(() => {
 
 <template>
   <div class="bg-PRP">
-    <div class="flex justify-center pt-6 mx-auto">
+    <div class="flex justify-center pt-24 mx-auto">
       <NuxtImg
         format="webp"
         src="/img/logo_zeramic.webp"
@@ -22,7 +22,7 @@ const content = computed(() => {
       <NuxtImg
         format="webp"
         src="/img/products_index.webp"
-        class="w-full md:w-3/4 z-10 absolute"
+        class="w-full md:w-3/4 z-10 absolute mt-6"
         alt=""
       />
 
@@ -51,7 +51,6 @@ const content = computed(() => {
           </h4>
         </div>
       </div>
-      <FooterImg class="absolute bottom-0 fill-PRP" />
     </div>
 
     <!-- <StoryblokComponent
@@ -60,12 +59,12 @@ const content = computed(() => {
       :blok="content"
     />  -->
 
-    <div class="bg-PRP">
-      <div class="w-full md:w-5/6 pt-10 pb-16 px-6 mx-auto text-center">
+    <div class="bg-PRP pt-10">
+      <div class="w-full md:w-1/2 pt-10 pb-32 px-6 mx-auto text-center max-w-6xl">
         <h2 class="text-xl md:text-3xl font-semibold pb-4 text-white">
           DISEÑAMOS Y FABRICAMOS
         </h2>
-        <p class="text-white antialiased font-light md:font-normal">
+        <p class="text-white antialiased font-light text-2xl mt-4">
           Objetos exclusivos en cerámica de alta temperatura para todo tipo de
           usos en el hogar y el comercio. Zeramic es la combinación de técnicas
           tradicionales de fabricación de cerámica con nuevas tecnologías como
@@ -83,7 +82,7 @@ const content = computed(() => {
         />
       </div>
     </div>
-    <div class="bg-white">
+    <div class="bg-white py-10">
       <div class="w-fullmd:w-1/2 mx-auto px-6 md:px-0 py-10 md:py-20">
         <NuxtImg
           format="webp"
@@ -92,7 +91,8 @@ const content = computed(() => {
           alt=""
         />
       </div>
-      <FooterImg class="fill-slate-900" />
     </div>
+
+    
   </div>
 </template>
