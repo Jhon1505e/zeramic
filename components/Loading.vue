@@ -2,7 +2,7 @@
 
 <template>
   <div
-    class="w-full h-screen z-20 fixed bg-black/80 flex justify-center items-center"
+    class="w-full h-screen z-20 fixed top-0 bg-black/80 flex justify-center items-center"
   >
     <div>
       <NuxtImg
@@ -11,7 +11,7 @@
         class=" mx-auto"
         alt="Zeramic"
       />
-      <div class="flex justify-center gap-3 animate-pulse mb-52">
+      <div class="flex justify-center gap-3 animate-pulse mb-32">
         <IconsSpot class="w-4 fill-white" />
         <IconsSpot class="w-4 fill-white" />
         <IconsSpot class="w-4 fill-white" />

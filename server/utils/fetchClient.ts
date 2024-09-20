@@ -8,6 +8,18 @@ export default function fetchClient() {
   const database = client.db("tailorsdb")
   const clients = database.collection("clients")
 
+  const getClients = async () => {
+    try {
+      await client.connect()
+      return await clients.find({}).toArray()
+    } catch (e) {
+      console.error(e)
+      return null
+    } finally {
+      await client.close()
+    }
+  }
+
   const findClient = async (email: string) => {
     try {
       await client.connect()
@@ -44,5 +56,5 @@ export default function fetchClient() {
     }
   }
 
-  return { findClient, insertClient, updateClient }
+  return { getClients, findClient, insertClient, updateClient }
 }
