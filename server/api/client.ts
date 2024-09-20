@@ -1,14 +1,15 @@
 export default defineEventHandler(async (event) => {
     const body = await readBody(event)
 
-    console.log(body)
+    console.log('body',body)
 
-    if (!body.email) {
-        return
+    const { getClients, findClient } = fetchClient()
+    
+    if (!body?.email) {
+        return await getClients()
     }
 
-    const { findClient } = fetchClient()
-    const data = await findClient(body.email)
-    console.log(data)
+    const data = await findClient(body.email.trim())
+    console.log('data',data)
     return data
 })

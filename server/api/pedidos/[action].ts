@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
   const body: any = {
     dataSource: "Tailors",
     database: "tailorsdb",
-    collection: "projects",
+    collection: "clients",
   };
 
   params?.action === "insertOne"
@@ -30,6 +30,7 @@ export default defineEventHandler(async (event) => {
         body,
       }
     );
+    console.log(data)
     return params?.action === "find" ? formatData(data) : data;
   } catch (error) {
     console.log(error);
