@@ -82,7 +82,7 @@ const content = computed(() => {
         />
       </div>
     </div>
-    <div class="bg-white py-10">
+    <div class="bg-white py-4">
       <div class="w-fullmd:w-1/2 mx-auto px-6 md:px-0 py-10 md:py-20">
         <NuxtImg
           format="webp"
