@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { cart } = useShopping();
+const { cart, addProduct } = useShopping();
 
 const props = defineProps<{
   uuid: string;
@@ -7,6 +7,17 @@ const props = defineProps<{
   slug: string;
 }>();
 const isInCart = computed(() => cart.value.has(props.uuid));
+function addToShop() {
+  const product = {
+    uuid: props.uuid,
+    producto: props.content.Nombre,
+    valor: props.content.Precio,
+    cantidad: 1,
+    imagen: props.content.Imagen.filename,
+    // slug: slug.join("/"),
+  };
+  addProduct(product);
+}
 </script>
 
 <template>
@@ -14,7 +25,8 @@ const isInCart = computed(() => cart.value.has(props.uuid));
     class="shadow-lg rounded-t-lg hover:scale-105 duration-300"
     :key="uuid"
   >
-    <NuxtLink class="relative">
+  <div class="relative">
+      <!-- <pre class="text-xs">{{ content }}</pre> -->
       <IconsBag
         v-if="isInCart"
         class="h-10 w-10 absolute fill-PRP p-0.5 bg-white/80 mx-auto rounded-t-lg end-1 top-1"
@@ -52,14 +64,20 @@ const isInCart = computed(() => cart.value.has(props.uuid));
               >
                 <IconsEye class="h-6 w-6 mx-auto rounded-t-lg" />
               </NuxtLink>
-              <button class="bg-black/50 border p-2 rounded-lg text-white">
+              <button @click="addToShop" class="bg-black/50 border p-2 rounded-lg text-white">
                 <IconsBag class="h-6 w-6 mx-auto rounded-t-lg" />
               </button>
             </div>
           </div>
+
         </div> -->
       </NuxtLink>
-    </NuxtLink>
+
+
+
+      </div>
+
+
     <p
       class="font-thin text-lg text-center bg-PRP rounded-b-lg py-2 text-white"
     >
