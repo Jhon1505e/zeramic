@@ -33,10 +33,11 @@ const isInCart = computed(() => cart.value.has(props.uuid));
         src="/img/logo_zeramic.webp"
         alt=""
       />
-      <div
-        class="w-full hover:bg-black/60 absolute bottom-0 text-end h-full duration-300 rounded-t-lg"
+      <NuxtLink
+      :to="`/productos/${slug}`"
+        class="w-full  absolute bottom-0 text-end h-full duration-300 rounded-t-lg"
       >
-        <div
+      <!--   <div
           class="opacity-0 hover:opacity-100 duration-300 h-full w-full flex justify-center items-center"
         >
           <div>
@@ -56,8 +57,8 @@ const isInCart = computed(() => cart.value.has(props.uuid));
               </button>
             </div>
           </div>
-        </div>
-      </div>
+        </div> -->
+      </NuxtLink>
     </NuxtLink>
     <p
       class="font-thin text-lg text-center bg-PRP rounded-b-lg py-2 text-white"
