@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+const { cart } = useShopping();
 const { open } = useShopping();
 </script>
 <template>
@@ -23,8 +23,11 @@ const { open } = useShopping();
         </button>
       </div>
 
-      <div class="overflow-y-scroll duration-150" :class="open ? 'opacity-100' : 'opacity-0 translate-x-20'">
-        <slot />
+      <div class="overflow-y-scroll duration-150 " :class="open ? 'opacity-100' : 'opacity-0 translate-x-20'">
+        <div :class="cart.size === 0 ? 'pt-20 pb-40' : '' ">
+
+          <slot />
+        </div>
       </div>
       <div
         class="p-2 text-center bg-PRP text-white w-5/6 mx-auto rounded-lg text-2xl font-thin mt-3"
