@@ -20,13 +20,13 @@ async function saveDataClient() {
   <form @submit.prevent="saveDataClient">
     <div class="grid md:grid-cols-2 gap-3 p-2">
       <div class="w-full">
-        <label for="name">Nombres y Apellidos: *</label>
+        <label for="name" class="text-white">Nombres y Apellidos:</label>
         <input
           v-model="dataClient.name"
           type="text"
           required
           id="name"
-          class="w-full py-2 px-4 rounded-lg text-gray-600 border"
+          class="w-full py-2 px-4 mt-2 rounded-lg bg-black/10 border text-white "
           placeholder="Nombres y Apellidos"
         />
       </div>
