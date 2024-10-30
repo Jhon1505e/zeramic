@@ -10,11 +10,11 @@ const content = computed(() => {
 
 <template>
   <div class="bg-PRP">
-    <div class="flex justify-center pt-24 mx-auto">
+    <div class="flex justify-center pt-10 mx-auto">
       <NuxtImg
         format="webp"
         src="/img/logo_zeramic.webp"
-        class="w-1/2 md:w-1/5"
+        class="w-1/2 md:w-1/4"
         alt=""
       />
     </div>
