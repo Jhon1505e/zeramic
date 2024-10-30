@@ -23,6 +23,7 @@
       >
         <IconsCocina class="w-6 mx-auto" />
         <h3 class="pt-1 text-sm">Productos</h3>
+
       </NuxtLink> 
       <NuxtLink
         to="/nosotros"
@@ -52,6 +53,7 @@
         <IconsBag class="w-7 mx-auto fill-white" />
         <h3 class="pt-1 text-sm">Carrito</h3>
       </NuxtLink> -->
+
       <NuxtLink
         to="/cuenta"
         class="w-1/5 text-center text-white opacity-80 fill-gray-400"

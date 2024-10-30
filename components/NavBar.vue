@@ -39,11 +39,11 @@
         </li>
       </ul>
 
-      <div class="w-auto hidden hover:scale-110 duration-200 ease-in justify-end pt-1 pl-4 pr-10"
-        v-if="route.path !== '/compras' && route.path !== '/cuenta' ">
-        <NuxtLink @click="open = true" class="flex cursor-pointer">
-          <span class="text-PRP border rounded-full px-2 py-1   text-xs bg-white  absolute ml-5  ">
 
+      <div class="w-auto hidden hover:scale-110 duration-200 ease-in md:flex justify-end pt-1 pl-4 pr-10"
+        v-if="$route.path !== '/compras'">
+        <NuxtLink @click="open = true" class="flex cursor-pointer">
+          <span class="text-white border rounded-full px-2 py-1   text-xs bg-white absolute ml-5  ">
             {{ cart.size }}
           </span>
           <IconsBag class="w-7 z-10  stroke-white" />
