@@ -3,28 +3,25 @@ const documents = ref();
 const productos = ref();
 const modal = ref(false);
 
-async function getDataClients() {
-  const { data } = await useFetch("/api/pedidos/find", {
-    method: "POST",
-    body: {
-      name: "",
-    },
-  });
-  documents.value = data.value;
+const { getDataClients, deleteClient } = useClient();
+
+const { start, finish } = useLoadingIndicator();
+
+async function onDelete(id: string) {
+  start()
+  const data = await deleteClient(id);
+  console.log(data);
+  onGetClients()
 }
 
-async function deleteClient(id: string) {
-  const { data } = await useFetch("/api/pedidos/deleteOne", {
-    method: "POST",
-    body: {
-      _id: id,
-    },
-  });
-  console.log(data.value);
-  getDataClients();
+async function onGetClients() {
+  documents.value = await getDataClients();
+  documents.value = await getDataClients();
+  finish()
 }
 
-getDataClients();
+onGetClients()
+
 </script>
 
 <template>
@@ -35,7 +32,7 @@ getDataClients();
         <div>
           <button
             class="p-2 text-white bg-white/10 border px-4 rounded-xl mt-2 flex gap-2"
-            @click="getDataClients"
+            @click="onGetClients"
           >
             Actualizar <IconsRefresh class="w-5 mt-0.5" />
           </button>
@@ -81,7 +78,7 @@ getDataClients();
               <IconsBag class="w-5" />: {{ doc.productos?.length }}
             </button>
             <button
-              @click="deleteClient(doc._id)"
+              @click="onDelete(doc._id)"
               class="p-2 border rounded bg-white/10 text-white flex gap-1"
             >
               <span class="hidden md:block">Eliminar</span>

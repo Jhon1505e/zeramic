@@ -1,23 +1,14 @@
 <script setup lang="ts">
 import { type IClient } from "~/types/clients";
 import { statesColombia } from "@/utils/datalist";
-const dataClient = defineModel<IClient>({ default: () => {} });
+const dataClient = defineModel<IClient>({ required: true });
+const emit = defineEmits(["submit"]);
 const states = computed(() => Object.keys(statesColombia));
 const cities = computed(() => statesColombia[dataClient.value.state]);
-async function saveDataClient() {
-  const data = await $fetch<IClient>("/api/clientes/update", {
-    method: "POST",
-    body: dataClient.value,
-  });
-  if (!data) {
-    alert("No se encontro el usuario");
-  } else {
-    console.log("data", data);
-  }
-}
+
 </script>
 <template>
-  <form @submit.prevent="saveDataClient">
+  <form @submit.prevent="emit('submit')">
     <div class="grid md:grid-cols-2 gap-3 p-2">
       <div class="w-full">
         <label for="name" class="text-white">Nombres y Apellidos:</label>
