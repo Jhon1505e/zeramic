@@ -21,15 +21,18 @@ const isValidStory = computed(() => {
 </script>
 
 <template>
-  <div class="text-center py-10 md:p-32 space-y-3">
+  <div class="text-center ">
     <StoryblokComponent v-if="isValidStory" :blok="story.content" :uuid="story.uuid" />
-    <div v-else>
-      <h2>Error 404</h2>
-      <p class="text-lg p-2">Pagina no encontrada</p>
+    <div v-else class="py-28 bg-PRP flex justify-center items-center">
       <div>
-        <NuxtLink class="text-PRP border rounded border-PRP p-2 mt-6" to="/">Inicio</NuxtLink>
+        <IconsError class="w-40 mx-auto fill-white" />
+        
+        <p class="text-3xl mt-5 font-bold text-white">Pagina no encontrada</p>
+        <div class="mt-6">
+          <NuxtLink class="text-white bg-white/10 border  rounded-xl border-white px-6 py-2 text-xl " to="/">Inicio</NuxtLink>
+        </div>
       </div>
     </div>
-    <div v-if="error" class="text-red-500 text-sm">{{ error }}</div>
+    <div  v-if="error" class="text-red-500 text-sm bg-PRP">{{ error }}</div>
   </div>
 </template>
