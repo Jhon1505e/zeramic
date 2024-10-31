@@ -5,7 +5,7 @@
     <h2>Paso 1</h2>
     <p>Obtener Token</p>
     <div class="w-full flex">
-      <pre class="w-full text-xs">{{ result1?.data.presigned_acceptance }}</pre>
+      <pre class="w-full text-xs">{{ result1 }}</pre>
       <div class="w-full"><button @click="getStepOne">GetToken</button></div>
     </div>
     <hr />
@@ -62,21 +62,25 @@ const payload = ref({
 });
 
 async function getStepOne() {
-  const { data, error } = await useFetch(`${baseUrl}merchants/${publicKey}`);
-  result1.value = data.value || error.value;
+  try {
+    const response: any = await $fetch(`${baseUrl}merchants/${publicKey}`);
+    result1.value = response.data.presigned_acceptance;
+  } catch (error) {  
+    console.log('response',error);
+    result1.value = error;
+  }
 }
 
 async function getStepTwo() {
-  payload.value.acceptance_token =
-    result1.value?.data.presigned_acceptance.acceptance_token;
-  const { data, error } = await useFetch(`${baseUrl}transactions/`, {
+  payload.value.acceptance_token = result1.value?.acceptance_token;
+  const response: any = await $fetch(`${baseUrl}transactions/`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${privateKey}`,
     },
     body: payload.value,
   });
-  result2.value = data.value || error.value;
+  result2.value = response.data || response.error;
 }
 
 async function getStepThree() {

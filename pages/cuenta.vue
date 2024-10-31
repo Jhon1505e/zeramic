@@ -1,55 +1,64 @@
 <script setup lang="ts">
-import type { IClient } from "~/types/clients";
+import type { FormLogin } from '#build/components';
 
-const client = ref<IClient | null>();
+const { user, client, saveClient, getClient } = useClient();
 const loading = ref(false);
 const pedido = ref(false);
-const datos = ref(false);
-
-const user = reactive({
-  email: "",
-});
-
-const { start, finish } = useLoadingIndicator();
-
-const getClient = async () => {
-  start();
-  const data = await $fetch<IClient>("/api/client", {
-    method: "POST",
-    body: user,
-  });
-  if (!data) {
-    alert("No se encontro el usuario");
-  } else {
-    client.value = data;
-  }
-  finish();
-};
 
 async function handleLoginSuccess(response: any) {
   loading.value = true;
   const { credential } = response;
-  console.log("Access token: ", credential);
+  //*console.log("Access token: ", credential);
   // hacer fetch al api del servidor nuxt
   // para verificar token con google-auth-library
   // devuelve el email y nombre
   // y consultar en la base de datos
+  const body = { token: credential }
+  localStorage.setItem("auth", JSON.stringify(body));
   const data = await $fetch("/api/googlelogin", {
     method: "POST",
-    body: {
-      token: credential,
-    },
+    body,
   });
+  if (!data) {
+    localStorage.removeItem("auth");
+  }
   client.value = data as any;
   loading.value = false;
 }
 function handleLoginError() {
   console.error("Login failed");
 }
+async function saveDataClient() {
+  loading.value = true;
+  const data = await saveClient()
+  if (!data) {
+    alert("No se encontro el usuario");
+    return;
+  }
+  console.log('data', data);
+  loading.value = false;
+}
+
+function closeSession() {
+  client.value = null;
+  localStorage.removeItem("auth");
+}
+
+onMounted(() => {
+  const auth = localStorage.getItem("auth");
+  if (auth && !client.value) {
+    const store = JSON.parse(auth);
+    const credential = store.token;
+    handleLoginSuccess({ credential });
+  }
+})
 </script>
 
 <template>
   <div class="bg-PRP h-full">
+    <div class="bg-white/70 text-xs fixed bottom-1 right-1 w-1/2 p-5 z-50">
+      <pre>{{ client }}</pre>
+    </div>
     <Loading v-if="loading" />
     <div class="max-w-6xl mx-auto p-5">
       <div v-if="client" class="md:flex gap-5 h-full px-20 pt-10 pb-32 ">
@@ -57,19 +66,16 @@ function handleLoginError() {
           <h2 class="text-center text-white mt-2">Mi cuenta</h2>
 
           <div class="flex justify-center mt-4">
-            <IconsUser
-              class="w-24 p-5 rounded-full bg-black/10 text-white"
-            ></IconsUser>
+            <NuxtImg v-if="client?.picture" :src="client.picture" alt="" class="w-24 h-24 rounded-full" />
+            <IconsUser v-else class="w-24 p-5 rounded-full bg-black/10 text-white"></IconsUser>
           </div>
           <h1 class="text-center text-white font-thin text-xl px-4 pb-4">
 
             {{ client.name }}
           </h1>
           <div class="flex flex-col mt-3">
-            <button
-            @click="pedido = false"
-              class="py-3 text-white hover:bg-white/10 border-y flex gap-2 justify-center"
-            >
+            <button @click="pedido = false"
+              class="py-3 text-white hover:bg-white/10 border-y flex gap-2 justify-center">
               <IconsUser class="w-5" /> Mis Datos
             </button>
             <!-- <button
@@ -80,9 +86,8 @@ function handleLoginError() {
               <IconsBag class="w-5" /> Mis Pedidos
             </button> -->
 
-            <button
-              class="py-3 text-white hover:bg-white/10  flex gap-2 justify-center"
-            >
+            <button class="py-3 text-white hover:bg-white/10  flex gap-2 justify-center"
+              @click="closeSession">
               <IconsExit class="w-5 rotate-180" /> Cerrar Sesión
             </button>
           </div>
@@ -90,50 +95,19 @@ function handleLoginError() {
         <div class="w-full bg-black/10 rounded-xl border  overflow-auto h-96" v-if="pedido">
           <CartInfo />
         </div>
-        <div v-else class="w-full bg-black/10 rounded-xl mt-10 md:mt-0 p-5 border" >
-
-      
-          <FormClient v-model="client"></FormClient>
+        <div v-else class="w-full bg-black/10 rounded-xl mt-10 md:mt-0 p-5 border">
+          <FormClient v-model="client" @submit="saveDataClient" />
         </div>
       </div>
-      <div v-else class="md:w-1/2 p-5 mt-2 pb-48 mx-auto ">
+      <div class="md:w-1/2 p-5 mt-2 pb-48 mx-auto ">
 
         <div class="flex justify-center">
-          <IconsUser
-            class="w-24 p-5 rounded-full bg-white/10 text-white"
-          ></IconsUser>
+          <IconsUser class="w-24 p-5 rounded-full bg-white/10 text-white"></IconsUser>
         </div>
         <h2 class="text-center text-white font-thin mt-2">
           Ingresa tu correo electrónico
         </h2>
-        <form action="" @submit.prevent="getClient">
-          <div class="mt-4 mx-8 md:mx-24">
-
-            <input
-              id="email"
-              type="email"
-              class="rounded-xl text-center p-2 w-full border bg-transparent text-white"
-              v-model="user.email"
-              required
-              placeholder="email@example.com"
-            />
-            <button
-              class="border w-full bg-white/20 mx-auto block mt-4 rounded-xl p-2 text-white"
-              type="submit"
-            >
-              Ingresar
-            </button>
-          </div>
-          <h2 class="text-center text-white font-thin text-sm mt-3">
-            No tienes una cuenta? <strong>Registrarse</strong>
-          </h2>
-          <div class="flex justify-center mt-4">
-            <GoogleSignInButton
-              @success="handleLoginSuccess"
-              @error="handleLoginError"
-            ></GoogleSignInButton>
-          </div>
-        </form>
+        <FormLogin @success="handleLoginSuccess" @error="handleLoginError" />
       </div>
     </div>
   </div>
