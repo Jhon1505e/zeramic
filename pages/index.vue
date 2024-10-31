@@ -61,10 +61,10 @@ const content = computed(() => {
 
     <div class="bg-PRP pt-10">
       <div class="w-full md:w-1/2 pt-10 pb-32 px-6 mx-auto text-center max-w-6xl">
-        <h2 class="text-xl md:text-3xl font-semibold pb-4 text-white">
+        <h2 class="text-2xl md:text-3xl font-semibold pb-4 text-white">
           DISEÑAMOS Y FABRICAMOS
         </h2>
-        <p class="text-white antialiased font-light text-2xl mt-4">
+        <p class="text-white antialiased font-light md:text-2xl mt-4">
           Objetos exclusivos en cerámica de alta temperatura para todo tipo de
           usos en el hogar y el comercio. Zeramic es la combinación de técnicas
           tradicionales de fabricación de cerámica con nuevas tecnologías como

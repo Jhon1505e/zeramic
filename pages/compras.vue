@@ -91,7 +91,7 @@ function handleLoginError() {
 <template>
   <div class="bg-PRP h-screen">
     <Loading v-if="loading" />
-    <div class="flex justify-center gap-10 pt-10 pb-16">
+    <div class="flex justify-center gap-10 pt-10 ">
       <button
         @click="
           resumen = true;
@@ -162,7 +162,7 @@ function handleLoginError() {
     
 
     <div
-      class="mx-auto max-w-6xl block md:flex gap-6 pb-20 pt-4"
+      class="mx-auto max-w-6xl block md:flex gap-6 pb-20 pt-16"
       v-if="resumen"
     >
       <div class="w-full md:w-3/4 px-4 md:px-0 mx-auto">
@@ -201,7 +201,7 @@ function handleLoginError() {
     </div>
 
     <div v-if="login">
-      <div class="max-w-5xl text-center mx-auto pt-14 pb-32">
+      <div class="max-w-5xl text-center mx-auto pt-6 pb-32">
         <h1 class="text-2xl font-semibold text-white">
           Ingresa tu correo electrónico para continuar la compra.
         </h1>
@@ -269,14 +269,14 @@ function handleLoginError() {
               v-model="dataClient.name"
               type="text"
               required
-              class="w-1/2 py-2 px-4 rounded-lg text-gray-600"
+              class="w-1/2 py-2 px-4 rounded-lg text-white bg-black/10 border"
               placeholder="Nombres y Apellidos"
             />
             <input
               v-model="dataClient.email"
               required
               type="email"
-              class="w-1/2 py-2 px-4 rounded-lg text-gray-600"
+              class="w-1/2 py-2 px-4 rounded-lg text-white bg-black/10 border"
               placeholder="Correo Electrónico"
             />
           </div>
@@ -285,13 +285,13 @@ function handleLoginError() {
               v-model="dataClient.phone"
               required
               type="number"
-              class="w-1/2 py-2 px-4 rounded-lg text-gray-600"
+              class="w-1/2 py-2 px-4 rounded-lg text-white bg-black/10 border"
               placeholder="Celular"
             />
             <select
               v-model="dataClient.docType"
               required
-              class="w-1/2 py-2 px-4 rounded-lg text-gray-600"
+              class="w-1/2 py-2 px-4 rounded-lg text-white bg-black/10 border"
             >
               <option value="">Tipo de Documento</option>
               <option value="TI">Tarjeta de identidad</option>
@@ -301,7 +301,7 @@ function handleLoginError() {
               v-model="dataClient.docId"
               required
               type="number"
-              class="w-1/2 py-2 px-4 rounded-lg text-gray-600"
+              class="w-1/2 py-2 px-4 rounded-lg text-white bg-black/10 border"
               placeholder="Número de Documento"
             />
           </div>
@@ -310,13 +310,13 @@ function handleLoginError() {
               required
               v-model="dataClient.address"
               type="text"
-              class="w-1/2 py-2 px-4 rounded-lg"
+              class="w-1/2 py-2 px-4 rounded-lg text-white bg-black/10 border"
               placeholder="Dirección"
             />
             <select
               v-model="dataClient.state"
               required
-              class="w-1/2 py-2 px-4 rounded-lg text-gray-600"
+              class="w-1/2 py-2 px-4 rounded-lg text-white bg-black/10 border"
             >
               <option value="">Departamento</option>
               <option v-for="state in states" :value="state">
@@ -326,7 +326,7 @@ function handleLoginError() {
             <select
               required
               v-model="dataClient.city"
-              class="w-1/2 py-2 px-4 rounded-lg text-gray-600"
+              class="w-1/2 py-2 px-4 rounded-lg text-white bg-black/10 border"
             >
               <option value="">Ciudad</option>
               <option v-for="city in cities" :value="city">{{ city }}</option>

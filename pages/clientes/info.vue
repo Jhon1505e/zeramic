@@ -44,32 +44,39 @@ getDataClients();
       <div class="text-center border rounded-lg mt-6">
         <div class="flex p-2 text-white bg-white/10">
           <div class="w-full text-center justify-center">Nombre</div>
-          <div class="w-full hidden md:flex justify-center ">Correo Electrónico</div>
+          <div class="w-full hidden md:flex justify-center">
+            Correo Electrónico
+          </div>
           <div class="w-full hidden md:flex justify-center">Celular</div>
           <div class="w-full hidden md:flex justify-center">Dirección</div>
           <div class="w-full"></div>
         </div>
         <hr />
-        <div class="flex border-b text-white  items-center" v-for="doc in documents" :key="doc._id">
-          <div class="w-full p-2 md:border-r ">{{ doc.name }}</div>
-          <div class="w-full p-2 border-r hidden md:flex ">{{ doc.email }}</div>
-          <div class="w-full p-2 border-r hidden md:flex">{{ doc.phone }}</div>
-          <div class="w-full p-2 hidden md:flex">
+        <div
+          class="flex border-b text-white items-center"
+          v-for="doc in documents"
+          :key="doc._id"
+        >
+          <div class="w-full p-2">{{ doc.name }}</div>
+          <div class="w-full p-2 justify-center hidden md:flex">
+            {{ doc.email }}
+          </div>
+          <div class="w-full p-2 justify-center hidden md:flex">
+            {{ doc.phone }}
+          </div>
+          <div class="w-full p-2 justify-center hidden md:flex">
             {{ doc.address }} - {{ doc.city }}, {{ doc.state }}
           </div>
-          <div
-            class="w-full p-3 flex text-sm justify-center gap-2  border-l"
-          >
-          <button
-              
-              class="py-2 px-3 flex border rounded md:hidden  bg-white/10 text-white"
+          <div class="w-full p-3 flex text-sm justify-center gap-2">
+            <button
+              class="py-2 px-3 flex border rounded md:hidden bg-white/10 text-white"
             >
               <IconsEye class="w-5" />
             </button>
             <!-- @click="productos = doc.productos" -->
             <button
-            @click="modal = !modal"
-              class="p-2  border rounded flex  bg-white/10 text-white"
+              @click="modal = !modal"
+              class="p-2 border rounded flex bg-white/10 text-white"
             >
               <IconsBag class="w-5" />: {{ doc.productos?.length }}
             </button>
@@ -77,7 +84,8 @@ getDataClients();
               @click="deleteClient(doc._id)"
               class="p-2 border rounded bg-white/10 text-white flex gap-1"
             >
-             <span class="hidden md:block">Eliminar</span>  <IconsDelete class="w-5" />
+              <span class="hidden md:block">Eliminar</span>
+              <IconsDelete class="w-5" />
             </button>
           </div>
         </div>
@@ -98,7 +106,7 @@ getDataClients();
         </div>
       </div>
     </div>
-    <div v-if="modal" >
+    <div v-if="modal">
       <ModalClients @close="modal = false" />
     </div>
   </div>

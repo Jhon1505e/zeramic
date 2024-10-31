@@ -21,15 +21,15 @@
         </li>
         <li>
           <NuxtLink
-            :class="route.path === '/compras' ? 'opacity-100  text-white' : 'opacity-70 hover:opacity-100'"
-          class="text-white text-2xl pb-1 px-3   duration-100 ease-in font-extralight "
-          to="/contacto">Contacto</NuxtLink>
-        </li>
-        <li>
-          <NuxtLink
             :class="route.path === '/nosotros' ? 'opacity-100  text-white' : 'opacity-70 hover:opacity-100'"
           class="text-white text-2xl pb-1 px-3   duration-100 ease-in font-extralight "
           to="/nosotros">Nosotros</NuxtLink>
+        </li>
+        <li>
+          <NuxtLink
+            :class="route.path === '/compras' ? 'opacity-100  text-white' : 'opacity-70 hover:opacity-100'"
+          class="text-white text-2xl pb-1 px-3   duration-100 ease-in font-extralight "
+          to="/contacto">Contacto</NuxtLink>
         </li>
         <li>
           <NuxtLink
