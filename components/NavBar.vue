@@ -6,7 +6,7 @@
         
       </NuxtLink>
      
-      <ul class="hidden lg:flex bg w-full   pt-4 pl-20 duration-300 " :class="route.path === '/' ? 'justify-center' : 'justify-end'">
+      <ul class="hidden lg:flex bg w-full   pt-4 pl-20 duration-300 " :class="route.path === '/' ? 'justify-center ml-32' : 'justify-end'">
         <li >
           <NuxtLink
             :class="route.path === '/' ? 'opacity-100  text-white' : 'opacity-70 hover:opacity-100'"
@@ -43,7 +43,7 @@
       <div class="w-auto hidden hover:scale-110 duration-200 ease-in md:flex justify-end pt-1 pl-4 pr-10"
         v-if="$route.path !== '/compras'">
         <NuxtLink @click="open = true" class="flex cursor-pointer">
-          <span class="text-white border rounded-full px-2 py-1   text-xs bg-white absolute ml-5  ">
+          <span class="text-white border rounded-full px-2 py-1   text-xs bg-white/10 absolute ml-5  ">
             {{ cart.size }}
           </span>
           <IconsBag class="w-7 z-10  stroke-white" />
