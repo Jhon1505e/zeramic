@@ -23,7 +23,7 @@
                      @click="addToShop"
                      class="text-white border border-white font-thin px-6 py-2 text-xl rounded-md"
                    >
-                     {{ isInCart ? "En el carrito" : "Comprar Producto" }}
+                     {{ isInCart ? "En el carrito" : "Añadir a la compra" }}
                    </button>
                  </div>
               <!--   

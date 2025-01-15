@@ -59,19 +59,19 @@ function handleLoginError() {
         <ul class="mt-2 w-2/3 mx-auto">
           <li class="text-white flex font-thin">
             <IconsCheck class="w-4 mr-2 fill-green-600" />
-            Identificar su perfil
+            Identificar su perfil.
           </li>
           <li class="text-white flex font-thin">
             <IconsCheck class="w-4 mr-2 fill-green-600" />
-            Guardar el historial de compras
+            Guardar el historial de compras.
           </li>
           <li class="text-white flex font-thin">
             <IconsCheck class="w-4 mr-2 fill-green-600" />
-            Facilitar el proceso de compras
+            Facilitar el proceso de compras.
           </li>
           <li class="text-white flex font-thin">
             <IconsCheck class="w-4 mr-2 fill-green-600" />
-            Notificar sobre los estados de su compra
+            Notificar sobre los estados de su compra.
           </li>
         </ul>
       </div>

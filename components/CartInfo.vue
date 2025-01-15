@@ -32,9 +32,9 @@ function formatMoneda(value: number) {
 </script>
 
 <template>
-  <div v-if="cart.size === 0" class="w-full md:w-1/2 flex justify-center items-center  mx-auto"
+  <div v-if="cart.size === 0" class="w-full md:w-1/2  flex justify-center items-center  mx-auto"
    >
-    <div class="text-center " :class="route.path === '/compras' ? 'mt-8' : 'mt-10' && route.path === '/cuenta' ? 'mt-0' : ''">
+    <div class="text-center pb-10" :class="route.path === '/compras' ? 'mt-8' : 'mt-10' && route.path === '/cuenta' ? 'mt-0' : 'mt-10'">
       <h2 class="font-semibold"
         :class="route.path === '/compras' ? 'text-4xl text-white' : 'text-PRP text-3xl' && route.path === '/cuenta' ? 'text-white' : 'text-PRP text-3xl' ">
         Carrito vacío
@@ -55,14 +55,14 @@ function formatMoneda(value: number) {
       <div class="w-2/5  pl-6">
         <h2 class="text-lg text-white font-extralight">Producto</h2>
       </div>
-      <div class=" w-1/3">
+      <div class=" w-1/4">
         <h2 class="text-lg text-white text-center pr-12 font-extralight">Cantidad</h2>
       </div>
-      <div class=" w-1/5">
-        <h2 class="text-lg text-white font-extralight">Precio</h2>
+      <div class=" w-1/5 ">
+        <h2 class="text-lg text-white text-start pl-2 font-extralight ">Precio</h2>
       </div>
       <div class=" w-1/5">
-        <h2 class="text-lg text-white text-center pl-6   font-extralight">Total</h2>
+        <h2 class="text-lg text-white text-center    font-extralight">Total</h2>
       </div>
     </div>
     <hr />
@@ -81,7 +81,7 @@ function formatMoneda(value: number) {
             }}</span>
         </div>
         <div class="flex text-center " :class="route.path === '/compras' ? 'w-full md:w-3/5' : 'w-full ml-2'">
-          <div class="flex  gap-3 w-1/2 pb-3 h-10  mt-3 justify-start">
+          <div class="flex  gap-3  w-1/2 pb-3 h-10  mt-3 " :class="route.path === '/compras' ? 'justify-center ml-8' : ''">
             <button @click="less(item)" class=" rounded-md"
               :class="route.path === '/compras' ? 'bg-transparent border hover:bg-white/20' : 'bg-gray-300'  && route.path === '/cuenta' ? 'bg-transparent border hover:bg-white/20' : 'bg-red-600/20 border border-red-400' ">
               <IconsMinus v-if="item.cantidad > 1" class="w-4 mx-1 "
