@@ -6,7 +6,7 @@
         
       </NuxtLink>
      
-      <ul class="hidden lg:flex bg w-full   pt-4 pl-20 duration-300 " :class="route.path === '/' ? 'justify-center' : 'justify-end'">
+      <ul class="hidden lg:flex bg w-full   pt-4 pl-20 duration-300 " :class="route.path === '/' ? 'justify-center ml-32' : 'justify-end'">
         <li >
           <NuxtLink
             :class="route.path === '/' ? 'opacity-100  text-white' : 'opacity-70 hover:opacity-100'"
@@ -21,15 +21,15 @@
         </li>
         <li>
           <NuxtLink
-            :class="route.path === '/compras' ? 'opacity-100  text-white' : 'opacity-70 hover:opacity-100'"
-          class="text-white text-2xl pb-1 px-3   duration-100 ease-in font-extralight "
-          to="/contacto">Contacto</NuxtLink>
-        </li>
-        <li>
-          <NuxtLink
             :class="route.path === '/nosotros' ? 'opacity-100  text-white' : 'opacity-70 hover:opacity-100'"
           class="text-white text-2xl pb-1 px-3   duration-100 ease-in font-extralight "
           to="/nosotros">Nosotros</NuxtLink>
+        </li>
+        <li>
+          <NuxtLink
+            :class="route.path === '/compras' ? 'opacity-100  text-white' : 'opacity-70 hover:opacity-100'"
+          class="text-white text-2xl pb-1 px-3   duration-100 ease-in font-extralight "
+          to="/contacto">Contacto</NuxtLink>
         </li>
         <li>
           <NuxtLink
@@ -40,13 +40,14 @@
       </ul>
 
 
-      <div class="w-auto hidden hover:scale-110 duration-200 ease-in md:flex justify-end pt-1 pl-4 pr-10"
-        v-if="$route.path !== '/compras'">
+      <div class="w-auto hidden hover:scale-110 duration-200 ease-in md:flex justify-end pt-1 pl-4 pr-14"
+        v-if="$route.path !== '/compras' 
+        && $route.path !== '/compras/envio' && $route.path !== '/compras/pagos'">
         <NuxtLink @click="open = true" class="flex cursor-pointer">
-          <span class="text-white border rounded-full px-2 py-1   text-xs bg-white absolute ml-5  ">
+          <span class="text-white border rounded-full px-2 py-1   text-xs bg-white/10 absolute ml-6  ">
             {{ cart.size }}
           </span>
-          <IconsBag class="w-7 z-10  stroke-white" />
+          <IconsBag class="w-7 z-10  fill-white" />
         </NuxtLink>
       </div>
     </div>
