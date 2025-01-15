@@ -29,7 +29,7 @@ function addToShop() {
       <!-- <pre class="text-xs">{{ content }}</pre> -->
       <IconsBag
         v-if="isInCart"
-        class="h-10 w-10 absolute fill-PRP p-0.5 bg-white/80 mx-auto rounded-t-lg end-1 top-1"
+        class="h-10 w-10 absolute fill-white p-1.5 bg-PRP mx-auto rounded-xl end-2 top-2"
       />
       <NuxtImg
         v-if="content?.Imagen2.filename"
@@ -46,11 +46,11 @@ function addToShop() {
         alt=""
       />
       <NuxtLink
-      :to="`/productos/${slug}`"
+      
         class="w-full  absolute bottom-0 text-end h-full duration-300 rounded-t-lg"
       >
-      <!--   <div
-          class="opacity-0 hover:opacity-100 duration-300 h-full w-full flex justify-center items-center"
+       <div
+          class="opacity-0 hover:opacity-100 duration-300 h-full w-full flex justify-center items-center bg-black/50 rounded-t-lg" 
         >
           <div>
             <h2 class="text-white font-bold justify-center mt-4 flex">
@@ -70,7 +70,7 @@ function addToShop() {
             </div>
           </div>
 
-        </div> -->
+        </div> 
       </NuxtLink>
 
 

@@ -33,7 +33,7 @@ if (!data) {
 </script>
 <template>
     <div>
-      <div class="text-center max-w-3xl mx-auto pt-10 pb-6">
+      <div class="text-center max-w-3xl mx-auto pt-10">
         <div>{{ message }}</div>
         <h2 class="text-3xl mb-3 font-bold text-white">
           Completa el formulario

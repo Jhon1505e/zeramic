@@ -1,9 +1,5 @@
 <script setup lang="ts">
 const Router = useRouter();
-
-const resumen = ref(false);
-const login = ref(false);
-const pagos = ref(false);
 </script>
 
 <template>
@@ -48,9 +44,11 @@ const pagos = ref(false);
           <div class="text-lg w-10 text-PRP h-10 rounded-full pt-1.5">
             <IconsEnvio
               :class="
-                Router.currentRoute.value.path !== '/compras/envio'
+                Router.currentRoute.value.path === '/compras'
                   ? 'fill-gray-400 '
-                  : 'fill-white'
+                  : 'fill-red-100' && Router.currentRoute.value.path === '/compras/envio'
+                  ? 'fill-white'
+                  : 'fill-green-500'
               "
             />
           </div>
@@ -58,10 +56,12 @@ const pagos = ref(false);
           <h3
             class="text-sm font-semibold ml-1"
             :class="
-              Router.currentRoute.value.path === '/compras/envio'
-                ? 'text-white'
-                : 'text-gray-400'
-            "
+               Router.currentRoute.value.path === '/compras'
+                  ? 'text-gray-400 '
+                  : 'text-red-100' && Router.currentRoute.value.path === '/compras/envio'
+                  ? 'text-white'
+                  : 'text-green-500'
+              "
           >
             DATOS DE ENVÍO
           </h3>
