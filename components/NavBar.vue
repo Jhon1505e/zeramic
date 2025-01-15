@@ -2,7 +2,7 @@
   <div class="bg-PRP  sticky top-0 w-full z-20">
     <div  class="w-full justify-center  flex pt-3 " :class="route.path === '/' ? 'pb-6' : 'pb-3'">
        <NuxtLink v-if="route.path !== '/'" to="/" class="w-full md:w-1/3 pl-0 md:pl-32">
-        <ZeramicText class="w-56 mx-auto md:mx-0" />
+        <img src="/img/logo-zeramic.png" class="h-16 mx-auto md:mx-0 " alt="zeramic" />
         
       </NuxtLink>
      
