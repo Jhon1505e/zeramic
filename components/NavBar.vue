@@ -2,7 +2,7 @@
   <div class="bg-PRP  sticky top-0 w-full z-20">
     <div  class="w-full justify-center  flex pt-3 " :class="route.path === '/' ? 'pb-6' : 'pb-3'">
        <NuxtLink v-if="route.path !== '/'" to="/" class="w-full md:w-1/3 pl-0 md:pl-32">
-        <img src="/img/logo-zeramic.png" class="h-16 mx-auto md:mx-0 " alt="zeramic" />
+        <img src="/img/logo-zeramic.png" class="md:h-16 mx-auto md:mx-0 pl-8" alt="zeramic" />
         
       </NuxtLink>
      
@@ -40,14 +40,14 @@
       </ul>
 
 
-      <div class="w-auto hidden hover:scale-110 duration-200 ease-in md:flex justify-end pt-1 pl-4 pr-14"
+      <div class="w-full sm:w-auto  hover:scale-110 duration-200 ease-in  flex justify-end pt-1 pl-4 pr-10 md:pr-14"
         v-if="$route.path !== '/compras' 
         && $route.path !== '/compras/envio' && $route.path !== '/compras/pagos'">
         <NuxtLink @click="open = true" class="flex cursor-pointer">
           <span class="text-white border rounded-full px-2 py-1   text-xs bg-white/10 absolute ml-6  ">
             {{ cart.size }}
           </span>
-          <IconsBag class="w-7 z-10  fill-white" />
+          <IconsBag class="w-7 z-10 mt-2 md:mt-0  fill-white" />
         </NuxtLink>
       </div>
     </div>

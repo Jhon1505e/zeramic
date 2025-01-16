@@ -10,7 +10,7 @@ const content = computed(() => {
 
 <template>
   <div class="bg-PRP">
-    <div class="flex justify-center pt-10 mx-auto">
+    <div class="flex justify-center  md:pt-10 mx-auto">
       <NuxtImg
         format="webp"
         src="/img/logo_zeramic.webp"
@@ -83,11 +83,11 @@ const content = computed(() => {
       </div>
     </div>
     <div class="bg-white py-4">
-      <div class="w-fullmd:w-1/2 mx-auto px-6 md:px-0 py-10 md:py-20">
+      <div class="w-full   px-6 md:px-0 py-10 md:py-10">
         <NuxtImg
           format="webp"
           src="/img/logos_index.png"
-          class="w-full md:w-1/2 mx-auto"
+          class="w-full md:w-2/3 mx-auto"
           alt=""
         />
       </div>
