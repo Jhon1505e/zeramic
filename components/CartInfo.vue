@@ -1,15 +1,7 @@
 <script setup lang="ts">
 const route = useRoute();
-const { open } = useShopping();
-const { cart, cartProducts, addProduct, delProduct } = useShopping();
-
-const total = computed(() => {
-  let total = 0;
-  for (const item of cartProducts.value) {
-    total += item.cantidad * item.valor;
-  }
-  return total;
-});
+const { open, total } = useShopping();
+const { cart, cartProducts, addProduct, delProduct, loadCartFromLocalStorage } = useShopping();
 
 function more(item: any) {
   item.cantidad++;
@@ -23,16 +15,14 @@ function less(item: any) {
   }
 }
 
-function formatMoneda(value: number) {
-  return new Intl.NumberFormat("es-ES", {
-    style: "currency",
-    currency: "COP",
-  }).format(value);
-}
+onMounted(() => {
+  loadCartFromLocalStorage();
+})
 </script>
 
 <template>
-  <div v-if="cart.size === 0" class="w-full md:w-1/2  flex justify-center items-center  mx-auto"
+  <!-- <pre class="text-xs">cart: {{ cart }}</pre> -->
+  <div v-if="cart?.size === 0" class="w-full md:w-1/2  flex justify-center items-center  mx-auto"
    >
     <div class="text-center pb-10" :class="route.path === '/compras' ? 'mt-8' : 'mt-10' && route.path === '/cuenta' ? 'mt-0' : 'mt-10'">
       <h2 class="font-semibold"

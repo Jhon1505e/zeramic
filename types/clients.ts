@@ -10,5 +10,7 @@ export interface IClient {
     docId?: string;
     address?: string;
     city?: string;
+    departmentCode?: string;
+    locationCode?: string;
     state: string;
 }

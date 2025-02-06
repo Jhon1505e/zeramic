@@ -1,35 +1,6 @@
-export const statesColombia: Record<string, string[]> = {
-    "Amazonas": ["Leticia", "Puerto Nariño"],
-    "Antioquia": ["Medellín", "Bello", "Itagüí", "Envigado"],
-    "Arauca": ["Arauca", "Saravena", "Tame"],
-    "Atlántico": ["Barranquilla", "Soledad", "Malambo", "Puerto Colombia"],
-    "Bolívar": ["Cartagena", "Barrancabermeja", "Soledad", "Malambo", "Puerto Colombia"],
-    "Boyacá": ["Tunja", "Duitama", "Sogamoso", "Chiquinquirá"],
-    "Caldas": ["Manizales", "La Dorada", "Chinchiná", "Aguadas"],
-    "Caquetá": ["Florencia", "San Vicente del Caguán", "El Doncello"],
-    "Casanare": ["Yopal", "Villanueva", "Tauramena", "Aguazul"],
-    "Cauca": ["Popayán", "Santander de Quilichao", "Patía", "Puerto Tejada"],
-    "Cesar": ["Valledupar", "Aguachica", "Agustín Codazzi", "Bosconia"],
-    "Chocó": ["Quibdó", "Nuquí", "Bahía Solano", "Tadó"],
-    "Córdoba": ["Montería", "Sahagún", "Lorica", "Cereté"],
-    "Cundinamarca": ["Bogotá", "Soacha", "Zipaquirá", "Fusagasugá"],
-    "Guainía": ["Inírida", "Barrancominas", "Cacahual"],
-    "Guaviare": ["San José del Guaviare", "Calamar", "Miraflores"],
-    "Huila": ["Neiva", "Pitalito", "Garzón", "La Plata"],
-    "La Guajira": ["Riohacha", "Maicao", "Uribia", "Fonseca"],
-    "Magdalena": ["Santa Marta", "Ciénaga", "Fundación", "Aracataca"],
-    "Meta": ["Villavicencio", "Acacías", "Puerto López", "Granada"],
-    "Nariño": ["Pasto", "Tumaco", "Ipiales", "Túquerres"],
-    "Norte de Santander": ["Cúcuta", "Ocaña", "Pamplona", "Villa del Rosario"],
-    "Putumayo": ["Mocoa", "Puerto Asís", "Orito", "Sibundoy"],
-    "Quindío": ["Armenia", "Calarcá", "Circasia", "Montenegro"],
-    "Risaralda": ["Pereira", "Dosquebradas", "La Virginia", "Santuario"],
-    "San Andrés y Providencia": ["San Andrés", "Providencia"],
-    "Santander": ["Bucaramanga", "Floridablanca", "Girón", "Piedecuesta"],
-    "Sucre": ["Sincelejo", "Corozal", "San Marcos", "Coveñas"],
-    "Tolima": ["Ibagué", "Espinal", "Mariquita", "Chaparral"],
-    "Valle del Cauca": ["Cali", "Buenaventura", "Palmira", "Tuluá"],
-    "Vaupés": ["Mitú", "Carurú", "Pacoa"],
-    "Vichada": ["Puerto Carreño", "La Primavera", "Santa Rosalía"]
-  };
-  
+export function formatMoneda(value: number) {
+  return new Intl.NumberFormat("es-ES", {
+    style: "currency",
+    currency: "COP",
+  }).format(value);
+}

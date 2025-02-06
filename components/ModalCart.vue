@@ -42,7 +42,7 @@ const { open } = useShopping();
           class="flex font-thin text-xl justify-center"
         >
          
-          Terminar compra
+          Realizar compra
         </NuxtLink>
       </div>
     </div>
