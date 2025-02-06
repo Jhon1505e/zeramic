@@ -91,7 +91,7 @@ onMounted(() => {
           <div class="w-full ">
             <h3 class=" font-bold text-sm mt-1"
               :class="route.path === '/compras' ? 'text-white text-center pl-4' : 'text-gray-700 text-end'  && route.path === '/cuenta' ? 'text-white text-end' : '' ">
-              $ {{ formatMoneda(item.valor) }}
+              {{ formatMoneda(item.valor) }}
             </h3>
           </div>
         </div>
@@ -99,7 +99,7 @@ onMounted(() => {
         <div class=" w-1/4 " :class="route.path === '/compras' ? '' : 'hidden'">
           <h3 class="text-end font-bold text-sm mt-1"
             :class="route.path === '/compras' ? 'text-white' : 'text-gray-700'">
-            $ {{ formatMoneda(item.valor * item.cantidad) }}
+            {{ formatMoneda(item.valor * item.cantidad) }}
           </h3>
         </div>
       </div>

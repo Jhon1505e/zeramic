@@ -149,12 +149,16 @@ async function cotizarEnvio() {
       </button>
     </div>
     <div class="mt-4 grid md:grid-cols-2 gap-3">
-      <div v-for="item in envio" class="p-2 text-white text-sm border border-white/10 rounded-lg">
-        <p>Enviado por: {{item.deliveryCompanyName}}</p>
-        <img :src="item.deliveryCompanyImgUrl" class="h-10" alt="">
-        <p>{{item.routeType}}</p>
-        <p>{{item.insurancePercentage * 100}} dias habiles</p>
-        <p>Valor: {{item.shippingCost}}</p>
+      <div v-for="item in envio" class="p-2 text-white hover:bg-slate-400 text-sm border bg-white/30 border-white/10 rounded-lg">
+        <div class="flex gap-2 items-center">
+          <img :src="item.deliveryCompanyImgUrl" class="h-10 rounded-sm" alt="">
+          <div>
+            <p>Enviado por: {{item.deliveryCompanyName}}</p>
+            <p>{{item.routeType}}</p>
+            <p>{{item.insurancePercentage * 100}} dias habiles</p>
+            <p>Valor: {{formatMoneda(item.shippingCost)}}</p>
+          </div>
+        </div>
       </div>
     </div>
     <!-- <pre>{{ envio }}</pre> -->

@@ -76,13 +76,13 @@ onMounted(() => {
               class="py-3 text-white hover:bg-white/10 border-y flex gap-2 justify-center">
               <IconsUser class="w-5" /> Mis Datos
             </button>
-            <!-- <button
+            <button
             @click="pedido = true "
               class="py-3 text-white hover:bg-white/10 border-b flex gap-2 justify-center"
             >
             
               <IconsBag class="w-5" /> Mis Pedidos
-            </button> -->
+            </button>
 
             <button class="py-3 text-white hover:bg-white/10  flex gap-2 justify-center"
               @click="closeSession">
