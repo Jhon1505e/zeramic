@@ -15,7 +15,7 @@
       <div class="w-full">
         <input
           type="text"
-          v-model="payload.amount_in_cents"
+          v-model.number="payload.amount_in_cents"
           placeholder="Amount"
         />
         <input
@@ -40,8 +40,9 @@
 
 <script setup lang="ts">
 const baseUrl = "https://sandbox.wompi.co/v1/";
-const publicKey = "pub_test_YlTOjD4NhkHTSmUAK5SeucPKswwCQRn2";
-const privateKey = "prv_test_A1KAd3CklTNNw3mRMDx5Qg6pTIjZQyJP";
+const publicKey = "pub_test_DMVR3QF8b0wKGNOCFjrqoPqHgevA3Oj7";
+const privateKey = "prv_test_S0q1mJqhJg6vC9CwNsO7swobRLkDzXwn";
+const integritySecret = "test_integrity_2z06cRz4idHJplnOr33XXY3qRIubkoH1";
 
 const result1 = ref();
 const result2 = ref();
@@ -49,6 +50,7 @@ const result3 = ref();
 
 const payload = ref({
   currency: "COP",
+  signature: "",
   reference: "ABC1235",
   amount_in_cents: 200000,
   customer_email: "1XgZS@example.com",
@@ -73,6 +75,12 @@ async function getStepOne() {
 
 async function getStepTwo() {
   payload.value.acceptance_token = result1.value?.acceptance_token;
+  //payload.value.signature = 
+  const concatenatedText = payload.value.reference + payload.value.amount_in_cents + payload.value.currency + integritySecret;
+  const encondedText = new TextEncoder().encode(concatenatedText);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', encondedText);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  payload.value.signature = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
   const response: any = await $fetch(`${baseUrl}transactions/`, {
     method: "POST",
     headers: {

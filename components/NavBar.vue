@@ -2,17 +2,10 @@
   <div class="bg-PRP  sticky top-0 w-full z-20">
     <div  class="w-full justify-center  flex pt-3 " :class="route.path === '/' ? 'pb-6' : 'pb-3'">
        <NuxtLink v-if="route.path !== '/'" to="/" class="w-full md:w-1/3 pl-0 md:pl-32">
-        <img src="/img/logo-zeramic.png" class="md:h-16 mx-auto md:mx-0 pl-8" alt="zeramic" />
-        
+        <img src="/img/logo-zeramic.png" class="mx-auto md:mx-0 " alt="zeramic" />        
       </NuxtLink>
      
       <ul class="hidden lg:flex bg w-full   pt-4 pl-20 duration-300 " :class="route.path === '/' ? 'justify-center ml-32' : 'justify-end'">
-        <li >
-          <NuxtLink
-            :class="route.path === '/' ? 'opacity-100  text-white' : 'opacity-70 hover:opacity-100'"
-            class="text-white text-2xl  py-2 px-3  duration-100 ease-in font-extralight "
-            to="/">Inicio</NuxtLink>
-        </li>
         <li>
           <NuxtLink
             :class="route.path === '/productos' ? 'opacity-100  text-white' : 'opacity-70 hover:opacity-100'"

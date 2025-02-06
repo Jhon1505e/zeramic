@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { FormLogin } from '#build/components';
-
 const { user, client, saveClient, getClient } = useClient();
 const loading = ref(false);
 const pedido = ref(false);

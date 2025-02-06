@@ -1,106 +1,31 @@
 <script setup lang="ts">
-const Router = useRouter();
+const { cart, total } = useShopping();
+
 </script>
 
 <template>
-  <div class="flex justify-center gap-10">
-    <NuxtLink to="/compras">
-      <div class="flex gap-2">
-        <div class="text-lg w-10 h-10 rounded-full pt-1.5 mt-2">
-          <IconsShopping
-            :class="
-              Router.currentRoute.value.path === '/compras'
-                ? 'fill-white '
-                : 'fill-green-500 '
-            "
-          />
-        </div>
-
-        <h3
-          class="text-sm font-semibold mt-4 ml-2"
-          :class="
-            Router.currentRoute.value.path === '/compras'
-              ? 'text-white'
-              : 'text-green-500 '
-          "
-        >
-          RESUMEN DE COMPRA
-        </h3>
+  <div class="bg-purple-900/20 rounded-xl text-white ">
+    <h2 class="text-white font-normal text-center">Resumen del pedido</h2>
+    <div class="px-6 pb-4">
+      <div class="flex justify-between">
+        <h3 class="font-thin">Cantidad</h3>
+        <h3 class="font-extralight">{{ cart.size }} producto<span v-if="cart.size > 1">s</span> </h3>
       </div>
-    </NuxtLink>
-    <div class="flex pt-4 gap-3">
-      <div
-        class="h-1 w-32 rounded-full mt-5"
-        :class="
-          Router.currentRoute.value.path === '/compras'
-            ? 'bg-gray-400'
-            : Router.currentRoute.value.path === '/compras/envio'
-            ? 'bg-green-500'
-            : 'bg-green-500'
-        "
-      ></div>
-      <NuxtLink to="/compras/envio">
-        <div class="flex gap-2 px-6">
-          <div class="text-lg w-10 text-PRP h-10 rounded-full pt-1.5">
-            <IconsEnvio
-              :class="
-                Router.currentRoute.value.path === '/compras'
-                  ? 'fill-gray-400 '
-                  : 'fill-red-100' && Router.currentRoute.value.path === '/compras/envio'
-                  ? 'fill-white'
-                  : 'fill-green-500'
-              "
-            />
-          </div>
+      <div class="flex justify-between ">
+        <p class="font-thin text-xl">Unidades</p>
+        <p class="font-extralight text-xl">{{ cart.size }} producto<span v-if="cart.size > 1">s</span> </p>
+      </div>
 
-          <h3
-            class="text-sm font-semibold ml-1"
-            :class="
-               Router.currentRoute.value.path === '/compras'
-                  ? 'text-gray-400 '
-                  : 'text-red-100' && Router.currentRoute.value.path === '/compras/envio'
-                  ? 'text-white'
-                  : 'text-green-500'
-              "
-          >
-            DATOS DE ENVÍO
-          </h3>
-        </div>
-      </NuxtLink>
-      <div
-        class="h-1 w-32 rounded-full mt-5"
-        :class="
-          Router.currentRoute.value.path === '/compras/pagos'
-            ? 'bg-green-500'
-            : Router.currentRoute.value.path === '/compras/'
-            ? 'bg-gray-400'
-            : 'bg-gray-400'
-        "
-      ></div>
+      <hr class="opacity-50 mt-2 mb-1" />
+      <div class="flex justify-between">
+        <h3>Total</h3>
+        <h3>$ {{ formatMoneda(total) }}</h3>
+      </div>
+      <div class="py-4 w-full flex justify-center">
+        <NuxtLink to="compras/envio" class="bg-white/30 border border-white text-white px-6 py-2 w-full rounded-lg ">
+          Confirmar compra
+        </NuxtLink>
+      </div>
     </div>
-    <NuxtLink to="/compras/pagos">
-      <div class="flex gap-2">
-        <div class="text-lg w-10 text-PRP h-10 rounded-full pt-1.5 mt-2">
-          <IconsMoney
-            :class="
-              Router.currentRoute.value.path !== '/compras/pagos'
-                ? 'fill-gray-400 '
-                : 'fill-white'
-            "
-          />
-        </div>
-
-        <h3
-          class="text-sm font-semibold mt-2 ml-1"
-          :class="
-            Router.currentRoute.value.path === '/compras/pagos'
-              ? 'text-white'
-              : 'text-gray-400'
-          "
-        >
-          PAGO
-        </h3>
-      </div>
-    </NuxtLink>
   </div>
 </template>

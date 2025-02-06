@@ -46,7 +46,7 @@ function addToShop() {
         alt=""
       />
       <NuxtLink
-      
+        :to="`/productos/${slug}`"
         class="w-full  absolute bottom-0 text-end h-full duration-300 rounded-t-lg"
       >
        <div
