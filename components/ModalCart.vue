@@ -9,9 +9,9 @@ const { open } = useShopping();
     v-if="route.path !== '/compras/envio' && route.path !== '/compras' && route.path !== '/compras/pagos'"
     class="z-50 h-screen duration-75  right-0 fixed inset-0 flex justify-end"
   >
-    <div class="w-full h-full bg-black opacity-50" @click="open = false"></div>
-    <div class=" shadow max-w-md w-full bg-white">
-      <div class="flex">
+    <div class="w-1/6 md:w-full h-full bg-black opacity-50" @click="open = false"></div>
+    <div class=" shadow max-w-sm w-full bg-white">
+      <div class="flex ">
         
         <h2 class="w-full text-center font-extralight pl-8 text-black">
           Resumen de compra
