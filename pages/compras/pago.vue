@@ -15,9 +15,9 @@ async function getToken() {
 await getToken();
 </script>
 <template>
-    <div>
+    <div class="bg-PRP h-screen">
         <TabsCompras />
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-3xl mx-auto">
 
             <ResumenCompra />
         </div>
