@@ -16,17 +16,19 @@ async function openWidgetCheckout(id) {
     const { nombre, email, documento, tipo_doc, apellido, telefono } =
         props.customer;
 
-    const text = `ZERAMIC${id}${props.amount * 100}COP${config.public.wompiIntegritySecret}`
+    const text = `ZERAMIC${id}${props.amount * 100}COP${config.wompiIntegritySecret}`
     const encondedText = new TextEncoder().encode(text);
     const hashBuffer = await crypto.subtle.digest("SHA-256", encondedText);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     const integrity = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
 
+    console.log(config);
+
     checkout.value = new window.WidgetCheckout({
         currency: "COP",
         amountInCents: props.amount * 100,
         reference: "ZERAMIC" + id,
-        publicKey: config.public.wompiPublicKey,
+        publicKey: config.wompiPublicKey,
         signature: { integrity },
         redirectUrl: "https://www.zerammic.com/compras",
         customerData: {
