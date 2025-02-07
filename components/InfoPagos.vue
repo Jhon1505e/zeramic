@@ -8,7 +8,7 @@ const html = `
     <p>Telefono: ${model.value?.customerData?.phoneNumber}</p>
     <p>Metodo de pago: ${model.value?.paymentMethodType}</p>
     <p>Estado: ${model.value?.status}</p>
-    <p>${model.value?.statusMessage}</p>
+    <p>${model.value?.statusMessage || ""}</p>
 `
 
 const mensaje = ref("");
@@ -37,10 +37,12 @@ const sendMail = async () => {
 <template>
     <div class="bg-black/60 h-screen fixed top-0 w-full z-20">
         <div class="flex justify-center items-center h-full text-white">
-            <div v-html="html" class="bg-PRP rounded-lg max-w-3xl p-4" />
-            <p class="text-sm text-center">{{ mensaje }}</p>
-            <button class="bg-white/30 border border-PRP text-white px-6 py-2 rounded-lg" @click="sendMail">Enviar
-                correo</button>
+            <div>
+                <div v-html="html" class="bg-PRP rounded-lg max-w-3xl p-4" />
+                <p class="text-sm text-center">{{ mensaje }}</p>
+                <button class="bg-white/30 border border-PRP text-white px-6 py-2 rounded-lg" @click="sendMail">Enviar
+                    correo</button>
+            </div>
         </div>
     </div>
 </template>
