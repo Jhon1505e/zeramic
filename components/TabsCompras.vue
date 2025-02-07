@@ -3,7 +3,7 @@ const { name } = useRoute();
 const isPath = (n: string) => name === n;
 </script>
 <template>
-    <div class="grid grid-cols-3 gap-3 p-4 bg-white/80 sticky top-32 mb-8  md:top-24 w-full z-20 backdrop-blur-lg">
+    <div class="grid grid-cols-3 gap-3 p-4 bg-white/80 sticky top-32 mb-8  md:top-20 w-full z-20 backdrop-blur-lg">
         <NuxtLink to="/compras" class="md:flex justify-center items-center text-PRP fill-PRP text-center text-xs  md:text-lg gap-2 p-2 rounded hover:bg-PRP/30  font-semibold duration-150 ease-in"
             :class="{ ' bg-PRP/30': isPath('compras')  }">
             <IconsShopping class="h-10 mx-auto sm:mx-2 pb-2 sm:pb-0" /> RESUMEN DE COMPRA

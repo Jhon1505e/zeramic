@@ -1,12 +1,7 @@
 <script setup lang="ts">
-const baseUrl = "https://sandbox.wompi.co/v1/";
-const publicKey = "pub_test_DMVR3QF8b0wKGNOCFjrqoPqHgevA3Oj7";
-const privateKey = "prv_test_S0q1mJqhJg6vC9CwNsO7swobRLkDzXwn";
-const acceptanceToken = ref("");
 const { client } = useClient();
 const { total } = useShopping();
 const { envio } = useEnvio();
-
 
 /* async function getToken() {
     try {
@@ -24,7 +19,7 @@ const payment = ref();
 
 const amount = computed(() => total.value + (envio.value?.shippingCost || 0));
 const datos = computed(() => ({
-    nombre: client.value?.nombre || "",
+    nombre: client.value?.name || "",
     email: client.value?.email || "",
     documento: client.value?.docId || "",
     tipo_doc: client.value?.docType || "",
@@ -32,7 +27,7 @@ const datos = computed(() => ({
     telefono: client.value?.phone || "",
 }));
 
-const returnPayment = (data) => {
+const returnPayment = (data: { transaction: any; }) => {
     console.log('data', data);
     payment.value = data.transaction;
 }
@@ -50,7 +45,8 @@ const openWidget = () => {
         </div>
         <!-- <pre class="text-xs text-white">{{ client }}</pre> -->
         <div class="flex items-center justify-center">
-            <button class="bg-white/30 border border-PRP text-white px-6 py-2 rounded-lg mt-4"
+            <NuxtLink to="/compras/envio" class="border px-6 py-2 mt-4 mr-2 bg-white/10 text-white rounded-lg">Seleccionar envio</NuxtLink>
+            <button :disabled="!envio" :class="{ 'cursor-not-allowed border-red-700': !envio }" class="border px-6 py-2 mt-4 mr-2 bg-white/10 text-white rounded-lg"
                 @click="openWidget">Iniciar Pago</button>
         </div>
 

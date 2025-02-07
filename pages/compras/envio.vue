@@ -73,10 +73,8 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      
 
-        <FormClient v-else v-model="client" />
-      
+      <FormClient v-else v-model="client" />
     </div>
   </div>
 </template>
