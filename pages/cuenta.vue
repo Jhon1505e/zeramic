@@ -57,7 +57,7 @@ onMounted(() => {
     <!-- <div class="bg-white/70 text-xs fixed bottom-1 right-1 w-1/2 p-5 z-50">
       <pre>{{ client }}</pre>
     </div> -->
-    <Loading v-if="loading" />
+    <Loading v-show="loading" />
     <div class="max-w-6xl mx-auto p-5">
       <div v-if="client" class="md:flex gap-5 h-full px-20 pt-10 pb-32 ">
         <div class="md:w-1/3 bg-black/10 rounded-xl border h-full">

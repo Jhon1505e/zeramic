@@ -20,6 +20,7 @@ await getToken();
  */
 
 const wompiRef = ref();
+const payment = ref();
 
 const amount = computed(() => total.value + (envio.value?.shippingCost || 0));
 const datos = computed(() => ({
@@ -31,9 +32,15 @@ const datos = computed(() => ({
     telefono: client.value?.phone || "",
 }));
 
-const openWidget = () => {
-    wompiRef.value.openWidgetCheckout();
+const returnPayment = (data) => {
+    console.log('data', data);
+    payment.value = data.transaction;
 }
+const openWidget = () => {
+    const random = Math.random().toString(36).substring(7);
+    wompiRef.value.openWidgetCheckout(random + 'J53A');
+}
+
 </script>
 <template>
     <div class="bg-PRP h-screen">
@@ -46,8 +53,11 @@ const openWidget = () => {
             <button class="bg-white/30 border border-PRP text-white px-6 py-2 rounded-lg mt-4"
                 @click="openWidget">Iniciar Pago</button>
         </div>
+
+        <InfoPagos v-if="payment" v-model="payment" />
+
         <ClientOnly>
-            <WidgetCheckout ref="wompiRef" :amount="amount" :customer="datos" />
+            <WidgetCheckout ref="wompiRef" :amount="amount" :customer="datos" @returnPayment="returnPayment" />
         </ClientOnly>
     </div>
 </template>

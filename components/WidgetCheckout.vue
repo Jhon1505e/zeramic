@@ -2,6 +2,7 @@
 useHead({
     script: [{ src: "https://checkout.wompi.co/widget.js" }],
 });
+const config = useRuntimeConfig();
 
 const props = defineProps({
     amount: Number,
@@ -11,16 +12,23 @@ const emits = defineEmits(["returnPayment"]);
 
 const checkout = ref();
 
-function openWidgetCheckout(id) {
+async function openWidgetCheckout(id) {
     const { nombre, email, documento, tipo_doc, apellido, telefono } =
         props.customer;
+
+    const text = `ZERAMIC${id}${props.amount * 100}COP${config.public.wompiIntegritySecret}`
+    const encondedText = new TextEncoder().encode(text);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", encondedText);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const integrity = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+
     checkout.value = new window.WidgetCheckout({
         currency: "COP",
         amountInCents: props.amount * 100,
-        reference: "FRIENDS" + id,
-        publicKey: "pub_test_DMVR3QF8b0wKGNOCFjrqoPqHgevA3Oj7",
+        reference: "ZERAMIC" + id,
+        publicKey: config.public.wompiPublicKey,
+        signature: { integrity },
         redirectUrl: "https://www.zerammic.com/compras",
-        // publicKey: "pub_test_nOEHXgqGTbTmYVdnTdKMgWoVYkYDHsH4",
         customerData: {
             email,
             fullName: `${nombre} ${apellido}`,

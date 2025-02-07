@@ -5,7 +5,7 @@ const login = ref(false);
 <template>
   <div class="bg-PRP h-screen">
     <div class="flex justify-center max-w-xl mx-auto items-center h-full">
-      <div class="flex flex-col pb-32 w-2/3" v-if="login">
+      <div class="flex flex-col pb-32 w-2/3">
         <IconsLogin class="w-36 mx-auto fill-white" />
         <input
           placeholder="Correo Electrónico"
@@ -20,7 +20,7 @@ const login = ref(false);
         </button>
       </div>
 
-      <div v-else class="flex flex-col text-center pb-40 w-2/3 ">
+      <div class="flex flex-col text-center pb-40 w-2/3 ">
         <h2 class="text-4xl font-bold text-white">Código de Verificación</h2>
         <p class="text-white font-thin text-2xl mt-4">
           Ingresa el código de 6 dígitos <br />

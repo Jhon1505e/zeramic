@@ -5,6 +5,10 @@ export default defineNuxtConfig({
   runtimeConfig: {
     mongoURI: process.env.MONGO_URI,
     resendAPIKey: process.env.RESEND_API_KEY,
+    public: {
+      wompiPublicKey: process.env.WOMPI_PUBLIC_KEY,
+      wompiIntegritySecret: process.env.WOMPI_INTEGRITY_SECRET,
+    },
   },
 
   modules: [

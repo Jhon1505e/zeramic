@@ -1,40 +1,44 @@
 <script setup lang="ts">
-const documents = ref();
+const clients = ref([]);
+const client = ref();
 const productos = ref();
 const modal = ref(false);
+const loading = ref(false);
 
 const { getDataClients, deleteClient } = useClient();
 
-const { start, finish } = useLoadingIndicator();
-
 async function onDelete(id: string) {
-  start()
+  loading.value = true
   const data = await deleteClient(id);
   console.log(data);
-  onGetClients()
+  await onGetClients()
+}
+
+function viewClient(item) {
+  client.value = item;
+  modal.value = true;
 }
 
 async function onGetClients() {
-  documents.value = await getDataClients();
-  documents.value = await getDataClients();
-  finish()
+  loading.value = true
+  clients.value = await getDataClients();
+  loading.value = false
 }
 
-onGetClients()
+await onGetClients()
 
 </script>
 
 <template>
   <div class="bg-PRP">
+    <Loading v-show="loading" />
     <div class="max-w-6xl mx-auto pt-10 pb-20 px-10 md:px-6">
       <div class="flex justify-between">
         <h1 class="text-3xl text-white">Clientes</h1>
         <div>
-          <button
-            class="p-2 text-white bg-white/10 border px-4 rounded-xl mt-2 flex gap-2"
-            @click="onGetClients"
-          >
-            Actualizar <IconsRefresh class="w-5 mt-0.5" />
+          <button class="p-2 text-white bg-white/10 border px-4 rounded-xl mt-2 flex gap-2" @click="onGetClients">
+            Actualizar
+            <IconsRefresh class="w-5 mt-0.5" />
           </button>
         </div>
       </div>
@@ -49,11 +53,7 @@ onGetClients()
           <div class="w-full"></div>
         </div>
         <hr />
-        <div
-          class="flex border-b text-white items-center"
-          v-for="doc in documents"
-          :key="doc._id"
-        >
+        <div class="flex border-b text-white items-center" v-for="doc in clients" :key="doc._id">
           <div class="w-full p-2">{{ doc.name }}</div>
           <div class="w-full p-2 justify-center hidden md:flex">
             {{ doc.email }}
@@ -65,22 +65,13 @@ onGetClients()
             {{ doc.address }} - {{ doc.city }}, {{ doc.state }}
           </div>
           <div class="w-full p-3 flex text-sm justify-center gap-2">
-            <button
-              class="py-2 px-3 flex border rounded md:hidden bg-white/10 text-white"
-            >
+            <button class="py-2 px-3 flex border rounded md:hidden bg-white/10 text-white">
               <IconsEye class="w-5" />
             </button>
-            <!-- @click="productos = doc.productos" -->
-            <button
-              @click="modal = !modal"
-              class="p-2 border rounded flex bg-white/10 text-white"
-            >
-              <IconsBag class="w-5" />: {{ doc.productos?.length }}
+            <button @click="viewClient(doc)" class="p-2 border rounded flex bg-white/10 text-white">
+              <IconsEye class="w-5" />
             </button>
-            <button
-              @click="onDelete(doc._id)"
-              class="p-2 border rounded bg-white/10 text-white flex gap-1"
-            >
+            <button @click="onDelete(doc._id)" class="p-2 border rounded bg-white/10 text-white flex gap-1">
               <span class="hidden md:block">Eliminar</span>
               <IconsDelete class="w-5" />
             </button>
@@ -104,7 +95,7 @@ onGetClients()
       </div>
     </div>
     <div v-if="modal">
-      <ModalClients @close="modal = false" />
+      <ModalClients v-model="client" @close="modal = false" />
     </div>
   </div>
 </template>
