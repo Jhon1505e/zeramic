@@ -13,7 +13,7 @@ const html = `
 
 const mensaje = ref("");
 
-const sendMail = await() => {
+const sendMail = async () => {
     mensaje.value = "Enviando correo";
     try {
         const response = await $fetch("/api/send", {
