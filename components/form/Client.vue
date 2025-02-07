@@ -220,9 +220,9 @@ function selectEnvio(item) {
       <button type="button" class="border px-6 py-2 mt-4 mr-2 bg-white/10 text-white rounded-lg" @click="cotizarEnvio">
         Cotizar Envio
       </button>
-      <!-- <button type="submit" class="border px-6 py-2 mt-4 mr-2 bg-white/10 text-white rounded-lg">
+      <button type="submit" class="border px-6 py-2 mt-4 mr-2 bg-white/10 text-white rounded-lg">
         Guardar Datos
-      </button> -->
+      </button>
       <NuxtLink to="/compras/pago" class="border px-6 py-2 mt-4 mr-2 bg-white/10 text-white rounded-lg">Continuar</NuxtLink>
     </div>
 
