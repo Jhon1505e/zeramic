@@ -54,7 +54,7 @@ function addToShop() {
         >
           <div>
             <h2 class="text-white font-bold justify-center mt-4 flex">
-              $ {{ content?.Precio }}
+              {{ formatMoneda(content?.Precio || 0) }}
             </h2>
             <hr class="mb-2" />
             <div class="flex gap-2 justify-center">
