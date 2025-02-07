@@ -37,19 +37,19 @@ onMounted(() => {
   <div class="bg-PRP pb-32">
     <Loading v-if="loading" />
     <TabsCompras />
-    <div class="max-w-5xl mx-auto">
+    <div class="max-w-2xl mx-auto">
       <div v-if="!client" class="max-w-5xl mx-auto">
-        <div class="text-center pt-10 ">
+        <div class="text-center  ">
           <div>
             <h1 class="text-2xl font-semibold text-white">
               Ingresa tu correo electrónico para continuar la compra.
             </h1>
-            <div class="text-center mt-8">
+            <div class="text-center mt-4">
               <FormLogin @success="handleLoginSuccess" @error="handleLoginError" />
             </div>
           </div>
-          <div class="w-full px-6 md:px-0 md:w-1/2 mx-auto">
-            <h3 class="text-white mt-4 font-extralight">
+          <div class="w-full px-6 md:px-0  mx-auto">
+            <h3 class="text-white mt-2 font-extralight">
               Guardamos tu correo electrónico de manera segura para:
             </h3>
             <ul class="mt-2 w-2/3 mx-auto">
@@ -73,7 +73,10 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <FormClient v-else v-model="client" />
+      
+
+        <FormClient v-else v-model="client" />
+      
     </div>
   </div>
 </template>

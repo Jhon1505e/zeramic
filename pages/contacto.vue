@@ -5,17 +5,17 @@
       <div class="w-full sm:w-1/3 mx-auto px-10 sm:px-0">
         <input
           type="text"
-          class="border border-white px-4 py-2 w-full bg-white rounded-lg mt-4"
+          class="border border-white px-4 py-2 w-full bg-white/10 rounded-lg mt-4"
           placeholder="Correo Electronico"
         />
         <textarea
           type="text"
           rows="4"
-          class="border border-white px-4 py-2 w-full bg-white rounded-lg mt-4"
+          class="border border-white px-4 py-2 w-full bg-white/10 rounded-lg mt-4"
           placeholder="Asunto"
         ></textarea>
         <button
-          class="border border-white px-4 py-2 w-full bg-PRP text-white hover:bg-white/20  rounded-lg mt-4"
+          class="border border-white px-4 py-2 w-full bg-white/30 text-white hover:bg-white/40  rounded-lg mt-4"
         >
           Enviar
         </button>

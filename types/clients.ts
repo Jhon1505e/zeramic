@@ -9,6 +9,7 @@ export interface IClient {
     docType?: string;
     docId?: string;
     address?: string;
+    infoDirection?: string;
     city?: string;
     departmentCode?: string;
     locationCode?: string;
