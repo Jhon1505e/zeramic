@@ -5,6 +5,7 @@ const loading = ref(false);
 import { type IClient } from "~/types/clients";
 const dataClient = defineModel<IClient>({ required: true });
 const emit = defineEmits(["submit"]);
+const { envio, saveEnvio } = useEnvio();
 
 interface IDeparment {
   departmentCode: string;
@@ -15,7 +16,7 @@ interface ILocation {
   locationName: string;
 }
 
-interface IData extends ILocation, IDeparment {}
+interface IData extends ILocation, IDeparment { }
 
 const data = ref<IData[]>([]);
 
@@ -66,13 +67,13 @@ const filteredLocations = computed(() => {
   });
 });
 
-const envio = ref();
+const envios = ref();
 async function cotizarEnvio() {
-  
+
   modal.value = true;
-  envio.value = await $fetch("https://api-v2.mpr.mipaquete.com/quoteShipping", {
+  envios.value = await $fetch("https://api-v2.mpr.mipaquete.com/quoteShipping", {
     method: "POST",
-    
+
     headers: {
       "Content-Type": "application/json",
       "session-tracker": "a0c96ea6-b22d-4fb7-a278-850678d5429c",
@@ -93,37 +94,39 @@ async function cotizarEnvio() {
     },
   });
 }
+
+function selectEnvio(item) {
+  saveEnvio({
+    deliveryCompanyImgUrl: item.deliveryCompanyImgUrl,
+    deliveryCompanyName: item.deliveryCompanyName,
+    routeType: item.routeType,
+    insurancePercentage: item.insurancePercentage,
+    shippingCost: item.shippingCost,
+  });
+  // modal.value = false;
+}
 </script>
 <template>
-  <div
-    v-if="modal"
-    class="fixed z-20 top-0 h-screen left-0 right-0 bg-black/90"
-  >
+  <div v-if="modal" class="fixed z-20 top-0 h-screen left-0 right-0 bg-black/90">
     <div class="flex justify-center items-center h-full">
       <div class="w-1/2 bg-PRP rounded-lg">
         <div class="flex justify-between px-6">
-          <h2 class="text-white">Selecciona empresa de envio</h2>
+          <h2 class="text-white">Seleccionr envio: {{ formatMoneda(envio?.shippingCost || 0) }}</h2>
           <button @click="modal = false">
             <IconsClose class="w-7 mt-2 stroke-white" />
           </button>
         </div>
         <div class="grid md:grid-cols-2 gap-3 px-5 pt-3 pb-5">
-          <div
-            v-for="item in envio"
-            :key="item"
-            class="p-2 text-white hover:bg-white/30 text-sm border bg-white/10 border-white/10 rounded-lg"
-          >
+          <div v-for="item in envios" :key="item" @click="selectEnvio(item)"
+            class="p-2 text-white cursor-pointer duration-100 hover:bg-white/30 text-sm border border-white/10 rounded-lg"
+            :class="{ 'bg-indigo-800': envio?.deliveryCompanyName === item.deliveryCompanyName }">
             <div class="flex gap-4 items-center">
-              <img
-                :src="item.deliveryCompanyImgUrl"
-                class="h-14 rounded-xl"
-                alt=""
-              />
+              <img :src="item.deliveryCompanyImgUrl" class="h-14 rounded-xl" alt="" />
               <div class="font-thin">
                 <b>{{ item.deliveryCompanyName }}</b>
-                <p class="capitalize" >{{ item.routeType }}</p>
+                <p class="capitalize">{{ item.routeType }}</p>
                 <p> <b class="mr-1">Días habiles:</b>{{ item.insurancePercentage * 100 }}</p>
-                <p> <b>Valor:</b>  {{ formatMoneda(item.shippingCost) }}</p>
+                <p> <b>Valor:</b> {{ formatMoneda(item.shippingCost) }}</p>
               </div>
             </div>
           </div>
@@ -139,46 +142,25 @@ async function cotizarEnvio() {
       <div class="grid md:grid-cols-2 gap-3 p-2">
         <div class="w-full">
           <label for="name" class="text-white">Nombres y Apellidos:</label>
-          <input
-            v-model="dataClient.name"
-            type="text"
-            required
-            id="name"
-            class="w-full py-2 px-4 mt-2 rounded-lg bg-white border text-PRP"
-            placeholder="Nombres y Apellidos"
-          />
+          <input v-model="dataClient.name" type="text" required id="name"
+            class="w-full py-2 px-4 mt-2 rounded-lg bg-white border text-PRP" placeholder="Nombres y Apellidos" />
         </div>
         <div class="w-full">
           <label for="email" class="text-white">Email:</label>
-          <input
-            v-model="dataClient.email"
-            required
-            id="email"
-            type="email"
-            class="py-2 w-full px-4 mt-2 rounded-lg text-PRP bg-white border"
-            readonly
-          />
+          <input v-model="dataClient.email" required id="email" type="email"
+            class="py-2 w-full px-4 mt-2 rounded-lg text-PRP bg-white border" readonly />
         </div>
       </div>
       <div class="grid md:grid-cols-3 gap-3 p-2">
         <div class="w-full">
           <label for="phone" class="text-white">Celular:</label>
-          <input
-            v-model="dataClient.phone"
-            required
-            type="number"
-            class="py-2 w-full px-4 rounded-lg text-PRP bg-white mt-2 border"
-            placeholder="Celular"
-          />
+          <input v-model="dataClient.phone" required type="number"
+            class="py-2 w-full px-4 rounded-lg text-PRP bg-white mt-2 border" placeholder="Celular" />
         </div>
         <div class="w-full">
           <label for="docType" class="text-white">Tipo de Documento:</label>
-          <select
-            v-model="dataClient.docType"
-            required
-            id="docType"
-            class="py-2.5 w-full px-4 rounded-lg text-PRP bg-white mt-2 border"
-          >
+          <select v-model="dataClient.docType" required id="docType"
+            class="py-2.5 w-full px-4 rounded-lg text-PRP bg-white mt-2 border">
             <option value="">Seleccionar</option>
             <option value="TI">Tarjeta de identidad</option>
             <option value="CC">Cédula</option>
@@ -186,25 +168,16 @@ async function cotizarEnvio() {
         </div>
         <div class="w-full">
           <label for="docId" class="text-white">Número de Documento:</label>
-          <input
-            v-model="dataClient.docId"
-            required
-            type="number"
-            class="w-full py-2 px-4 rounded-lg text-PRP bg-white mt-2 border"
-            placeholder="Número de Documento"
-          />
+          <input v-model="dataClient.docId" required type="number"
+            class="w-full py-2 px-4 rounded-lg text-PRP bg-white mt-2 border" placeholder="Número de Documento" />
         </div>
       </div>
     </div>
     <div class="grid md:grid-cols-2 gap-3 p-2">
       <div class="w-full">
         <label for="state" class="text-white">Departamento:</label>
-        <select
-          v-model="dataClient.departmentCode"
-          required
-          id="state"
-          class="w-full py-2.5 px-4 rounded-lg text-PRP bg-white mt-2 border"
-        >
+        <select v-model="dataClient.departmentCode" required id="state"
+          class="w-full py-2.5 px-4 rounded-lg text-PRP bg-white mt-2 border">
           <option value="">Seleccionar</option>
           <option v-for="state in departments" :value="state.departmentCode">
             {{ state.departmentOrStateName }}
@@ -213,12 +186,8 @@ async function cotizarEnvio() {
       </div>
       <div class="w-full">
         <label for="city" class="text-white">Ciudad:</label>
-        <select
-          required
-          id="city"
-          v-model="dataClient.locationCode"
-          class="w-full py-2.5 px-4 rounded-lg text-PRP bg-white mt-2 border"
-        >
+        <select required id="city" v-model="dataClient.locationCode"
+          class="w-full py-2.5 px-4 rounded-lg text-PRP bg-white mt-2 border">
           <option value="">Seleccionar</option>
           <option v-for="city in filteredLocations" :value="city.locationCode">
             {{ city.locationName }}
@@ -227,44 +196,34 @@ async function cotizarEnvio() {
       </div>
       <div class="w-full">
         <label for="address" class="text-white">Dirección:</label>
-        <input
-          required
-          v-model="dataClient.address"
-          type="text"
-          id="address"
-          class="w-full py-2 px-4 rounded-lg text-PRP bg-white mt-2 border"
-          placeholder="Dirección"
-        />
+        <input required v-model="dataClient.address" type="text" id="address"
+          class="w-full py-2 px-4 rounded-lg text-PRP bg-white mt-2 border" placeholder="Dirección" />
       </div>
       <div class="w-full">
-        <label for="infoDirection" class="text-white"
-          >Información adicional:</label
-        >
-        <input
-          required
-          v-model="dataClient.infoDirection"
-          type="text"
-          id="infoDirection"
-          class="w-full py-2 px-4 rounded-lg text-PRP bg-white mt-2 border"
-          placeholder="Información adicional"
-        />
+        <label for="infoDirection" class="text-white">Información adicional:</label>
+        <input required v-model="dataClient.infoDirection" type="text" id="infoDirection"
+          class="w-full py-2 px-4 rounded-lg text-PRP bg-white mt-2 border" placeholder="Información adicional" />
       </div>
     </div>
 
-    <div class="flex justify-end">
-      <button
-        type="button"
-        class="border px-6 py-2 mt-4 mr-2 bg-white/10 text-white rounded-lg"
-        @click="cotizarEnvio"
-      >
+    <div class="flex justify-around gap-5 items-center py-2">
+      <div v-if="envio" class="flex gap-4 items-center border py-2 px-4 rounded">
+        <img :src="envio.deliveryCompanyImgUrl" class="h-14 rounded-xl" alt="" />
+        <div class="font-thin text-sm text-white">
+          <b>{{ envio.deliveryCompanyName }}</b>
+          <p class="capitalize">{{ envio.routeType }}</p>
+          <p> <b class="mr-1">Días habiles:</b>{{ envio.insurancePercentage * 100 }}</p>
+          <p> <b>Valor:</b> {{ formatMoneda(envio.shippingCost) }}</p>
+        </div>
+      </div>
+
+      <button type="button" class="border px-6 py-2 mt-4 mr-2 bg-white/10 text-white rounded-lg" @click="cotizarEnvio">
         Cotizar Envio
       </button>
-      <button
-        type="submit"
-        class="border px-6 py-2 mt-4 mr-2 bg-white/10 text-white rounded-lg"
-      >
+      <!-- <button type="submit" class="border px-6 py-2 mt-4 mr-2 bg-white/10 text-white rounded-lg">
         Guardar Datos
-      </button>
+      </button> -->
+      <NuxtLink to="/compras/pago" class="border px-6 py-2 mt-4 mr-2 bg-white/10 text-white rounded-lg">Continuar</NuxtLink>
     </div>
 
     <!-- <pre>{{ envio }}</pre> -->

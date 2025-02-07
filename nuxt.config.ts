@@ -4,6 +4,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     mongoURI: process.env.MONGO_URI,
+    resendAPIKey: process.env.RESEND_API_KEY,
   },
 
   modules: [
