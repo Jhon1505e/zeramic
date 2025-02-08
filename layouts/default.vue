@@ -6,7 +6,7 @@
       <CartInfo />
     </ModalCart>
     <slot />
-    <ButtonsMobile />
+    
    
     <Footer />
   </main>

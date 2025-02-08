@@ -2,7 +2,7 @@
 const { cart, total } = useShopping();
 </script>
 <template>
-  <div class="bg-PRP pb-60">
+  <div class="bg-PRP h-full pb-20">
     <!-- <pre>{{ cart }}</pre> -->
     <TabsCompras />
     <div v-if="cart?.size" class="flex justify-between pb-1 max-w-4xl text-white mx-auto">
@@ -19,11 +19,11 @@ const { cart, total } = useShopping();
         <h2 class="text-lg text-center font-extralight">Total</h2>
       </div>
     </div>
-    <CartInfo class="text-white" />
-    <div class="md:flex space-y-6 md:space-y-0 px-4 max-w-4xl mx-auto pt-10  gap-10" v-if="cart.size > 0">
-      <div class="w-full bg-white/80 rounded-xl px-10">
+    <CartInfo class="text-white px-4 md:px-0" />
+    <div class="md:flex  space-y-6 md:space-y-0 px-4 max-w-4xl mx-auto pt-10  gap-10" v-if="cart.size > 0">
+      <div class="w-full bg-white/80 rounded-xl px-10 py-4">
         <h2 class="text-PRP font-bold text-center">Código Promocional</h2>
-        <p class="text-PRP font-thin text-center px-10 pt-2">Si tienes un código promocional, puedes ingresarlo
+        <p class="text-PRP font-thin text-center md:px-10 pt-2">Si tienes un código promocional, puedes ingresarlo
           aquí.</p>
         <input type="text" class="border  text-PRP text-center border-PRP px-4 py-2 w-full bg-PRP/20 mt-6 rounded-xl">
         <button class="bg-PRP border border-PRP text-white px-6 py-2 w-full rounded-lg mt-4">Aplicar

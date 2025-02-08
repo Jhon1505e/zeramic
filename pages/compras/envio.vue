@@ -34,14 +34,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-PRP pb-32">
+  <div class="bg-PRP h-screen ">
     <Loading v-if="loading" />
     <TabsCompras />
     <div class="max-w-2xl mx-auto">
       <div v-if="!client" class="max-w-5xl mx-auto">
         <div class="text-center  ">
           <div>
-            <h1 class="text-2xl font-semibold text-white">
+            <h1 class="text-2xl font-semibold text-white ">
               Ingresa tu correo electrónico para continuar la compra.
             </h1>
             <div class="text-center mt-4">
@@ -52,7 +52,7 @@ onMounted(() => {
             <h3 class="text-white mt-2 font-extralight">
               Guardamos tu correo electrónico de manera segura para:
             </h3>
-            <ul class="mt-2 w-2/3 mx-auto">
+            <ul class="mt-2 pl-6 md:pl-0 md:w-2/3 mx-auto">
               <li class="text-white flex font-thin">
                 <IconsCheck class="w-4 mr-2 fill-green-600" />
                 Identificar su perfil.

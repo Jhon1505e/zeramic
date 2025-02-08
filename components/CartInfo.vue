@@ -24,7 +24,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="cart?.size === 0" class="w-full md:w-1/2 flex justify-center items-center mx-auto">
+
+
+  
+
+    <div v-if="cart?.size === 0" class="w-full md:w-1/2 py-20 flex justify-center items-center mx-auto">
     <div class="text-center">
       <p>
         Carrito vacío
@@ -67,6 +71,7 @@ onMounted(() => {
       </div>
     </div>
 
+  
     <div class="flex text-lg bg-gray-400/30">
       <div class="w-full mx-auto justify-between flex px-4 py-2">
         <div class="w-1/3">

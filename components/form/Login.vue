@@ -5,14 +5,14 @@ const emit = defineEmits(['submit', 'success', 'error']);
 </script>
 <template>
   <form @submit.prevent="emit('submit')">
-    <div class="mt-4 mx-8  w-3/4 md:mx-auto"
-      :class="Router.currentRoute.value.path === '/compras/envio' ? 'flex gap-4 ' : 'block '">
+    <div class="mt-4 mx-8  md:w-3/4 md:mx-auto"
+      :class="Router.currentRoute.value.path === '/compras/envio' ? 'md:flex gap-4 ' : 'block '">
       <div class="w-full">
         <input id="email" type="email" class="rounded-xl text-center p-2 w-full border bg-white text-white"
           v-model="user.email" required placeholder="email@example.com" />
 
       </div>
-      <button :class="Router.currentRoute.value.path === '/compras/envio' ? 'w-1/3 ' : 'w-full mt-4'"
+      <button :class="Router.currentRoute.value.path === '/compras/envio' ? 'w-full mt-4 md:mt-0 md:w-1/3 ' : 'w-full mt-4'"
         class="border bg-white/20 mx-auto block  font-bold rounded-xl p-2 text-white" type="submit">
         Ingresar
       </button>

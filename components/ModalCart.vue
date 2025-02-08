@@ -6,17 +6,17 @@ const { open } = useShopping();
 </script>
 <template>
   <div v-if="!isCompras" :class="open ? 'opacity-100' : 'opacity-0 invisible'"
-    class="z-50 h-screen duration-75  right-0 fixed inset-0 flex justify-end">
-    <div class="w-1/6 md:w-full h-full bg-black opacity-50" @click="open = false"></div>
-    <div class=" shadow max-w-sm w-full bg-white">
+    class="z-50 h-screen duration-75  right-0 fixed inset-0  flex justify-end ">
+    <div class="w-1/6 md:w-full h-screen   bg-black opacity-50" @click="open = false"></div>
+    <div class=" shadow max-w-sm w-full bg-white rounded-l-xl">
       <div class="flex">
 
-        <h2 class="w-full text-center font-extralight pl-8 text-black">
+        <h2 class="w-full text-center font-semibold pl-8 text-PRP">
           Resumen de compra
         </h2>
 
         <button class="top-0 rounded-full right-0 mt-2 mr-3" @click="open = false">
-          <IconsClose class="w-7" />
+          <IconsClose class="w-7 stroke-PRP" />
         </button>
       </div>
 
