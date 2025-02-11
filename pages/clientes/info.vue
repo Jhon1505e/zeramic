@@ -1,4 +1,7 @@
 <script setup lang="ts">
+definePageMeta({
+    middleware: 'auth',
+})
 const clients = ref([]);
 const client = ref();
 const productos = ref();

@@ -16,7 +16,7 @@ export default function useEmail() {
             return await emails.send({
                 from: "No reply - Zeramic Co <admin@zeramic.co>",
                 to: info.email,
-                bcc: ['roman.david@gmail.com', 'zeramicguatape@gmail.com'],
+                // bcc: ['roman.david@gmail.com', 'zeramicguatape@gmail.com'],
                 subject: info.subject,
                 html: info.html,
             })
