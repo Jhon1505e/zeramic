@@ -2,7 +2,7 @@
 
 <template>
   <div
-    class="w-full h-screen z-20 fixed top-0 bg-black/80 flex justify-center items-center"
+    class="w-full h-screen z-30 fixed top-0 bg-black/80 flex justify-center items-center"
   >
     <div>
       <NuxtImg

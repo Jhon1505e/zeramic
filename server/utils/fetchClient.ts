@@ -2,8 +2,8 @@ import { MongoClient } from "mongodb"
 import { IClient } from "~/types/clients"
 const config = useRuntimeConfig()
 const uri = config.mongoURI
-// "mongodb+srv://tailoradmin:TuTLrADKwfWPJGq0@tailors.xiwsulo.mongodb.net/?retryWrites=true&w=majority&appName=Tailors"
 const client = new MongoClient(uri)
+
 export default function fetchClient() {
   const database = client.db("tailorsdb")
   const clients = database.collection("clients")

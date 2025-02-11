@@ -10,38 +10,43 @@ const content = computed(() => {
 
 <template>
   <div class="bg-PRP">
-    <div class="flex justify-center  md:pt-10 mx-auto">
+    <div class="max-w-7xl mx-auto">
+
+    </div>
+    <div class="flex justify-center  pt-5 md:pt-10 mx-auto">
       <NuxtImg
         format="webp"
         src="/img/logo_zeramic.webp"
-        class="w-1/2 md:w-1/4"
+        class="w-1/2 md:w-80"
         alt=""
       />
     </div>
-    <div class="flex justify-center">
+    <div class="flex justify-center pt-5 md:pt-0 mx-auto">
       <NuxtImg
         format="webp"
         src="/img/products_index.webp"
-        class="w-full md:w-3/4 z-10 absolute mt-6"
+        class="w-full md:w-[1000px] z-10 absolute "
         alt=""
       />
 
-      <img src="/img/ImgRounded2.svg" class="invert" alt="">
+      <img src="/img/ImgRounded2.svg" class="invert " alt="">
     </div>
 
     <div
-      class="relative bg-fixed bg-cover bg-center h-[500px] md:h-screen"
+      class="relative bg-fixed bg-cover bg-center h-[500px] md:h-screen "
       style="background-image: url('/img/background.png')"
     >
-      <div class="absolute inset-0 backdrop-brightness-50"></div>
+      <div class="absolute inset-0 bg-black/20"></div>
       <ImgRounded class="rotate-180 fill-PRP" />
       <div
-        class="w-full flex justify-center text-center items-center absolute inset-0"
+        class="w-full flex justify-center text-center items-center absolute inset-0 pt-10 md:pt-0"
       >
+      <div class="max-w-7xl mx-auto">
+
         <div>
           <NuxtImg
-            format="webp"
-            src="/img/text_index.webp"
+          format="webp"
+          src="/img/text_index.webp"
             class="w-2/3 mx-auto"
             alt=""
           />
@@ -49,6 +54,7 @@ const content = computed(() => {
             NOS INSPIRA A CREAR BELLAS PIEZAS QUE GUARDAN SU ESENCIA, SUS
             FORMAS, SUS COLORES...
           </h4>
+        </div>
         </div>
       </div>
     </div>
@@ -60,7 +66,9 @@ const content = computed(() => {
     />  -->
 
     <div class="bg-PRP pt-10">
-      <div class="w-full md:w-1/2 pt-10 pb-32 px-6 mx-auto text-center max-w-6xl">
+      <div class="max-w-7xl mx-auto">
+      
+      <div class="w-full md:w-1/2 pt-10 pb-16 sm:pb-32 px-6 mx-auto text-center max-w-6xl">
         <h2 class="text-2xl md:text-3xl font-semibold pb-4 text-white">
           DISEÑAMOS Y FABRICAMOS
         </h2>
@@ -71,8 +79,10 @@ const content = computed(() => {
           el modelado y la impresión 3d, además de un profundo amor por Guatapé
           y su cultura del zócalo, que adorna sus casas y calles de colores e
           historias.
+          
         </p>
       </div>
+    </div>
       <div class="w-full">
         <NuxtImg
           format="webp"
@@ -83,13 +93,16 @@ const content = computed(() => {
       </div>
     </div>
     <div class="bg-white py-4">
-      <div class="w-full   px-6 md:px-0 py-10 md:py-10">
+      <div class="max-w-7xl mx-auto">
+
+        <div class="w-full   px-6 md:px-0 py-10 md:py-10">
         <NuxtImg
           format="webp"
           src="/img/logos_index.png"
           class="w-full md:w-2/3 mx-auto"
           alt=""
-        />
+          />
+        </div>
       </div>
     </div>
 

@@ -6,8 +6,8 @@
       <CartInfo />
     </ModalCart>
     <slot />
-    <ButtonsMobile />
+    
    
-    <Footer v-if="$route.path !== '/compras'" />
+    <Footer />
   </main>
 </template>

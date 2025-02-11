@@ -57,7 +57,7 @@
         }"
       >
         <IconsContacto class="w-7 mx-auto" />
-        <h3 class="pt- text-sm">Contacto</h3>
+        <h3 class="pt-0 text-sm">Contacto</h3>
       </NuxtLink>
      
     </div>
