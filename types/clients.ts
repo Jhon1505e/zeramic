@@ -2,7 +2,7 @@ import type { Condition, ObjectId } from "mongodb";
 
 export interface IClient {
     _id?: Condition<ObjectId>;
-    name?: string;
+    fullName?: string;
     email: string;
     password: string;
     picture?: string;

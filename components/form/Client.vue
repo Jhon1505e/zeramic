@@ -146,7 +146,7 @@ function selectEnvio(item: any) {
       <div class="grid md:grid-cols-2 gap-3 p-2">
         <div class="w-full">
           <label for="name" class="text-white">Nombres y Apellidos:</label>
-          <input v-model="dataClient.name" type="text" required id="name"
+          <input v-model="dataClient.fullName" type="text" required id="name"
             class="w-full py-2 px-4 mt-2 rounded-lg bg-white border text-PRP" placeholder="Nombres y Apellidos" />
         </div>
         <div class="w-full">

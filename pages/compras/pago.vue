@@ -19,7 +19,7 @@ const payment = ref();
 
 const amount = computed(() => total.value + (envio.value?.shippingCost || 0));
 const datos = computed(() => ({
-    nombre: client.value?.name || "",
+    nombre: client.value?.fullName || "",
     email: client.value?.email || "",
     documento: client.value?.docId || "",
     tipo_doc: client.value?.docType || "",

@@ -69,7 +69,7 @@ onMounted(() => {
           </div>
           <h1 class="text-center font-thin text-xl px-4 pb-4">
 
-            {{ client.name }}
+            {{ client.fullName }}
           </h1>
           <div class="flex flex-col mt-3">
             <button @click="pedido = false"

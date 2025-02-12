@@ -20,6 +20,7 @@ async function handleSubmit() {
     const data = await signup(user);
     console.log(data);
     message.value = data?.message || '';
+    newUser.value = false;
     loading.value = false;
     return;
   }
@@ -71,7 +72,7 @@ watchEffect(() => authUser.value && navigateTo('/clientes/info'));
           <div v-if="newUser" class="text-sm p-1 pt-2 flex w-full text-end justify-end">
             <input type="checkbox" required id="checkbox" class="mr-2" />
             <label for="checkbox">
-              Acepto los <NuxtLink to="/" class="text-green-500">Terminos y condiciones</NuxtLink>
+              Acepto los <NuxtLink to="/" class="text-indigo-600 underline">Terminos y condiciones</NuxtLink>
             </label>
           </div>
         </div>
@@ -92,14 +93,14 @@ watchEffect(() => authUser.value && navigateTo('/clientes/info'));
         </div>
 
         <button type="submit"
-          class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 focus:ring focus:ring-green-300">
+          class="w-full bg-PRP text-white py-2 rounded-lg hover:bg-PRP/80 focus:ring focus:ring-green-300">
           {{ newUser ? 'Registrarse' : reset ? 'Enviar contraseña' : 'Ingresar' }}
         </button>
       </form>
 
       <p class="text-center text-sm mt-2">
         ¿{{ newUser ? 'Ya tienes una cuenta' : 'Primera vez' }}?
-        <button type="button" class="text-green-500" @click="newUser = !newUser">
+        <button type="button" class="text-indigo-600 underline" @click="newUser = !newUser">
           {{ newUser ? 'Ingresar' : 'Crea una cuenta' }}
         </button>
       </p>

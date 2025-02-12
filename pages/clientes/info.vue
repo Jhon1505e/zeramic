@@ -57,7 +57,7 @@ await onGetClients()
         </div>
         <hr />
         <div class="flex border-b text-white items-center" v-for="doc in clients" :key="doc._id">
-          <div class="w-full p-2">{{ doc.name }}</div>
+          <div class="w-full p-2">{{ doc.fullName }}</div>
           <div class="w-full p-2 justify-center hidden md:flex">
             {{ doc.email }}
           </div>
