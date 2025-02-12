@@ -9,7 +9,6 @@ export function generatePassword(): string {
     for (let i = 0; i < 8; i++) {
         password += caracteres[buffer[i] % caracteres.length];
     }
-
     return password;
 }
 
@@ -18,6 +17,7 @@ export async function hashPassword(password: string): Promise<string> {
     const hash = await bcrypt.hash(password, saltRounds);
     return hash;
 }
+
 export async function comparePassword(password: string, userPassword: string): Promise<string> {
     const valid = await bcrypt.compare(password, userPassword);
     return valid;

@@ -10,12 +10,12 @@ const newUser = ref(false);
 const reset = ref(false);
 const message = ref('');
 
-const { login, reset } = useAuth();
+const { login, resetPassword } = useAuth();
 
 async function handleSubmit() {
   message.value = 'Loading...';
-  
-  if(newUser.value) {
+
+  if (newUser.value) {
     const data = await $fetch('/api/auth/signup', {
       method: 'POST',
       body: JSON.stringify(user),
@@ -26,7 +26,7 @@ async function handleSubmit() {
   }
 
   if(reset.value) {
-    const data = await reset(user);
+    const data = await resetPassword(user);
     console.log(data);
     return;
   }
