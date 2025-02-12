@@ -1,6 +1,6 @@
 export default defineNuxtRouteMiddleware(async () => {
-    console.log('auth middleware')
     const { authUser } = useAuth()
+    console.log('auth middleware', authUser.value)
     if (!authUser.value) {
         return navigateTo({ name: "clientes" })
     }

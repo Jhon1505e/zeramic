@@ -24,11 +24,20 @@ export default defineEventHandler(async (event) => {
         password
     })
 
+    const html = `<h1>Bienvenido a Zeramic</h1>
+    <p>Hola, ${body.fullName}</p>
+    <p>Te damos la bienvenida a la comunidad de Zeramic</p>
+    <p>Tu contraseña provisional es: <strong>${newPass}</strong></p>
+    <p>Por favor, cambia tu contraseña en tu primer inicio de sesión</p>
+
+    <p>Saludos</p>
+    <p>Equipo de Zeramic</p>`
+
     await sendEmail({
         email: body.email,
-        subject: 'Cuenta creada',
-        html: `Tu contraseña es: ${newPass}`
+        subject: 'Cuenta creada en Zeramic.co',
+        html
     })
 
-    return { message: 'Usuario registrado' }
+    return { message: 'Usuario registrado, revisa tu correo para continuar' }
 })

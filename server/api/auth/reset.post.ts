@@ -13,17 +13,17 @@ export default defineEventHandler(async (event) => {
 
     const { password: _, ...userData } = user
 
-    const data = await updateClient({
+    await updateClient({
         email: body.email,
         password,
         state: 'active',
         ...userData
     })
 
-    const dataEmail = await sendEmail({
+    const data = await sendEmail({
         email: body.email,
         subject: 'Contraseña actualizada',
-        html: `Tu nueva contraseña es: ${newPass}`
+        html: `Tu nueva contraseña es: <strong>${newPass}</strong>`
     })
-    return { data, dataEmail }
+    return data
 })

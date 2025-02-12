@@ -1,12 +1,17 @@
 export const useAuth = () => {
     const authUser = useState<any | null>('user', () => null)
 
+    const setUser = (user: any) => {
+        authUser.value = user
+    }
+
     const login = async (user: any): Promise<any> => {
         try {
             const data = await $fetch("/api/auth/login", {
                 method: "POST",
                 body: user,
             });
+            setUser(data);
             return data;
         } catch (error) {
             console.error(error);
