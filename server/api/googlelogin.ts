@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
     const exist = await findClient(email) // find if exist
     console.log('exist',exist)
     if (!exist) { // if not exist save in MongoDB
-        const data = await insertClient({ email, name, picture })
+        const data = await insertClient({ email, fullName: name, picture })
         console.log(data)
         return { email, name, picture }
     }

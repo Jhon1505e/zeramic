@@ -11,10 +11,16 @@
   },
   "dependencies": {
     "@nuxt/image-edge": "^1.3.0-28465588.9982e17",
+    "@nuxtjs/robots": "^5.2.2",
+    "@nuxtjs/sitemap": "^7.2.4",
     "@storyblok/nuxt": "^6.0.4",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "6.6",
     "nuxt": "^3.10.1",
+    "nuxt-gtag": "^3.0.2",
     "nuxt-vue3-google-signin": "^0.0.11",
+    "resend": "^4.1.2",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"
   },

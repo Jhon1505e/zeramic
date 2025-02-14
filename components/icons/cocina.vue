@@ -1,4 +1,3 @@
 <template>
-    
-    <svg enable-background="new 0 0 32 32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="m29 16h-1v-3.1c0-1.6-1.3-3-3-3-1.6 0-3 1.3-3 3 0 .6.4 1 1 1s1-.5 1-1 .4-1 1-1 1 .4 1 1v3.1h-7v-1c0-.6-.4-1-1-1h-15c-.6 0-1 .4-1 1v14c0 .6.4 1 1 1h26c.6 0 1-.5 1-1v-12c0-.6-.4-1-1-1zm-12 0v1.9h-13v-1.9zm-13 3.9h13v8.1h-13zm24 8.1h-9v-10h9z"/><path d="m6 10h10c1 0 1.2-1.1.8-1.6l-2.8-3.7v-1.7c0-.6-.4-1-1-1h-4c-.6 0-1 .4-1 1v1.7l-2.8 3.7c-.4.6-.1 1.6.8 1.6zm3.8-4.4c.1-.2.2-.4.2-.6v-1h2v1c0 .2.1.4.2.6l1.8 2.4h-6z"/><path d="m22 22h3c.6 0 1-.4 1-1s-.4-1-1-1h-3c-.6 0-1 .4-1 1s.4 1 1 1z"/></svg>
+   <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="enable-background:new 0 0 512 512" viewBox="0 0 512 512"><path d="M256 0v288H0v224h512V0H256zm0 480H32V320h224v160zm224 0H288V160h192v320zm0-352H288V32h192v96z"/><path d="m224 105.376-32-32V0h-32v86.624l32 32V128H64v-9.376l32-32V0H64v73.376l-32 32V160h192zM96 352h96v32H96zM320 64h32v32h-32zM320 224h32v96h-32zM32 192h32v32H32zM112 192h32v32h-32zM192 192h32v32h-32z"/></svg>
 </template>

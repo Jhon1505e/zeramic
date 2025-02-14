@@ -46,26 +46,21 @@ function addToShop() {
         alt=""
       />
       <NuxtLink
-      
+        :to="`/productos/${slug}`"
         class="w-full  absolute bottom-0 text-end h-full duration-300 rounded-t-lg"
       >
        <div
           class="opacity-0 hover:opacity-100 duration-300 h-full w-full flex justify-center items-center bg-black/50 rounded-t-lg" 
         >
-          <div>
+        <div>
             <h2 class="text-white font-bold justify-center mt-4 flex">
               $ {{ content?.Precio }}
             </h2>
-            <hr class="mb-2" />
+            
             <div class="flex gap-2 justify-center">
-              <NuxtLink
-                class="bg-black/50 p-2 border rounded-lg text-white"
-                :to="`/productos/${slug}`"
-              >
-                <IconsEye class="h-6 w-6 mx-auto rounded-t-lg" />
-              </NuxtLink>
-              <button @click="addToShop" class="bg-black/50 border p-2 rounded-lg text-white">
-                <IconsBag class="h-6 w-6 mx-auto rounded-t-lg" />
+              
+              <button @click.prevent="addToShop" class="bg-black/50 border flex gap-2 py-2 px-4 rounded-lg text-white">
+               {{ isInCart ? "En carrito" : "Añadir" }} <IconsBag class="h-6 w-6 mx-auto" /> 
               </button>
             </div>
           </div>
