@@ -17,6 +17,8 @@ export default defineNuxtConfig({
     "@storyblok/nuxt",
     "@nuxtjs/tailwindcss",
     "@nuxt/image-edge",
+    "@nuxtjs/sitemap",
+    "@nuxtjs/robots",
     "nuxt-vue3-google-signin",
   ],
 
