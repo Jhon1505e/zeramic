@@ -65,7 +65,7 @@ onMounted(() => {
 
           <div class="flex justify-center mt-4">
             <NuxtImg v-if="client?.picture" :src="client.picture" alt="" class="w-24 h-24 rounded-full" />
-            <IconsLogin v-else class="w-24 p-5 rounded-full bg-black/10 text-white"></IconsLogin>
+            <IconsLogin v-else class="w-24 p-5 rounded-full bg-black/10 fill-white"></IconsLogin>
           </div>
           <h1 class="text-center font-thin text-xl px-4 pb-4">
 
