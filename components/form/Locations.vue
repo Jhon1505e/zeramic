@@ -17,7 +17,7 @@ const filteredLocations = computed<ILocation[]>(() => {
     <div class="grid md:grid-cols-2 gap-3 p-2">
         <div class="w-full">
             <label for="state" class="text-white">Departamento:</label>
-            <select required id="state" class="w-full py-2.5 px-4 rounded-lg text-PRP bg-white mt-2 border">
+            <select  id="state" class="w-full py-2.5 px-4 rounded-lg text-PRP bg-white mt-2 border">
                 <option value="">Seleccionar</option>
                 <option v-for="state in departments" :value="state.departmentCode">
                     {{ state.departmentOrStateName }}
@@ -26,7 +26,7 @@ const filteredLocations = computed<ILocation[]>(() => {
         </div>
         <div class="w-full">
             <label for="city" class="text-white">Ciudad:</label>
-            <select required id="city" class="w-full py-2.5 px-4 rounded-lg text-PRP bg-white mt-2 border">
+            <select  id="city" class="w-full py-2.5 px-4 rounded-lg text-PRP bg-white mt-2 border">
                 <option value="">Seleccionar</option>
                 <option v-for="city in filteredLocations" :value="city.locationCode">
                     {{ city.locationName }}

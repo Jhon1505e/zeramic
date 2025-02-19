@@ -1,14 +1,33 @@
 <script setup lang="ts">
-const route = useRoute();
-const { user } = useClient();
-const emit = defineEmits(['submit', 'success', 'error']);
+const { signup, login, resetPassword } = useAuth();
+const emit = defineEmits(['success', 'error']);
 
 const newUser = ref(false);
 const reset = ref(false);
 const message = ref('');
+const user = reactive({
+  fullName: "",
+  email: "",
+  password: "",
+});
 
-function handleSubmit() {
-  emit('submit');
+async function handleSubmit() {
+  message.value = 'Loading...';
+  if (newUser.value) {
+    const data = await signup(user);
+    console.log(data);
+    message.value = data?.message || '';
+    newUser.value = false;
+    return;
+  }
+  if (reset.value) {
+    const data = await resetPassword(user.email);
+    message.value = data?.message || '';
+    return;
+  }
+  const data = await login(user);
+  console.log(data);
+  message.value = data?.message || '';
 }
 </script>
 <template>
@@ -17,16 +36,15 @@ function handleSubmit() {
     <h2 class="text-xl font-semibold text-center">
       {{ newUser ? 'Crea una cuenta' : 'Inicia sesión' }}
     </h2>
+
+    <div class="flex justify-center pb-2 w-full">
+      <GoogleSignInButton state-cookie-domain="localhost" @success="emit('success', $event)"
+        @error="emit('error', $event)" />
+    </div>
+
     <p v-if="message" class="text-center text-xs font-semibold text-amber-600 bg-orange-100 p-1 rounded-sm">
       {{ message }}
     </p>
-
-    <div class="flex justify-center pb-2 w-full">
-      <GoogleSignInButton
-        state-cookie-domain="localhost"
-        @success="emit('success', $event)"
-        @error="emit('error', $event)" />
-    </div>
 
     <form @submit.prevent="handleSubmit" class="space-y-2">
 

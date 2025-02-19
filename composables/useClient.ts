@@ -1,9 +1,6 @@
 import type { IClient } from "~/types/clients";
+
 export function useClient() {
-    const client = useState<IClient | null>("client", () => null);
-    const user = reactive({
-        email: "",
-    });
 
     async function getDataClients() {
         const data = await $fetch("/api/pedidos/find", {
@@ -15,22 +12,21 @@ export function useClient() {
         return data;
     }
 
-    const getClient = async () => {
+    const getClient = async (user: any) => {
         const data = await $fetch<IClient>("/api/client", {
             method: "POST",
             body: user,
         });
         if (!data) {
             alert("No se encontro el usuario");
-        } else {
-            client.value = data;
         }
+        return data;
     };
 
-    const saveClient = async () => {
+    const saveClient = async (client: IClient) => {
         const data = await $fetch<IClient>("/api/clientes/update", {
             method: "POST",
-            body: client.value,
+            body: client,
         });
         return data
     }
@@ -45,5 +41,5 @@ export function useClient() {
         return data
     }
 
-    return { client, user, getDataClients, getClient, saveClient, deleteClient };
+    return { getDataClients, getClient, saveClient, deleteClient };
 }

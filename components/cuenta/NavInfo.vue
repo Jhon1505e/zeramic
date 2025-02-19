@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { client } = useClient();
+const { client } = useAuth();
 const closeSession = () => { }
 </script>
 <template>
@@ -13,11 +13,11 @@ const closeSession = () => { }
             {{ client?.fullName }}
         </h1>
         <div class="flex flex-col mt-3">
-            <NuxtLink to="/micuenta/datos" class="py-3 hover:bg-white/10 border-y flex gap-2 justify-center">
+            <NuxtLink to="/micuenta" class="py-3 hover:bg-white/10 border-y flex gap-2 justify-center">
                 <IconsUser class="w-5" /> Mis Datos
             </NuxtLink>
 
-            <NuxtLink to="/compras/pedidos" class="py-3 hover:bg-white/10 border-b flex gap-2 justify-center">
+            <NuxtLink to="/micuenta/pedidos" class="py-3 hover:bg-white/10 border-b flex gap-2 justify-center">
                 <IconsBag class="w-5" /> Mis Pedidos
             </NuxtLink>
 

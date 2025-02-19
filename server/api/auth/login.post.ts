@@ -1,9 +1,7 @@
 export default defineEventHandler(async (event) => {
 
-    const body = await readBody(event)
-    console.log('login', body)
     const { findClient } = fetchClient()
-    const { email, password } = body
+    const { email, password } = await readBody(event)
     const user = await findClient(email)
 
     if (!user) {

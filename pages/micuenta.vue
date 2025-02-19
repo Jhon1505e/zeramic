@@ -1,10 +1,11 @@
 <script setup lang="ts">
-const { client } = useClient();
+definePageMeta({
+  middleware: "auth",
+});
 </script>
 
 <template>
   <div class="bg-PRP h-screen">
-    {{ client }}
     <NuxtPage></NuxtPage>
   </div>
 </template>

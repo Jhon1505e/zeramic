@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { client } = useClient();
+const { client } = useAuth();
 const { total } = useShopping();
 const { envio } = useEnvio();
 

@@ -10,7 +10,7 @@ const reset = ref(false);
 const loading = ref(false);
 const message = ref('');
 
-const { authUser, login, signup, resetPassword } = useAuth();
+const { login, signup, resetPassword } = useAuth();
 
 async function handleSubmit() {
   message.value = 'Loading...';
@@ -41,7 +41,6 @@ async function handleSubmit() {
   loading.value = false;
 }
 
-watchEffect(() => authUser.value && navigateTo('/clientes/info'));
 </script>
 
 <template>

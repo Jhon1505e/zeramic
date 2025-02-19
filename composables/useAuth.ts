@@ -1,17 +1,16 @@
+import type { IClient } from "~/types/clients";
+
 export const useAuth = () => {
-    const authUser = useState<any | null>('user', () => null)
+    const client = useState<IClient | null>("client", () => null);
 
-    const setUser = (user: any) => {
-        authUser.value = user
-    }
-
-    const login = async (user: any): Promise<any> => {
+    const login = async (user: any) => {
         try {
-            const data = await $fetch("/api/auth/login", {
+            const data = await $fetch<IClient>("/api/auth/login", {
                 method: "POST",
                 body: user,
             });
-            setUser(data);
+            if (data)
+                client.value = data;
             return data;
         } catch (error) {
             console.error(error);
@@ -32,6 +31,17 @@ export const useAuth = () => {
         }
     }
 
+    const userLoggedIn = async () => {
+        if (!client.value) {
+            const data = await $fetch<IClient>('/api/auth/token', {
+                headers: useRequestHeaders(['cookie'])
+            })
+            if (data)
+                client.value = data;
+            return data;
+        }
+    }
+
     const logout = async () => { }
 
     const resetPassword = async (user: any) => {
@@ -43,5 +53,5 @@ export const useAuth = () => {
         return data;
     }
 
-    return { authUser, login, signup, logout, resetPassword }
+    return { login, signup, logout, resetPassword, userLoggedIn, client };
 }

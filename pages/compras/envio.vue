@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { client } = useClient();
+const { client } = useAuth();
 const loading = ref(false);
 
 async function handleLoginSuccess(response: any) {
