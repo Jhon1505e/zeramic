@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const client = ref<IClient>({});
+const { client } = useClient();
+const closeSession = () => { }
 </script>
 <template>
     <div class="bg-black/10 text-white rounded-xl border w-full md:w-1/3">
@@ -9,16 +10,20 @@ const client = ref<IClient>({});
             <IconsLogin v-else class="w-24 p-5 fill-white rounded-full bg-black/10 text-white" />
         </div>
         <h1 class="text-center font-thin text-xl px-4 pb-4">
-            {{ client.fullName }}
+            {{ client?.fullName }}
         </h1>
         <div class="flex flex-col mt-3">
-            <button class="py-3 hover:bg-white/10 border-y flex gap-2 justify-center">
+            <NuxtLink to="/micuenta/datos" class="py-3 hover:bg-white/10 border-y flex gap-2 justify-center">
                 <IconsUser class="w-5" /> Mis Datos
-            </button>
+            </NuxtLink>
 
-            <button class="py-3 hover:bg-white/10 border-b flex gap-2 justify-center">
+            <NuxtLink to="/compras/pedidos" class="py-3 hover:bg-white/10 border-b flex gap-2 justify-center">
                 <IconsBag class="w-5" /> Mis Pedidos
-            </button>
+            </NuxtLink>
+
+            <NuxtLink to="/clientes" class="py-3 hover:bg-white/10 border-b flex gap-2 justify-center">
+                <IconsBag class="w-5" /> Clientes - Admin
+            </NuxtLink>
 
             <button class="py-3 hover:bg-white/10  flex gap-2 justify-center" @click="closeSession">
                 <IconsExit class="w-5 rotate-180" /> Cerrar Sesión

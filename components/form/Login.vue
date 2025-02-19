@@ -22,7 +22,10 @@ function handleSubmit() {
     </p>
 
     <div class="flex justify-center pb-2 w-full">
-      <GoogleSignInButton @success="emit('success', $event)" @error="emit('error', $event)" />
+      <GoogleSignInButton
+        state-cookie-domain="localhost"
+        @success="emit('success', $event)"
+        @error="emit('error', $event)" />
     </div>
 
     <form @submit.prevent="handleSubmit" class="space-y-2">
