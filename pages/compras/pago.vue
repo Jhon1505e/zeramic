@@ -39,7 +39,6 @@ const openWidget = () => {
 </script>
 <template>
     <div class="bg-PRP h-screen">
-        <TabsCompras />
         <div class="max-w-3xl mx-auto px-6 pt-10 md:pt-6">
             <ResumenCompra />
         </div>

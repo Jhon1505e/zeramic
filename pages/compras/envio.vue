@@ -28,7 +28,7 @@ onMounted(() => {
   if (auth && !client.value) {
     const store = JSON.parse(auth);
     const credential = store.token;
-    handleLoginSuccess({ credential });
+    // handleLoginSuccess({ credential });
   }
 })
 </script>
@@ -36,45 +36,28 @@ onMounted(() => {
 <template>
   <div class="bg-PRP h-screen ">
     <Loading v-if="loading" />
-    <TabsCompras />
     <div class="max-w-2xl mx-auto">
-      <div v-if="!client" class="max-w-5xl mx-auto">
-        <div class="text-center  ">
-          <div>
-            <h1 class="text-2xl font-semibold text-white ">
-              Ingresa tu correo electrónico para continuar la compra.
-            </h1>
-            <div class="text-center mt-4">
-              <FormLogin @success="handleLoginSuccess" @error="handleLoginError" />
-            </div>
-          </div>
-          <div class="w-full px-6 md:px-0  mx-auto">
-            <h3 class="text-white mt-2 font-extralight">
-              Guardamos tu correo electrónico de manera segura para:
-            </h3>
-            <ul class="mt-2 pl-6 md:pl-0 md:w-2/3 mx-auto">
-              <li class="text-white flex font-thin">
-                <IconsCheck class="w-4 mr-2 fill-green-600" />
-                Identificar su perfil.
-              </li>
-              <li class="text-white flex font-thin">
-                <IconsCheck class="w-4 mr-2 fill-green-600" />
-                Guardar el historial de compras.
-              </li>
-              <li class="text-white flex font-thin">
-                <IconsCheck class="w-4 mr-2 fill-green-600" />
-                Facilitar el proceso de compras.
-              </li>
-              <li class="text-white flex font-thin">
-                <IconsCheck class="w-4 mr-2 fill-green-600" />
-                Notificar sobre los estados de su compra.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <FormClient v-else v-model="client" />
+      <h3 class="text-white mt-2 font-extralight">
+        Guardamos tu correo electrónico de manera segura para:
+      </h3>
+      <ul class="mt-2 pl-6 md:pl-0 md:w-2/3 mx-auto">
+        <li class="text-white flex font-thin">
+          <IconsCheck class="w-4 mr-2 fill-green-600" />
+          Identificar su perfil.
+        </li>
+        <li class="text-white flex font-thin">
+          <IconsCheck class="w-4 mr-2 fill-green-600" />
+          Guardar el historial de compras.
+        </li>
+        <li class="text-white flex font-thin">
+          <IconsCheck class="w-4 mr-2 fill-green-600" />
+          Facilitar el proceso de compras.
+        </li>
+        <li class="text-white flex font-thin">
+          <IconsCheck class="w-4 mr-2 fill-green-600" />
+          Notificar sobre los estados de su compra.
+        </li>
+      </ul>
     </div>
   </div>
 </template>

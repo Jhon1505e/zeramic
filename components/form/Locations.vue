@@ -14,7 +14,7 @@ const filteredLocations = computed<ILocation[]>(() => {
 });
 </script>
 <template>
-    <div>
+    <div class="grid md:grid-cols-2 gap-3 p-2">
         <div class="w-full">
             <label for="state" class="text-white">Departamento:</label>
             <select required id="state" class="w-full py-2.5 px-4 rounded-lg text-PRP bg-white mt-2 border">

@@ -4,7 +4,6 @@ const { cart, total } = useShopping();
 <template>
   <div class="bg-PRP h-full pb-20">
     <!-- <pre>{{ cart }}</pre> -->
-    <TabsCompras />
     <div v-if="cart?.size" class="flex justify-between pb-1 max-w-4xl text-white mx-auto">
       <div class="w-2/5 pl-6">
         <h2 class="text-lg font-extralight">Producto</h2>
