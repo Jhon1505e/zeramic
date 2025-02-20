@@ -20,7 +20,7 @@ const index = computed(() => route.name?.toString().startsWith("index"));
             <li><NuxtLink to="/" @click="emit('close')">Inicio</NuxtLink></li>
           <li><NuxtLink to="/productos" @click="emit('close')">Productos</NuxtLink></li>
           <li><NuxtLink to="/nosotros" @click="emit('close')">Nosotros</NuxtLink></li>
-          <li><NuxtLink to="/cuenta" @click="emit('close')">Mi Cuenta</NuxtLink></li>
+          <li><NuxtLink to="/micuenta" @click="emit('close')">Mi Cuenta</NuxtLink></li>
           <li><NuxtLink to="/contacto" @click="emit('close')">Contacto</NuxtLink></li>
           <img src="/img/logo-zeramic.png" class="w-52 mx-auto pt-24" alt="" />
         </ul>

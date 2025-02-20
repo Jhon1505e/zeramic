@@ -42,12 +42,16 @@ export const useAuth = () => {
         }
     }
 
-    const logout = async () => { }
+    const logout = async () => {
+        const data = await $fetch('/api/auth/logout');
+        client.value = null;
+        return data
+    }
 
-    const resetPassword = async (user: any) => {
+    const resetPassword = async (email: string) => {
         const data = await $fetch('/api/auth/reset', {
             method: 'POST',
-            body: JSON.stringify(user),
+            body: { email },
         });
         console.log(data);
         return data;

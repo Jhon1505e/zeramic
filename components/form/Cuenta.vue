@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { IClient } from '~/types/clients';
+
 const client = defineModel<IClient>({ required: true });
 const { saveClient } = useClient()
 
@@ -48,7 +50,7 @@ const handleSubmit = () => {
                 </div>
             </div>
 
-            <FormLocations />
+            <FormLocations v-model="client" />
 
             <div class="grid md:grid-cols-2 gap-3 p-2">
                 <div class="w-full">

@@ -1,6 +1,9 @@
 <script setup lang="ts">
-const { client } = useAuth();
-const closeSession = () => { }
+const { client, logout } = useAuth();
+const closeSession = () => {
+    logout();
+    //navigateTo("/");
+}
 </script>
 <template>
     <div class="bg-black/10 text-white rounded-xl border w-full md:w-1/3">
