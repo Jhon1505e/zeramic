@@ -108,7 +108,7 @@ function selectEnvio(item: any) {
 }
 </script>
 <template>
-  <div v-if="modal" class="fixed z-20 top-0 h-screen left-0 right-0 bg-black/90">
+  <div v-if="modal" class="fixed z-20 top-0 left-0 right-0 bg-black/90">
     <div class="flex justify-center items-center h-full">
       <div class="w-1/2 bg-PRP rounded-lg">
         <div class="flex justify-between px-6">

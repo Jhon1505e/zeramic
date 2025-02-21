@@ -31,7 +31,7 @@ async function handleSubmit() {
 }
 </script>
 <template>
-  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md m-6">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md md:m-6">
     <IconsLogin class="w-36 mx-auto" />
     <h2 class="text-xl font-semibold text-center">
       {{ newUser ? 'Crea una cuenta' : 'Inicia sesión' }}

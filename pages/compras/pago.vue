@@ -38,15 +38,20 @@ const openWidget = () => {
 
 </script>
 <template>
-    <div class="bg-PRP h-screen">
-        <div class="max-w-3xl mx-auto px-6 pt-10 md:pt-6">
-            <ResumenCompra />
+    <div class="bg-PRP">
+        <div class="max-w-5xl flex w-full mx-auto pt-10 md:pt-6">
+            <div class="w-full md:w-2/3">
+                <h2 class="text-white font-bold text-center">Resumen del pedido</h2>
+            </div>
+            <ComprasResumen class="w-full md:w-1/3" />
         </div>
         <!-- <pre class="text-xs text-white">{{ client }}</pre> -->
         <div class="flex items-center justify-center">
-            <NuxtLink to="/compras/envio" class="border px-6 py-2 mt-4 mr-2 bg-white/10 text-white rounded-lg">Seleccionar envio</NuxtLink>
-            <button :disabled="!envio" :class="{ 'cursor-not-allowed border-red-700': !envio }" class="border px-6 py-2 mt-4 mr-2 bg-white/10 text-white rounded-lg"
-                @click="openWidget">Iniciar Pago</button>
+            <NuxtLink to="/compras/envio" class="border px-6 py-2 mt-4 mr-2 bg-white/10 text-white rounded-lg">
+                Seleccionar envio</NuxtLink>
+            <button :disabled="!envio" :class="{ 'cursor-not-allowed border-red-700': !envio }"
+                class="border px-6 py-2 mt-4 mr-2 bg-white/10 text-white rounded-lg" @click="openWidget">Iniciar
+                Pago</button>
         </div>
 
         <InfoPagos v-if="payment" v-model="payment" />

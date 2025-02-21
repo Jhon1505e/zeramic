@@ -3,9 +3,11 @@ import type { IClient } from '~/types/clients';
 
 const client = defineModel<IClient>({ required: true });
 const { saveClient } = useClient()
+const { saveEnvio } = useEnvio();
 
 const handleSubmit = () => {
     saveClient(client.value)
+    saveEnvio()
 };
 </script>
 <template>

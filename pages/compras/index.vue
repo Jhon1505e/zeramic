@@ -2,9 +2,9 @@
 const { cart, total } = useShopping();
 </script>
 <template>
-  <div class="bg-PRP h-full pb-20">
+  <div class="bg-PRP h-full max-w-5xl mx-auto pb-20">
     <!-- <pre>{{ cart }}</pre> -->
-    <div v-if="cart?.size" class="flex justify-between pb-1 max-w-4xl text-white mx-auto">
+    <div v-if="cart?.size" class="flex justify-between pb-1 text-white">
       <div class="w-2/5 pl-6">
         <h2 class="text-lg font-extralight">Producto</h2>
       </div>
@@ -19,7 +19,7 @@ const { cart, total } = useShopping();
       </div>
     </div>
     <CartInfo class="text-white px-4 md:px-0" />
-    <div class="md:flex  space-y-6 md:space-y-0 px-4 max-w-4xl mx-auto pt-10  gap-10" v-if="cart.size > 0">
+    <div class="md:flex space-y-6 md:space-y-0 px-4 pt-10 gap-10" v-if="cart.size > 0">
       <div class="w-full bg-white/80 rounded-xl px-10 py-4">
         <h2 class="text-PRP font-bold text-center">Código Promocional</h2>
         <p class="text-PRP font-thin text-center md:px-10 pt-2">Si tienes un código promocional, puedes ingresarlo
@@ -30,7 +30,7 @@ const { cart, total } = useShopping();
       </div>
 
       <div class="w-full">
-        <ResumenCompra start />
+        <ComprasResumen />
       </div>
     </div>
   </div>

@@ -19,7 +19,7 @@ const sendMail = async () => {
 };
 </script>
 <template>
-  <div class="bg-PRP h-screen">
+  <div class="bg-PRP">
     <div class="max-w-lg mx-auto">
 
     

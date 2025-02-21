@@ -13,6 +13,8 @@ export interface IClient {
     infoDirection?: string;
     city?: string;
     departmentCode?: string;
+    departmentOrStateName?: string;
     locationCode?: string;
+    locationName?: string;
     state: string;
 }

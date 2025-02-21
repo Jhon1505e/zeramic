@@ -5,7 +5,7 @@ const model = defineModel({ required: true });
 </script>
 
 <template>
-  <div class="bg-black/60 h-screen fixed top-0 w-full z-20">
+  <div class="bg-black/60 fixed top-0 w-full z-20">
     <div class="flex justify-center items-center h-full">
       <div class="bg-PRP rounded-lg px-4 pb-6 w-5/6 md:w-1/2">
         <div class="md:flex w-full justify-between items-center p-2">

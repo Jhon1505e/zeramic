@@ -35,7 +35,7 @@ const sendMail = async () => {
 }
 </script>
 <template>
-    <div class="bg-black/60 h-screen fixed top-0 w-full z-20">
+    <div class="bg-black/60 fixed top-0 w-full z-20">
         <div class="flex justify-center items-center h-full text-white">
             <div>
                 <div v-html="html" class="bg-PRP rounded-lg max-w-3xl p-4" />

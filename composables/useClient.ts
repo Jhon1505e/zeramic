@@ -1,6 +1,7 @@
 import type { IClient } from "~/types/clients";
 
 export function useClient() {
+    const { start, finish } = useLoadingIndicator();
 
     async function getDataClients() {
         const data = await $fetch("/api/pedidos/find", {
@@ -24,10 +25,12 @@ export function useClient() {
     };
 
     const saveClient = async (client: IClient) => {
+        start();
         const data = await $fetch<IClient>("/api/clientes/update", {
             method: "POST",
             body: client,
         });
+        finish();
         return data
     }
 

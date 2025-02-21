@@ -14,7 +14,7 @@ const index = computed(() => route.name?.toString().startsWith("index"));
       </div>
 
       <div
-        class="flex  justify-center pb-52 h-screen items-center text-center text-white font-thin text-4xl"
+        class="flex  justify-center pb-52 items-center text-center text-white font-thin text-4xl"
       >
         <ul class="space-y-3 ">
             <li><NuxtLink to="/" @click="emit('close')">Inicio</NuxtLink></li>

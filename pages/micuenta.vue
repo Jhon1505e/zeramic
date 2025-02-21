@@ -5,7 +5,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="bg-PRP h-screen">
+  <div class="bg-PRP">
     <NuxtPage></NuxtPage>
   </div>
 </template>

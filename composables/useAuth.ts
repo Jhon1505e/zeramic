@@ -2,16 +2,19 @@ import type { IClient } from "~/types/clients";
 
 export const useAuth = () => {
     const client = useState<IClient | null>("client", () => null);
+    const { start, finish } = useLoadingIndicator();
 
     const login = async (user: any) => {
+        start();
         try {
             const data = await $fetch<IClient>("/api/auth/login", {
                 method: "POST",
                 body: user,
             });
-            if (data)
-                client.value = data;
-            return data;
+            finish();
+            return data.email
+                ? client.value = data
+                : data;
         } catch (error) {
             console.error(error);
             return error;
@@ -24,6 +27,7 @@ export const useAuth = () => {
                 method: 'POST',
                 body: user,
             });
+            finish();
             return data;
         } catch (error) {
             console.error(error);
