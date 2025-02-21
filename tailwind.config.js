@@ -12,6 +12,7 @@ export default {
     extend: {
       colors: {
         'PRP': '#5200f8',
+        'YLW': '#ffe600',
       },
     },
   },
