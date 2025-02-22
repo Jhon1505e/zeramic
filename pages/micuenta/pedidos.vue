@@ -3,9 +3,9 @@ const { client } = useAuth();
 </script>
 <template>
     <div class="md:flex gap-4 max-w-5xl mx-auto p-5">
-        <CuentaNavInfo />
+        <CuentaNavInfo  />
         <div class="w-full">
-            <pre class="text-xs">{{ client }}</pre>
+            <div class="text-xs">{{ client }}</div>
         </div>
     </div>
 </template>
