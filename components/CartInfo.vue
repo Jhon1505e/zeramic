@@ -63,7 +63,7 @@ onMounted(() => {
               <IconsPlus class="w-4 mx-1" />
             </button>
           </div>
-          <div v-if="isCompras" class="w-full text-sm text-center">{{ formatMoneda(item.valor) }}</div>
+          <div v-if="isCompras" class="w-full text-sm text-center hidden sm:flex justify-center">{{ formatMoneda(item.valor) }}</div>
           <div class="w-full text-sm text-end">
             {{ formatMoneda(item.valor * item.cantidad) }}
           </div>

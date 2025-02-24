@@ -40,7 +40,7 @@ onMounted(async () => {
     <div v-if="!client">
       <FormLogin />
       <div class="max-w-2xl mx-auto">
-        <h3 class="text-white mt-2 font-extralight">
+        <h3 class="text-white mt-2 pl-6 pr-4 md:pr-0 md:pl-0 font-extralight">
           Guardamos tu correo electrónico de manera segura para:
         </h3>
         <ul class="mt-2 pl-6 md:pl-0 md:w-2/3 mx-auto">
@@ -69,9 +69,12 @@ onMounted(async () => {
       </h1>
       <div class="md:flex justify-between md:items-center">
         <p class="text-white">Información de envio nacionales, confirmar dirección de entrega</p>
-        <NuxtLink to="/micuenta" class="bg-white/10 border mt-3 md:mt-0  shadow text-center text-white px-6 py-2  rounded-lg">
-          Actualizar Datos
-        </NuxtLink>
+        <div class="my-6 sm:my-2">
+
+          <NuxtLink to="/micuenta" class="bg-white/10 border    shadow text-center text-white px-6 py-2  rounded-lg">
+            Actualizar Datos
+          </NuxtLink>
+        </div>
 
       </div>
       <div class="w-full grid md:grid-cols-3 gap-1 py-4 mt-3 px-6 border font-light text-PRP rounded-lg bg-white/80 shadow">

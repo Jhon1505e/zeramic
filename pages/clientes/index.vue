@@ -23,6 +23,7 @@ async function handleSubmit() {
     newUser.value = false;
     loading.value = false;
     return;
+    
   }
 
   if (reset.value) {

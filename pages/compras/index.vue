@@ -9,13 +9,13 @@ const { cart, total } = useShopping();
         <h2 class="text-lg font-extralight">Producto</h2>
       </div>
       <div class=" w-1/4">
-        <h2 class="text-lg text-center pr-12 font-extralight">Cantidad</h2>
+        <h2 class="text-lg text-center pl-14 sm:pl-0 md:pr-24 font-extralight">Cantidad</h2>
       </div>
       <div class=" w-1/5 ">
-        <h2 class="text-lg text-start pl-2 font-extralight ">Precio</h2>
+        <h2 class="text-lg text-start pl-2 font-extralight hidden sm:block">Precio</h2>
       </div>
       <div class=" w-1/5">
-        <h2 class="text-lg text-center font-extralight">Total</h2>
+        <h2 class="text-lg text-end pr-10 font-extralight">Total</h2>
       </div>
     </div>
     <CartInfo class="text-white px-4 md:px-0" />
