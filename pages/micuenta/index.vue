@@ -9,7 +9,7 @@ const { isLoading } = useLoadingIndicator();
             <CuentaNavInfo />
             <div class="w-full">
                 <h2 class="text-white p-1 border-b my-3">Mis datos</h2>
-                <pre class="text-xs text-white">{{ client }}</pre>
+                <!-- <pre class="text-xs text-white">{{ client }}</pre> -->
                 <FormCuenta v-model="client" />
             </div>
         </div>

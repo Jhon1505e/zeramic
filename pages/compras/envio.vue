@@ -35,7 +35,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center max-w-5xl mx-auto">
+  <div class="flex flex-col items-center justify-center max-w-5xl mx-auto pb-10">
     <Loading v-if="loading" />
     <div v-if="!client">
       <FormLogin />
@@ -67,19 +67,21 @@ onMounted(async () => {
       <h1 class="text-2xl text-white font-extralight">
         ¡Hola, {{ client.fullName }}!
       </h1>
-      <p class="text-white">Información de envio nacionales, confirmar dirección de entrega</p>
-      <div class="w-full grid md:grid-cols-2 gap-1 py-2 px-6 border text-PRP rounded-lg bg-white/80 shadow">
-        <div><strong>Email:</strong> {{ client.email }}</div>
-        <div><strong>Teléfono:</strong> {{ client.phone }}</div>
-        <div><strong>Departamento:</strong> {{ client.departmentOrStateName }}</div>
-        <div><strong>Ciudad:</strong> {{ client.locationName }}</div>
-        <div><strong>Dirección:</strong> {{ client.address }}</div>
-        <div><strong>Información adicional:</strong> {{ client.infoDirection }}</div>
-        <div class="md:col-span-2 w-full text-center p-2">
-          <NuxtLink to="/micuenta" class="bg-PRP shadow text-center text-white px-6 py-2.5 w-full rounded-lg">
-            Actualizar información
-          </NuxtLink>
-        </div>
+      <div class="md:flex justify-between md:items-center">
+        <p class="text-white">Información de envio nacionales, confirmar dirección de entrega</p>
+        <NuxtLink to="/micuenta" class="bg-white/10 border mt-3 md:mt-0  shadow text-center text-white px-6 py-2  rounded-lg">
+          Actualizar Datos
+        </NuxtLink>
+
+      </div>
+      <div class="w-full grid md:grid-cols-3 gap-1 py-4 mt-3 px-6 border font-light text-PRP rounded-lg bg-white/80 shadow">
+        <div><b>Email:</b> {{ client.email }}</div>
+        <div><b>Teléfono:</b> {{ client.phone }}</div>
+        <div><b>Departamento:</b> {{ client.departmentOrStateName }}</div>
+        <div><b>Ciudad:</b> {{ client.locationName }}</div>
+        <div><b>Dirección:</b> {{ client.address }}</div>
+        <div><b>Información adicional:</b> {{ client.infoDirection }}</div>
+        
       </div>
 
 

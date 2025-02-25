@@ -1,12 +1,13 @@
 <script setup lang="ts">
+const emit = defineEmits(["close"]);
 const model = defineModel({ required: true });
 const html = `
-    <p>Información de pago</p>
+    <p>INFORMACIÓN DE COMPRA</p>
     <p>Referencia: ${model.value?.reference}</p>
     <p>Nombre: ${model.value?.customerData?.fullName}</p>
     <p>Email: ${model.value?.customerEmail}</p>
-    <p>Telefono: ${model.value?.customerData?.phoneNumber}</p>
-    <p>Metodo de pago: ${model.value?.paymentMethodType}</p>
+    <p>Teléfono: ${model.value?.customerData?.phoneNumber}</p>
+    <p>Método de Pago: ${model.value?.paymentMethodType}</p>
     <p>Estado: ${model.value?.status}</p>
     <p>${model.value?.statusMessage || ""}</p>
 `
@@ -35,12 +36,16 @@ const sendMail = async () => {
 }
 </script>
 <template>
-    <div class="bg-black/60 fixed top-0 w-full z-20">
+    <div class="bg-black/60 fixed top-0 bottom-0 w-full z-20">
         <div class="flex justify-center items-center h-full text-white">
-            <div>
-                <div v-html="html" class="bg-PRP rounded-lg max-w-3xl p-4" />
+            <div class="bg-PRP rounded-lg max-w-3xl p-4">
+                <div class="flex justify-end">
+
+                    <button> <IconsClose class="w-6 fill-white " @click="$emit('close')" />   </button>
+                </div>
+                <div v-html="html" />
                 <p class="text-sm text-center">{{ mensaje }}</p>
-                <button class="bg-white/30 border border-PRP text-white px-6 py-2 rounded-lg" @click="sendMail">Enviar
+                <button class="bg-white/30 border border-PRP text-white px-6 py-2 w-full mt-3 rounded-lg" @click="sendMail">Enviar
                     correo</button>
             </div>
         </div>

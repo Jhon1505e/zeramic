@@ -28,17 +28,18 @@ async function handleSubmit() {
   const data = await login(user);
   console.log(data);
   message.value = data?.message || '';
+  
 }
 </script>
 <template>
-  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md md:m-6">
-    <IconsLogin class="w-36 mx-auto" />
-    <h2 class="text-xl font-semibold text-center">
+  <div class="bg-white/80 border p-6 rounded-lg shadow-lg w-full max-w-md md:m-0">
+    <IconsLogin class="w-28 mx-auto fill-PRP" />
+    <h2 class="text-2xl text-PRP font-semibold text-center">
       {{ newUser ? 'Crea una cuenta' : 'Inicia sesión' }}
     </h2>
 
-    <div class="flex justify-center pb-2 w-full">
-      <GoogleSignInButton state-cookie-domain="localhost" @success="emit('success', $event)"
+    <div class="flex justify-center py-2 w-full">
+      <GoogleSignInButton state-cookie-domain="localhost"  @success="emit('success', $event)"
         @error="emit('error', $event)" />
     </div>
 
@@ -49,16 +50,16 @@ async function handleSubmit() {
     <form @submit.prevent="handleSubmit" class="space-y-2">
 
       <div v-if="newUser">
-        <label for="fullName" class="block text-sm font-medium text-gray-700">Nombre Completo</label>
+        <label for="fullName" class="block text-sm font-medium text-PRP">Nombre Completo</label>
         <input id="fullName" type="text" v-model="user.fullName"
-          class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-green-300"
+          class="w-full px-3 py-2 border rounded-lg border-PRP pl-4 mt-1 focus:outline-none focus:ring focus:ring-green-300"
           placeholder="Ingrese su nombre" required />
       </div>
 
       <div>
-        <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+        <label for="email" class="block text-sm font-medium text-PRP">Correo Electrónico</label>
         <input id="email" type="email" v-model="user.email"
-          class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-green-300"
+          class="w-full px-3 py-2 border border-PRP  rounded-lg bg-white pl-4 mt-1 focus:outline-none focus:ring focus:ring-green-300"
           placeholder="Ingresa el email" required />
         <div v-if="newUser" class="text-sm p-1 pt-2 flex w-full text-end justify-end">
           <input type="checkbox" required id="checkbox" class="mr-2" />
@@ -69,16 +70,16 @@ async function handleSubmit() {
       </div>
 
       <div v-if="!newUser">
-        <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+        <label for="password" class="block text-sm font-medium text-PRP">Contraseña</label>
         <input v-if="!reset" id="password" type="password" v-model="user.password"
-          class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-green-300"
+          class="w-full px-3 py-2 border border-PRP pl-4 mt-1 rounded-lg focus:outline-none focus:ring focus:ring-green-300"
           :class="reset ? 'bg-gray-200' : ''" placeholder="Ingresa la contraseña" />
         <input v-else type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-300"
           placeholder="(crear nueva)" disabled />
         <div class="text-sm p-1 pt-2 w-full text-end flex justify-end">
           <input type="checkbox" v-model="reset" id="checkbox" class="mr-2" />
           <label for="checkbox">
-            Si olvido la contraseña
+            Si olvidó su contraseña
           </label>
         </div>
       </div>
