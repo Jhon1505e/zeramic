@@ -40,6 +40,7 @@ const startPayment = () => {
   console.log("startPayment");
   console.log("client", client.value);
   console.log("cartProducts", cartProducts.value);
+  openWidget();
 };
 </script>
 <template>
