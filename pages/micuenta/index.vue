@@ -13,6 +13,9 @@ const { isLoading } = useLoadingIndicator();
                 <FormCuenta v-model="client" />
             </div>
         </div>
-        <FormLogin v-else class="md:mt-10" />
+        
+
+            <FormLogin v-else class="md:mt-10" />
+        
     </div>
 </template>

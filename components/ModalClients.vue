@@ -10,7 +10,7 @@ const model = defineModel({ required: true });
       <div class="bg-PRP rounded-lg px-4 pb-6 w-5/6 md:w-1/2">
         <div class="md:flex w-full justify-between items-center p-2">
           <h2 class="text-center text-white">Información del cliente</h2>
-          <div class="flex gap-2 justify-center">
+          <div class="flex gap-2 mt-2 md:mt-0 justify-center">
             <button @click="edit = !edit" class="px-3 py-2 border border-white rounded-full">
               <IconsPencil class="w-5 stroke-white" />
             </button>

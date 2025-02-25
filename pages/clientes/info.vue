@@ -33,9 +33,9 @@ await onGetClients();
 </script>
 
 <template>
-  <div class="bg-gray-100/40 fixed w-full top-0 z-20 bottom-0" v-if="delClient">
+  <div class="bg-black/40 fixed w-full top-0 z-20 bottom-0" v-if="delClient">
     <div class="flex justify-center items-center h-full">
-      <div class="w-1/3 bg-white px-5 py-4 rounded-lg">
+      <div class="w-5/6 md:w-1/3 bg-white px-5 py-4 rounded-lg">
         <div class="flex justify-center ">
           <p class="font-normal text-2xl pt-1 pb-3 flex justify-center items-center">
             ¿Eliminar cliente?
@@ -92,11 +92,7 @@ await onGetClients();
             {{ doc.address }} - {{ doc.city }}
           </div>
           <div class="w-full p-3 flex text-sm justify-center gap-2">
-            <button
-              class="py-2 px-3 flex border rounded md:hidden bg-white/10 text-white"
-            >
-              <IconsEye class="w-5" />
-            </button>
+            
             <button
               @click="viewClient(doc)"
               class="p-2 border rounded flex bg-white/10 text-white"

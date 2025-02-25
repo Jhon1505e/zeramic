@@ -22,14 +22,14 @@ const content = computed(() => {
       <img src="/img/ImgRounded2.svg" class="invert " alt="">
     </div>
 
-    <div class="relative bg-fixed bg-cover bg-center h-[500px]" style="background-image: url('/img/background.webp')">
+    <div class="relative bg-fixed bg-cover bg-center h-[600px]" style="background-image: url('/img/background.webp')">
       <div class="absolute inset-0 bg-black/20"></div>
       <ImgRounded class="rotate-180 fill-PRP" />
       <div class="w-full flex justify-center text-center items-center absolute inset-0 pt-10 md:pt-0">
-        <div class="max-w-7xl mx-auto">
+        <div class="max-w-7xl mx-auto ">
 
           <div>
-            <NuxtImg format="webp" src="/img/text_index.webp" class="w-2/3 mx-auto" alt="" />
+            <NuxtImg format="webp" src="/img/text_index.webp" class="w-2/3  mx-auto" alt="" />
             <h4 class="text-white text-md mt-8 py-3 px-5 font-bold">
               NOS INSPIRA A CREAR BELLAS PIEZAS QUE GUARDAN SU ESENCIA, SUS
               FORMAS, SUS COLORES...

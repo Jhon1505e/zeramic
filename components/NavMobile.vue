@@ -22,7 +22,11 @@ const index = computed(() => route.name?.toString().startsWith("index"));
           <li><NuxtLink to="/nosotros" @click="emit('close')">Nosotros</NuxtLink></li>
           <li><NuxtLink to="/micuenta" @click="emit('close')">Mi Cuenta</NuxtLink></li>
           <li><NuxtLink to="/contacto" @click="emit('close')">Contacto</NuxtLink></li>
-          <img src="/img/logo-zeramic.png" class="w-52 mx-auto pt-24" alt="" />
+          <img src="/img/logo-zeramic.png" class="w-52 mx-auto pt-24 pb-8" alt="" />
+          
+
+            <Redes/>
+          
         </ul>
       </div>
     </div>

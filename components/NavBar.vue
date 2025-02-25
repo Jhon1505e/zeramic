@@ -3,8 +3,8 @@
     <div class="max-w-7xl mx-auto">
 
 
-      <div class="w-full md:justify-center flex pt-3">
-        <div class="md:w-1/3 pl-6 md:pl-32" :class="{ 'hidden md:flex ': index }">
+      <div class="w-full justify-around lg:justify-center flex pt-3">
+        <div class="md:w-1/3 pl-6 md:pl-32" :class="{ 'hidden sm:flex ': index }">
           <NuxtLink to="/">
             <img src="/img/logo-zeramic.png" class="mx-auto md:mx-0 w-48 md:w-52 max-w-56" alt="zeramic" />
           </NuxtLink>
@@ -28,7 +28,7 @@
           <div @click="open = true" v-show="!isCompras"
             class="sm:w-auto scale-95 cursor-pointer hover:scale-100 flex items-center relative mr-3 duration-75 ease-in-out">
             <div
-              class="text-white border rounded-full px-2 py-1 text-xs bg-white/10 absolute top-2 right-0 hidden sm:flex">
+              class="text-white border rounded-full px-2 py-1 text-xs bg-white/10 absolute top-2 right-0 hidden lg:flex">
               {{ cart.size }}
             </div>
             <div class="sm:p-5">
@@ -36,7 +36,7 @@
             </div>
           </div>
 
-          <div class="sm:hidden flex pr-6">
+          <div class="lg:hidden flex pr-6">
             <button @click="modal = true">
               <IconsMenu class="w-9 stroke-white" />
             </button>

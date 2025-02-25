@@ -57,11 +57,11 @@ const openWidget = () => {
               <p class="font-thin text-lg">{{ client?.docType }}</p>
             </div>
             <div class="leading-5">
-              <p class="font-semibold text-sm">Numero de Documento:</p>
+              <p class="font-semibold text-sm">Número de Documento:</p>
               <p class="font-thin text-lg">{{ client?.docId }}</p>
             </div>
             <div class="leading-5">
-              <p class="font-semibold text-sm">Telefono:</p>
+              <p class="font-semibold text-sm">Teléfono:</p>
               <p class="font-thin text-lg">{{ client?.phone }}</p>
             </div>
             <div class="leading-5">
@@ -78,7 +78,7 @@ const openWidget = () => {
           <ComprasResumen />
         </div>
       </div>
-      <div class="w-full md:w-1/3  md:p-0">
+      <div class="w-full px-5 mt-6 sm:mt-0 md:w-1/3  md:p-0">
         <div
           class="bg-white/80 rounded-lg p-2 font-extralight text-xl text-center"
         >
