@@ -2,20 +2,18 @@
 definePageMeta({
   middleware: "auth",
 });
-const clients = ref([]);
-const client = ref();
-const productos = ref();
+const clients = ref();
 const modal = ref(false);
+const edit = ref(false);
+const client = ref();
 const loading = ref(false);
-const delClient = ref(false);
 
 const { getDataClients, deleteClient } = useClient();
 
-async function onDelete(id: string) {
+async function onGetClients() {
   loading.value = true;
-  const data = await deleteClient(id);
-  console.log(data);
-  await onGetClients();
+  clients.value = await getDataClients({ state: "active" });
+  loading.value = false;
 }
 
 function viewClient(item) {
@@ -23,17 +21,81 @@ function viewClient(item) {
   modal.value = true;
 }
 
-async function onGetClients() {
-  loading.value = true;
-  clients.value = await getDataClients();
-  loading.value = false;
-}
-
 await onGetClients();
+
+const columns = [
+  {
+    label: "Nombre",
+    key: "fullName",
+  },
+  {
+    label: "Correo Electrónico",
+    key: "email",
+  },
+  {
+    label: "Celular",
+    key: "phone",
+  },
+  {
+    label: "Dirección",
+    key: "address",
+  },
+  {
+    label: "Acciones",
+    key: "actions",
+  },
+]
 </script>
 
 <template>
-  <div class="bg-black/40 fixed w-full top-0 z-20 bottom-0" v-if="delClient">
+  <div class="p-4 max-w-6xl mx-auto">
+    <h1 class="text-3xl">Clientes</h1>
+    <div class="bg-white p-4 rounded-xl">
+      <UTable :columns="columns" :rows="clients">
+        <template #actions-data="{ row }">
+          <!-- <pre>{{ row._id }}</pre> -->
+          <button @click="viewClient(row)" class="rounded bg-gray-200 p-1 border mx-1">
+            <UTooltip text="Ver / Editar">
+              <UIcon name="i-heroicons-clipboard-document-list" class="w-6 h-6" />
+            </UTooltip>
+          </button>
+          <button @click="viewClient(row)" class="rounded bg-gray-200 p-1 border mx-1">
+            <UTooltip text="Ver Compras">
+              <UIcon name="i-heroicons-shopping-bag" class="w-6 h-6" />
+            </UTooltip>
+          </button>
+        </template>
+      </UTable>
+    </div>
+
+    <UModal v-model="edit" prevent-close :ui="{ width: 'w-full sm:max-w-4xl' }">
+      <UCard :ui="{ background: 'bg-PRP' }">
+        <div class="flex justify-between items-center p-4 text-white">
+          <h3>Información del cliente</h3>
+          <button @click="edit = false">
+            <UIcon name="i-heroicons-x-circle" class="h-8 w-8" />
+          </button>
+        </div>
+        <FormCuenta v-model="client" />
+      </UCard>
+    </UModal>
+    <UModal v-model="modal" prevent-close>
+      <UCard>
+        <div class="p-4" v-if="!edit">
+          <div class="flex justify-end">
+            <button @click="modal = false">
+              <UIcon name="i-heroicons-x-circle" class="h-8 w-8" />
+            </button>
+          </div>
+          <pre class="text-xs">{{ client }}</pre>
+          <button @click="edit = true" class="rounded bg-gray-200 gap-2 p-1 border flex">
+            <UIcon name="i-heroicons-pencil-square" class="h-6 w-6" /> Editar
+          </button>
+        </div>
+      </UCard>
+    </UModal>
+  </div>
+  <!-- <div class="bg-black/40 fixed w-full top-0 z-20 bottom-0" v-if="delClient">
     <div class="flex justify-center items-center h-full">
       <div class="w-5/6 md:w-1/3 bg-white px-5 py-4 rounded-lg">
         <div class="flex justify-center ">
@@ -127,5 +189,5 @@ await onGetClients();
     <div v-if="modal">
       <ModalClients v-model="client" @close="modal = false" />
     </div>
-  </div>
+  </div> -->
 </template>

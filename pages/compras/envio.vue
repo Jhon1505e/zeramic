@@ -90,8 +90,8 @@ onMounted(async () => {
 
 
       <div class="md:flex gap-5 space-y-2 w-full">
-        <div class="w-full md:w-2/3 bg-white rounded-lg mt-2">
-          <h3 class="text-PRP font-semibold text-center w-full">Elige el proveedor de envios de tu preferencia:</h3>
+        <div class="w-full md:w-2/3 bg-white text-xl pt-2 rounded-lg mt-2">
+          <div class="text-PRP pb-2 font-semibold text-center w-full">Elige el proveedor de envios de tu preferencia:</div>
           <ComprasEnvio />
         </div>
         <ComprasResumen class="w-full md:w-1/3" />

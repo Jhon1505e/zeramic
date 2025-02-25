@@ -19,7 +19,7 @@ const handleSubmit = () => {
                     <div class="w-full">
                         <label for="name" class="text-white">Nombres y Apellidos:</label>
                         <input v-model="client.fullName" type="text" required id="name"
-                            class="w-full py-2 px-4 mt-2 rounded-lg bg-white border "
+                            class="w-full py-2 px-4 mt-2 rounded-lg border "
                             placeholder="Nombres y Apellidos" />
                     </div>
                     <div class="w-full">

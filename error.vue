@@ -10,7 +10,7 @@ const handleError = () => clearError({ redirect: "/" });
 
 <template>
   <div
-    class="bg-gradient-to-r from-PRP to-PRP/70 h-screen flex items-center justify-center w-full"
+    class="bg-PRP h-screen flex items-center justify-center w-full"
   >
     <div class="text-center">
       <img src="/img/logo-zeramic.png" class="mx-auto w-72" alt="">

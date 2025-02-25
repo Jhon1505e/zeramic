@@ -24,7 +24,7 @@ const closeSession = () => {
                 <IconsBag class="w-5" /> Mis Pedidos
             </NuxtLink>
 
-            <NuxtLink to="/clientes" class="py-3 hover:bg-white/10 border-b flex gap-2 justify-center">
+            <NuxtLink to="/clientes/info" class="py-3 hover:bg-white/10 border-b flex gap-2 justify-center">
                 <IconsUsers class="w-5" /> Admin Clientes
             </NuxtLink>
 
