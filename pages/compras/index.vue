@@ -20,7 +20,7 @@ const { cart, total } = useShopping();
     </div>
     <CartInfo class="text-white px-4 md:px-0" />
     <div class="md:flex space-y-6 md:space-y-0 p-4 gap-5" v-if="cart.size > 0">
-      <div class="w-full bg-white/80 rounded-xl px-10 py-4">
+      <div class="w-full bg-white rounded-xl px-10 py-4">
         <h2 class="text-PRP font-bold text-center">Código Promocional</h2>
         <p class="text-PRP font-thin text-center md:px-10 pt-2">Si tienes un código promocional, puedes ingresarlo
           aquí.</p>

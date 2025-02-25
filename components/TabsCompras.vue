@@ -3,7 +3,7 @@ const route = useRoute();
 const isPath = (n: string) => route.name?.toString() === n;
 </script>
 <template>
-  <div class="bg-white/80">
+  <div class="bg-white">
     <div class="max-w-6xl mx-auto">
       <div class="grid grid-cols-3 gap-3 md:p-4 sticky top-32 mb-2 md:top-20 w-full z-10 backdrop-blur-lg">
         <NuxtLink to="/compras"

@@ -77,7 +77,7 @@ onMounted(async () => {
         </div>
 
       </div>
-      <div class="w-full grid md:grid-cols-3 gap-1 py-4 mt-3 px-6 border font-light text-PRP rounded-lg bg-white/80 shadow">
+      <div class="w-full grid md:grid-cols-3 gap-1 py-4 mt-3 px-6 border font-light text-PRP rounded-lg bg-white shadow">
         <div><b>Email:</b> {{ client.email }}</div>
         <div><b>Teléfono:</b> {{ client.phone }}</div>
         <div><b>Departamento:</b> {{ client.departmentOrStateName }}</div>
@@ -90,7 +90,7 @@ onMounted(async () => {
 
 
       <div class="md:flex gap-5 space-y-2 w-full">
-        <div class="w-full md:w-2/3 bg-white/80 rounded-lg mt-2">
+        <div class="w-full md:w-2/3 bg-white rounded-lg mt-2">
           <h3 class="text-PRP font-semibold text-center w-full">Elige el proveedor de envios de tu preferencia:</h3>
           <ComprasEnvio />
         </div>

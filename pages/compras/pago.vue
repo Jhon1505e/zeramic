@@ -40,7 +40,7 @@ const openWidget = () => {
   <div class="bg-PRP">
     <div class="max-w-5xl md:flex gap-2 w-full mx-auto py-10 md:pt-6 ">
       <div class="w-full md:w-2/3 text-center px-5">
-        <div class="text-2xl bg-white/80 rounded-lg py-2 font-extralight">
+        <div class="text-2xl bg-white rounded-lg py-2 font-extralight">
           <b class="text-PRP"> Información del Cliente</b>
 
           <div class="grid text-PRP items-center gap-2 md:grid-cols-2 pt-3">
@@ -75,62 +75,35 @@ const openWidget = () => {
         </div>
         <!-- <pre class="text-xs text-white">{{ client }}</pre> -->
         <div class="mt-4">
-          <ComprasResumen />
-        </div>
-      </div>
-      <div class="w-full px-5 mt-6 sm:mt-0 md:w-1/3  md:p-0">
-        <div
-          class="bg-white/80 rounded-lg p-2 font-extralight text-xl text-center"
-        >
-          <b class="text-PRP">Medios de Pago</b>
-
-          <div class="grid items-center gap-7 grid-cols-2 py-4">
+          <!-- <ComprasResumen /> -->
+          <div class="grid items-center gap-7 grid-cols-4 py-4 bg-white rounded-lg p-2">
             <NuxtImg src="/img/visa.svg" class="w-16 mx-auto" alt="" />
             <NuxtImg src="/img/mastercard.svg" class="w-16 mx-auto" alt="" />
-            <NuxtImg
-              format="webp"
-              src="/img/amex.png"
-              class="w-16 mx-auto"
-              alt=""
-            />
-            <NuxtImg
-              format="webp"
-              src="/img/pse.png"
-              class="w-16 mx-auto"
-              alt=""
-            />
+            <NuxtImg format="webp" src="/img/amex.png" class="w-16 mx-auto" alt="" />
+            <NuxtImg format="webp" src="/img/pse.png" class="w-16 mx-auto" alt="" />
             <NuxtImg src="/img/bancolombia.png" class="w-60 mx-auto" alt="" />
-            <NuxtImg
-              format="webp"
-              src="/img/nequi.png"
-              class="w-28 mx-auto"
-              alt=""
-            />
-            <NuxtImg
-              format="webp"
-              src="/img/daviplata.png"
-              class="w-28 mx-auto"
-              alt=""
-            />
+            <NuxtImg format="webp" src="/img/nequi.png" class="w-28 mx-auto" alt="" />
+            <NuxtImg format="webp" src="/img/daviplata.png" class="w-28 mx-auto" alt="" />
             <NuxtImg src="/img/supay.svg" class="w-16 mx-auto" alt="" />
           </div>
         </div>
+      </div>
+      <div class="w-full px-5 mt-6 sm:mt-0 md:w-1/3  md:p-0">
+        <div class="bg-white rounded-lg p-2 font-extralight text-xl text-center">
+          <b class="text-PRP">Medios de Pago</b>
+
+          <ComprasResumen />
+
+        </div>
         <div class="text-center justify-between w-full mt-4">
           <div class="flex flex-col">
-            <NuxtLink
-              to="/compras/envio"
-              class="border px-6 py-2 mt-4 mr-2 w-full bg-white/10 text-white rounded-lg"
-            >
-              Cambiar Datos Envio</NuxtLink
-            >
+            <NuxtLink to="/compras/envio" class="border px-6 py-2 mt-4 mr-2 w-full bg-white/10 text-white rounded-lg">
+              Cambiar Datos Envio</NuxtLink>
           </div>
           <div>
-            <button
-              :disabled="!envio"
+            <button :disabled="!envio"
               class="border-2 w-full py-2 mx-auto mt-4 bg-PRP font-light text-lg text-white duration-100 hover:font-semibold hover:bg-white/60 hover:text-PRP rounded-lg"
-              :class="{ 'cursor-not-allowed border-red-700': !envio }"
-              @click="openWidget"
-            >
+              :class="{ 'cursor-not-allowed border-red-700': !envio }" @click="openWidget">
               Iniciar Pago
             </button>
           </div>
@@ -142,12 +115,7 @@ const openWidget = () => {
     <InfoPagos v-if="payment" @close="payment = null" v-model="payment" />
 
     <ClientOnly>
-      <WidgetCheckout
-        ref="wompiRef"
-        :amount="amount"
-        :customer="datos"
-        @returnPayment="returnPayment"
-      />
+      <WidgetCheckout ref="wompiRef" :amount="amount" :customer="datos" @returnPayment="returnPayment" />
     </ClientOnly>
   </div>
 </template>

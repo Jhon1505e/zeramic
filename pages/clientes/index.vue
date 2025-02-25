@@ -47,7 +47,7 @@ async function handleSubmit() {
 <template>
   <div class="bg-PRP flex items-center justify-center pt-4 pb-20">
     <Loading v-if="loading" />
-    <div class="bg-white/80 border p-6 rounded-lg shadow-lg w-full max-w-md m-6">
+    <div class="bg-white border p-6 rounded-lg shadow-lg w-full max-w-md m-6">
       <IconsLogin class="w-28 fill-PRP mx-auto" />
       <h2 class="text-xl text-PRP font-semibold text-center">
         {{ newUser ? 'Crea una cuenta' : 'Inicia sesión' }}

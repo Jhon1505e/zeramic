@@ -32,7 +32,7 @@ async function handleSubmit() {
 }
 </script>
 <template>
-  <div class="bg-white/80 border p-6 rounded-lg shadow-lg w-full max-w-md md:m-0">
+  <div class="bg-white border p-6 rounded-lg shadow-lg w-full max-w-md md:m-0">
     <IconsLogin class="w-28 mx-auto fill-PRP" />
     <h2 class="text-2xl text-PRP font-semibold text-center">
       {{ newUser ? 'Crea una cuenta' : 'Inicia sesión' }}

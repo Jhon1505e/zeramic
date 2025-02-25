@@ -15,7 +15,7 @@ const index = paths.indexOf(path);
 </script>
 
 <template>
-  <div class="bg-white/80 -mt-1 rounded-xl">
+  <div class="bg-white -mt-1 rounded-xl">
     <h2 class="text-PRP font-bold text-center">Resumen del pedido</h2>
     <div class="px-6 pb-4">
       <div class="flex justify-between text-PRP">
