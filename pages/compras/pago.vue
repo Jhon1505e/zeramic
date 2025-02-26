@@ -3,20 +3,10 @@ const { client } = useAuth();
 const { total, cartProducts } = useShopping();
 const { envio } = useEnvio();
 const { saveCompra } = useCompras();
-
-/* async function getToken() {
-    try {
-        const response: any = await $fetch(`${baseUrl}merchants/${publicKey}`);
-        acceptanceToken.value = response.data.presigned_acceptance;
-    } catch (error) {
-        console.log('response', error);
-    }
-}
-await getToken();
- */
-
 const wompiRef = ref();
 const payment = ref();
+const modal = ref(false);
+const route = useRoute();
 
 const amount = computed(() => total.value + (envio.value?.shippingCost || 0));
 const datos = computed(() => ({
@@ -29,15 +19,11 @@ const datos = computed(() => ({
 }));
 
 const returnPayment = (data: { transaction: any }) => {
-  console.log("data", data);
   payment.value = data.transaction;
+  modal.value = true
 };
 
 const startPayment = async () => {
-  console.log("startPayment");
-  console.log("client", client.value);
-  console.log("envio", envio.value);
-  console.log("cartProducts", cartProducts.value);
   let reference = crypto.randomUUID();
   const { _id, state, docId, docType, ...rest } = client.value;
   const data = await saveCompra({
@@ -49,6 +35,22 @@ const startPayment = async () => {
   })
   wompiRef.value.openWidgetCheckout(reference);
 };
+
+const getPayment = async (id: string) => {
+  try {
+    const data: any = await $fetch(`https://sandbox.wompi.co/v1/transactions/${id}`);
+    return data.data
+  } catch (error) {
+    console.log(error);
+    return
+  }
+}
+
+if (route.query.id) {
+  payment.value = await getPayment(`${route.query.id}`);
+  modal.value = true
+}
+
 </script>
 <template>
   <div class="bg-PRP">
@@ -123,9 +125,10 @@ const startPayment = async () => {
         </div>
       </div>
     </div>
-    <!-- <pre class="text-xs text-white">{{ client }}</pre> -->
 
-    <InfoPagos v-if="payment" @close="payment = null" v-model="payment" />
+    <UModal v-model="modal">
+      <InfoPagos :transaction="payment" />
+    </UModal>
 
     <ClientOnly>
       <WidgetCheckout ref="wompiRef" :amount="amount" :customer="datos" @returnPayment="returnPayment" />

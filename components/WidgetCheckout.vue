@@ -23,7 +23,7 @@ async function openWidgetCheckout(id) {
     const integrity = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
 
     const url = window.location.origin
-    const redirectUrl = `${url}/compras`
+    const redirectUrl = `${url}/compras/pago`;
 
     checkout.value = new window.WidgetCheckout({
         currency: "COP",
