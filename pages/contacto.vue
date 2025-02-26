@@ -19,8 +19,8 @@ const sendMail = async () => {
 };
 </script>
 <template>
-  <div class="bg-PRP h-screen">
-    <div class="max-w-lg mx-auto">
+  <div class="bg-PRP">
+    <div class="max-w-lg mx-auto pb-14">
 
     
     <div class="pt-5  text-center">

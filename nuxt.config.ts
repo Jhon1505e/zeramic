@@ -15,15 +15,20 @@ export default defineNuxtConfig({
   modules: [
     "nuxt-gtag",
     "@storyblok/nuxt",
-    "@nuxtjs/tailwindcss",
     "@nuxt/image-edge",
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
     "nuxt-vue3-google-signin",
+    "@nuxt/ui",
+    "@nuxtjs/tailwindcss",
   ],
 
   app: {
     pageTransition: { name: "page", mode: "out-in" },
+  },
+
+  colorMode: {
+    preference: 'light'
   },
 
   googleSignIn: {
@@ -32,7 +37,7 @@ export default defineNuxtConfig({
   },
 
   gtag: {
-    // enabled: process.env.NODE_ENV === 'production',
+    enabled: process.env.NODE_ENV === 'production',
     id: process.env.NUXT_PUBLIC_GTAG_ID,
   },
 

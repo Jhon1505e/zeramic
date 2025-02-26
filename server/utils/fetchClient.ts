@@ -8,10 +8,12 @@ export default function fetchClient() {
   const database = client.db("tailorsdb")
   const clients = database.collection("clients")
 
-  const getClients = async () => {
+  const getClients = async (query: any) => {
     try {
       await client.connect()
-      return await clients.find({}).toArray()
+      const data = await clients.find(query).toArray()
+      data.forEach((client) => delete client.password)
+      return data
     } catch (e) {
       console.error(e)
       return null

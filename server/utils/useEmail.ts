@@ -41,7 +41,7 @@ export default function useEmail() {
                 subject: info.subject,
                 html: header + info.html + footer,
             })
-            return data.error
+            return data
         } catch (error) {
             console.error(error)
             return error

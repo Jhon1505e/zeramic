@@ -40,7 +40,7 @@ onMounted(() => {
     </div>
   </div>
 
-  <div v-else class="max-w-4xl mx-auto rounded-xl p-1 overflow-auto">
+  <div v-else class="rounded-xl p-1 overflow-auto">
     <hr />
     <div class="flex gap-2 w-full p-2 border-b" v-for="item in cartProducts" :key="item.slug">
       <NuxtLink :to="item.slug">
@@ -63,7 +63,7 @@ onMounted(() => {
               <IconsPlus class="w-4 mx-1" />
             </button>
           </div>
-          <div v-if="isCompras" class="w-full text-sm text-center">{{ formatMoneda(item.valor) }}</div>
+          <div v-if="isCompras" class="w-full text-sm text-center hidden sm:flex justify-center">{{ formatMoneda(item.valor) }}</div>
           <div class="w-full text-sm text-end">
             {{ formatMoneda(item.valor * item.cantidad) }}
           </div>

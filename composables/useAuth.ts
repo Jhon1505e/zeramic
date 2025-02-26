@@ -1,18 +1,20 @@
+import type { IClient } from "~/types/clients";
+
 export const useAuth = () => {
-    const authUser = useState<any | null>('user', () => null)
+    const client = useState<IClient | null>("client", () => null);
+    const { start, finish } = useLoadingIndicator();
 
-    const setUser = (user: any) => {
-        authUser.value = user
-    }
-
-    const login = async (user: any): Promise<any> => {
+    const login = async (user: any) => {
+        start();
         try {
-            const data = await $fetch("/api/auth/login", {
+            const data = await $fetch<IClient>("/api/auth/login", {
                 method: "POST",
                 body: user,
             });
-            setUser(data);
-            return data;
+            finish();
+            return data.email
+                ? client.value = data
+                : data;
         } catch (error) {
             console.error(error);
             return error;
@@ -25,6 +27,7 @@ export const useAuth = () => {
                 method: 'POST',
                 body: user,
             });
+            finish();
             return data;
         } catch (error) {
             console.error(error);
@@ -32,16 +35,31 @@ export const useAuth = () => {
         }
     }
 
-    const logout = async () => { }
+    const userLoggedIn = async () => {
+        if (!client.value) {
+            const data = await $fetch<IClient>('/api/auth/token', {
+                headers: useRequestHeaders(['cookie'])
+            })
+            if (data)
+                client.value = data;
+            return data;
+        }
+    }
 
-    const resetPassword = async (user: any) => {
+    const logout = async () => {
+        const data = await $fetch('/api/auth/logout');
+        client.value = null;
+        return data
+    }
+
+    const resetPassword = async (email: string) => {
         const data = await $fetch('/api/auth/reset', {
             method: 'POST',
-            body: JSON.stringify(user),
+            body: { email },
         });
         console.log(data);
         return data;
     }
 
-    return { authUser, login, signup, logout, resetPassword }
+    return { login, signup, logout, resetPassword, userLoggedIn, client };
 }

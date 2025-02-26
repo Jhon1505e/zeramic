@@ -1,10 +1,10 @@
+
 export default defineEventHandler(async (event) => {
     const body = await readBody(event)
 
-    const { updateClient } = fetchClient()
+    const { insertCompra } = dataCompras()
 
-    const data = await updateClient(body)
+    const data = await insertCompra(body)
 
     return data
-
-})
+});

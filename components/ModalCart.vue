@@ -6,8 +6,8 @@ const { open } = useShopping();
 </script>
 <template>
   <div v-if="!isCompras" :class="open ? 'opacity-100' : 'opacity-0 invisible'"
-    class="z-50 h-screen duration-75  right-0 fixed inset-0  flex justify-end ">
-    <div class="w-1/6 md:w-full h-screen   bg-black opacity-50" @click="open = false"></div>
+    class="z-50 duration-75 right-0 fixed inset-0  flex justify-end ">
+    <div class="w-1/6 md:w-full bg-black opacity-50" @click="open = false"></div>
     <div class=" shadow max-w-sm w-full bg-white rounded-l-xl">
       <div class="flex">
 

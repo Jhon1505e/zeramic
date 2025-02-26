@@ -24,7 +24,7 @@ const verifyToken = async (token: string) => {
     try {
         return await jwt.verify(token, 'config.tokenSecret')
     } catch (err) {
-        return "Token expired"
+        return null
     }
 }
 
