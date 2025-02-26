@@ -22,7 +22,8 @@ async function openWidgetCheckout(id) {
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     const integrity = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
 
-    console.log(config);
+    const url = window.location.origin
+    const redirectUrl = `${url}/compras`
 
     checkout.value = new window.WidgetCheckout({
         currency: "COP",
@@ -30,7 +31,7 @@ async function openWidgetCheckout(id) {
         reference: id,
         publicKey: config.public.wompiPublicKey,
         signature: { integrity },
-        redirectUrl: "https://www.zerammic.com/compras",
+        redirectUrl,
         customerData: {
             email,
             fullName: `${nombre} ${apellido}`,
