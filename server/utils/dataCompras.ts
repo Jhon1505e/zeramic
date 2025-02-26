@@ -20,7 +20,19 @@ export default function dataCompras() {
         }
     }
 
-    const saveCompra = async (item: any) => {
+    const updateCompra = async ({ reference, ...item }: any) => {
+        try {
+            await mongo.connect()
+            return await compras.updateOne({ reference }, { $set: item }, {})
+        } catch (e) {
+            console.error(e)
+            return null
+        } finally {
+            await mongo.close()
+        }
+    }
+
+    const insertCompra = async (item: object) => {
         try {
             await mongo.connect()
             return await compras.insertOne(item)
@@ -32,5 +44,5 @@ export default function dataCompras() {
         }
     }
 
-    return { getCompras, saveCompra }
+    return { getCompras, insertCompra, updateCompra }
 }

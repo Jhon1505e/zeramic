@@ -77,7 +77,7 @@ onMounted(async () => {
         <div class="w-full">
             <label for="state" class="text-white">Departamento:</label>
             <select v-model="department" id="state" required @change="resetLocation"
-                class="w-full py-2.5 px-4 rounded-lg bg-white mt-2 border">
+                class="w-full py-2.5 px-4 text-gray-700 rounded-lg bg-white mt-2 border">
                 <option value="" selected disabled>Seleccionar</option>
                 <option v-for="state in departments" :value="state">
                     {{ state.departmentOrStateName }}
@@ -87,7 +87,7 @@ onMounted(async () => {
         <div class="w-full">
             <label for="city" class="text-white">Ciudad:</label>
             <select v-model="location" id="city" required
-                class="w-full py-2.5 px-4 rounded-lg bg-white mt-2 border">
+                class="w-full py-2.5 px-4 text-gray-700 rounded-lg bg-white mt-2 border">
                 <option value="" selected disabled>Seleccionar</option>
                 <option v-for="city in filteredLocations" :value="city">
                     {{ city.locationName }}

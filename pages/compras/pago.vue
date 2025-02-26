@@ -32,25 +32,22 @@ const returnPayment = (data: { transaction: any }) => {
   console.log("data", data);
   payment.value = data.transaction;
 };
-const openWidget = () => {
-  const random = Math.random().toString(36).substring(7);
-  wompiRef.value.openWidgetCheckout(random + "J53A");
-};
 
 const startPayment = async () => {
   console.log("startPayment");
   console.log("client", client.value);
   console.log("envio", envio.value);
   console.log("cartProducts", cartProducts.value);
-  // openWidget();
+  let reference = crypto.randomUUID();
   const { _id, state, docId, docType, ...rest } = client.value;
   const data = await saveCompra({
+    reference,
     ...rest,
     ...envio.value,
     total: total.value,
     productos: cartProducts.value,
   })
-  console.log('data', data);
+  wompiRef.value.openWidgetCheckout(reference);
 };
 </script>
 <template>

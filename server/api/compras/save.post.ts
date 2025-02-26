@@ -2,9 +2,9 @@
 export default defineEventHandler(async (event) => {
     const body = await readBody(event)
 
-    const { saveCompra } = dataCompras()
+    const { insertCompra } = dataCompras()
 
-    const data = await saveCompra(body)
+    const data = await insertCompra(body)
 
     return data
 });
