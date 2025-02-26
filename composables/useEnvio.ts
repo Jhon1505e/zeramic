@@ -9,8 +9,25 @@ interface IEnvio {
 export function useEnvio() {
     const envio = useState<IEnvio | null>("envio", () => null);
 
-    const saveEnvio = (item?: IEnvio) => {
-        envio.value = item || null;
+    const saveEnvio = (item?: any) => {
+        let data = null
+        if (item) {
+            const {
+                deliveryCompanyImgUrl,
+                deliveryCompanyName,
+                routeType,
+                insurancePercentage,
+                shippingCost
+            } = item;
+            data = {
+                deliveryCompanyImgUrl,
+                deliveryCompanyName,
+                routeType,
+                insurancePercentage,
+                shippingCost
+            };
+        }
+        envio.value = data;
     }
     const deleteEnvio = () => {
         envio.value = null;

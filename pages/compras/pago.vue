@@ -2,6 +2,7 @@
 const { client } = useAuth();
 const { total, cartProducts } = useShopping();
 const { envio } = useEnvio();
+const { saveCompra } = useCompras();
 
 /* async function getToken() {
     try {
@@ -36,11 +37,20 @@ const openWidget = () => {
   wompiRef.value.openWidgetCheckout(random + "J53A");
 };
 
-const startPayment = () => {
+const startPayment = async () => {
   console.log("startPayment");
   console.log("client", client.value);
+  console.log("envio", envio.value);
   console.log("cartProducts", cartProducts.value);
-  openWidget();
+  // openWidget();
+  const { _id, state, docId, docType, ...rest } = client.value;
+  const data = await saveCompra({
+    ...rest,
+    ...envio.value,
+    total: total.value,
+    productos: cartProducts.value,
+  })
+  console.log('data', data);
 };
 </script>
 <template>

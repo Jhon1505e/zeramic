@@ -11,6 +11,10 @@ export default defineEventHandler(async (event) => {
         html
     }
 
+
+    // TODO logica q recibe el evento de wompi
+    // almacenar en coleccion transacciones
+    // y eviar correo notificacion
     try {
         const { sendEmail } = useEmail()
         
