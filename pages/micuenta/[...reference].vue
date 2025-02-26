@@ -38,7 +38,7 @@ const columns = [
                     <p>Localidad: {{ compra.locationName }}</p>
                     <p>Direccion: {{ compra.address }}</p>
                 </div>
-                <div class="w-full">
+                <div v-if="compra.wompi" class="w-full">
                     <p>Información del Pago</p>
                     <p>Medio de pago: {{ compra.wompi.payment_method_type }}</p>
                     <p>Estado: {{ compra.wompi.status }}</p>
