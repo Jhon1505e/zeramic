@@ -36,9 +36,12 @@ const startPayment = async () => {
   wompiRef.value.openWidgetCheckout(reference);
 };
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const getPayment = async (id: string) => {
   try {
-    const data: any = await $fetch(`https://sandbox.wompi.co/v1/transactions/${id}`);
+    const url = isProd ? 'production' : 'sandbox'
+    const data: any = await $fetch(`https://${url}.wompi.co/v1/transactions/${id}`);
     return data.data
   } catch (error) {
     console.log(error);
