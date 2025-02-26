@@ -44,22 +44,31 @@ const columns = [
     label: "Acciones",
     key: "actions",
   },
-]
+];
 </script>
 
 <template>
   <div class="p-4 max-w-6xl mx-auto">
-    <h1 class="text-3xl">Clientes</h1>
-    <div class="bg-white p-4 rounded-xl">
+    <h1 class="text-3xl text-white">Clientes</h1>
+    <div class="bg-white p-4 rounded-xl my-6">
       <UTable :columns="columns" :rows="clients">
         <template #actions-data="{ row }">
           <!-- <pre>{{ row._id }}</pre> -->
-          <button @click="viewClient(row)" class="rounded bg-gray-200 p-1 border mx-1">
+          <button
+            @click="viewClient(row)"
+            class="rounded bg-gray-200 p-1 border mx-1"
+          >
             <UTooltip text="Ver / Editar">
-              <UIcon name="i-heroicons-clipboard-document-list" class="w-6 h-6" />
+              <UIcon
+                name="i-heroicons-clipboard-document-list"
+                class="w-6 h-6"
+              />
             </UTooltip>
           </button>
-          <button @click="viewClient(row)" class="rounded bg-gray-200 p-1 border mx-1">
+          <button
+            @click="viewClient(row)"
+            class="rounded bg-gray-200 p-1 border mx-1"
+          >
             <UTooltip text="Ver Compras">
               <UIcon name="i-heroicons-shopping-bag" class="w-6 h-6" />
             </UTooltip>
@@ -80,17 +89,32 @@ const columns = [
       </UCard>
     </UModal>
     <UModal v-model="modal" prevent-close>
-      <UCard>
+      <UCard :ui="{ background: 'bg-PRP' }">
         <div class="p-4" v-if="!edit">
-          <div class="flex justify-end">
-            <button @click="modal = false">
-              <UIcon name="i-heroicons-x-circle" class="h-8 w-8" />
+          <div class="flex gap-2 justify-end">
+            <button @click="edit = true" class="px-3 py-2 border border-white rounded-full">
+              <IconsPencil class="w-5 stroke-white" />
+            </button>
+            <button @click="modal = false" class="px-3 py-2 border border-white rounded-full">
+              <IconsClose class="w-5 stroke-white" />
             </button>
           </div>
-          <pre class="text-xs">{{ client }}</pre>
-          <button @click="edit = true" class="rounded bg-gray-200 gap-2 p-1 border flex">
-            <UIcon name="i-heroicons-pencil-square" class="h-6 w-6" /> Editar
-          </button>
+          <div class="px-5 md:flex gap-8">
+            <div class="text-white font-thin pt-1">
+              <p><b>Nombre:</b> {{ client?.fullName }}</p>
+              <p><b>Email:</b> {{ client?.email }}</p>
+              <p>
+                <b>Celular:</b>
+                {{ client?.phone ? client.phone : "Sin Número" }}
+              </p>
+              <p><b>Documento {{ client?.docType }}: </b> {{ client?.docId }}</p>
+              <p><b>Departamento:</b> {{ client?.departmentOrStateName }}</p>
+              <p><b>Ciudad:</b> {{ client?.locationName }}</p>
+              <p><b>Dirección:</b> {{ client?.address }}</p>
+            </div>
+          </div>
+
+          
         </div>
       </UCard>
     </UModal>
