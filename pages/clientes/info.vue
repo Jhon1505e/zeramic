@@ -6,20 +6,32 @@ const clients = ref();
 const modal = ref(false);
 const edit = ref(false);
 const client = ref();
-const loading = ref(false);
+const compras = ref();
+const modalCompras = ref(false);
 
 const { getDataClients, deleteClient } = useClient();
+const { getCompras } = useCompras();
+const { start, finish, isLoading } = useLoadingIndicator();
 
 async function onGetClients() {
-  loading.value = true;
+  start();
   clients.value = await getDataClients({ state: "active" });
-  loading.value = false;
+  finish();
 }
 
 function viewClient(item) {
   client.value = item;
   modal.value = true;
 }
+
+async function viewCompras({ email }) {
+  compras.value = [];
+  modalCompras.value = true
+  start();
+  compras.value = await getCompras({ email });
+  finish();
+}
+
 
 await onGetClients();
 
@@ -48,8 +60,11 @@ const columns = [
 </script>
 
 <template>
-  <div class="p-4 max-w-6xl mx-auto">
-    <h1 class="text-3xl text-white">Clientes</h1>
+  <div class="max-w-6xl mx-auto">
+    <div class="flex w-full justify-between items-center px-6">
+      <h1 class="text-3xl text-white">Clientes</h1>
+      <UButton icon="i-heroicons-arrow-path" @click="onGetClients" />
+    </div>
     <div class="bg-white p-4 rounded-xl my-6">
       <UTable :columns="columns" :rows="clients">
         <template #actions-data="{ row }">
@@ -59,7 +74,7 @@ const columns = [
               <UIcon name="i-heroicons-clipboard-document-list" class="w-6 h-6" />
             </UTooltip>
           </button>
-          <button @click="viewClient(row)" class="rounded bg-gray-200 p-1 border mx-1">
+          <button @click="viewCompras(row)" class="rounded bg-gray-200 p-1 border mx-1">
             <UTooltip text="Ver Compras">
               <UIcon name="i-heroicons-shopping-bag" class="w-6 h-6" />
             </UTooltip>
@@ -67,6 +82,8 @@ const columns = [
         </template>
       </UTable>
     </div>
+
+    <AdminCompras v-model="modalCompras" :compras="compras" />
 
     <UModal v-model="edit" prevent-close :ui="{ width: 'w-full sm:max-w-4xl' }">
       <UCard :ui="{ background: 'bg-PRP' }">
