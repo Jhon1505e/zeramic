@@ -5,20 +5,46 @@ defineProps({
 </script>
 
 <template>
-    <div class="sm:flex text-gray-300 gap-2 rounded">
-        <div class="sm:w-2/3">
-            <div v-for="prod in compra.productos" :key="prod.uuid" class="flex bg-white/10 gap-6 rounded-xl mt-2 px-6">
-                <IconsCompras class="w-12 fill-white/70" />
-                <div class="py-2 font-thin">
-                    <b>{{ prod.producto }}</b>
-                    <div class="flex gap-4">
-                        <p><b>Cantidad:</b> {{ prod.cantidad }}</p>
-                        <p><b>Valor:</b> {{ prod.valor }}</p>
+    <UCard :ui="{ body: { padding: '' }, header: { padding: '' }, footer: { padding: '' } }">
+        <template #header>
+            <div class="flex justify-between items-center p-2">
+                <div>Fecha: {{ compra.date }}</div>
+                <div>Estado: {{ compra.status }}</div>
+                <NuxtLink :to="`/micuenta/${compra.reference}`"
+                    class="bg-PRP text-white rounded-lg px-6 py-1 text-center font-thin">Ver
+                    detalles</NuxtLink>
+            </div>
+        </template>
+        <div class="md:flex px-3 w-full items-center">
+
+            <div class="md:w-2/3 w-full space-y-1">
+                <div v-for="prod in compra.productos" :key="prod.uuid" class="flex w-full gap-3 border-b pb-1">
+                    <NuxtImg :src="prod.imagen" class="h-16 aspect-video rounded" alt="" />
+                    <div class="py-2 font-thin w-full">
+                        <b>{{ prod.producto }}</b>
+                        <div class="flex w-full gap-4">
+                            <p><b>Cantidad:</b> {{ prod.cantidad }}</p>
+                            <p><b>Valor:</b> {{ prod.valor }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="px-6 py-4 mt-4 flex gap-6 border rounded-xl bg-white/10">
-                <IconsDomicilio class="w-12 fill-white/70" />
+
+            <div class="sm:w-1/3 w-full py-1 text-PRP font-thin border-l">
+                <IconsPagos class="w-16 fill-PRP mx-auto pb-4" />
+                <div class="grid grid-cols-2 text-end">
+                    <b>SubTotal:</b>
+                    <span>{{ formatMoneda(compra.total) }}</span>
+                    <b>Valor envio:</b>
+                    <span> {{ formatMoneda(compra.shippingCost) }}</span>
+                    <b>Total:</b>
+                    <span>{{ formatMoneda(compra.total + compra.shippingCost) }}</span>
+                </div>
+            </div>
+        </div>
+        <template #footer>
+            <div class="flex w-full p-2 gap-6">
+                <IconsDomicilio class="w-12 fill-PRP" />
                 <div class="font-thin">
                     <p>
                         <b>Dirección:</b>
@@ -26,29 +52,8 @@ defineProps({
                         {{ compra.departmentOrStateName }}
                     </p>
                     <p><b>Enviado por:</b> {{ compra.deliveryCompanyName }}</p>
-                    <p><b>Estado:</b> {{ "Pendiente" }}</p>
                 </div>
             </div>
-        </div>
-        <div class="sm:w-1/3 mt-2">
-            <div class="bg-white/70 p-4 text-PRP rounded-xl font-thin">
-                <IconsPagos class="w-16 fill-PRP mx-auto pb-4" />
-
-                <p><b>SubTotal:</b> {{ formatMoneda(compra.total) }}</p>
-                <p>
-                    <b>Valor envio:</b> {{ formatMoneda(compra.shippingCost) }}
-                </p>
-                <p>
-                    <b>Total:</b>
-                    {{ formatMoneda(compra.total + compra.shippingCost) }}
-                </p>
-                <p><b>Medio de pago:</b> {{ "---" }}</p>
-
-                <div class="mt-6 text-center w-full">
-                    <NuxtLink class="bg-PRP text-white rounded-lg w-ful px-8 py-2 mx-auto "
-                        :to="`/micuenta/${compra.reference}`">Ver Información</NuxtLink>
-                </div>
-            </div>
-        </div>
-    </div>
+        </template>
+    </UCard>
 </template>

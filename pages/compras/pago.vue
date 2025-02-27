@@ -25,10 +25,21 @@ const returnPayment = (data: { transaction: any }) => {
 
 const startPayment = async () => {
   let reference = crypto.randomUUID();
-  const { _id, state, docId, docType, ...rest } = client.value;
+  if (!client.value) return;
+  const { fullName,
+    email,
+    address,
+    infoDirection,
+    departmentOrStateName,
+    locationName } = client.value;
   const data = await saveCompra({
     reference,
-    ...rest,
+    fullName,
+    email,
+    address,
+    infoDirection,
+    departmentOrStateName,
+    locationName,
     ...envio.value,
     total: total.value,
     productos: cartProducts.value,
