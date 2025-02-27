@@ -40,8 +40,10 @@ export default defineEventHandler(async (event) => {
     }
 
     const { updateCompra } = dataCompras();
-    try {
+    const { sendEmail } = useEmail();
 
+    try {
+        await sendEmail(info);
         const data = await updateCompra({ reference, wompi: item })
         return data
     } catch (e: any) {
