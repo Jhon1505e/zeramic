@@ -36,6 +36,8 @@ const columns = [
           <div class="lg:w-3/5">
             <b class="text-2xl">Información de la compra</b>
             <div class="w-full grid grid-cols-1 md:grid-cols-2 bg-white/10 rounded-xl font-thin mt-3 px-4 py-5">
+              <p><b>Fecha:</b> {{ formatFecha(compra.date) }}</p>
+              <p><b>Estado:</b> <UBadge>{{ compra.status }}</UBadge></p>
               <p><b>Nombre:</b> {{ compra.fullName }}</p>
               <p><b>Email:</b> {{ compra.email }}</p>
               <p><b>Celular:</b> {{ compra.phone }}</p>

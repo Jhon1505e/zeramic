@@ -8,8 +8,9 @@ defineProps({
     <UCard :ui="{ body: { padding: '' }, header: { padding: '' }, footer: { padding: '' } }">
         <template #header>
             <div class="flex justify-between items-center p-2">
-                <div>Fecha: {{ compra.date }}</div>
-                <div>Estado: {{ compra.status }}</div>
+                <div>Fecha: {{ formatFecha(compra.date) }}</div>
+                <div>Estado: <UBadge color="cyan">{{ compra.status }}</UBadge>
+                </div>
                 <NuxtLink :to="`/micuenta/${compra.reference}`"
                     class="bg-PRP text-white rounded-lg px-6 py-1 text-center font-thin">Ver
                     detalles</NuxtLink>
