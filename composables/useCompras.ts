@@ -1,7 +1,6 @@
 export function useCompras() {
 
     const getCompras = async (params: any) => {
-        console.log(params)
         const data = await $fetch('/api/compras', {
             method: 'GET',
             params
