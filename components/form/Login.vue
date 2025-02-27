@@ -4,6 +4,7 @@ const emit = defineEmits(['success', 'error']);
 
 const newUser = ref(false);
 const reset = ref(false);
+const viewPass = ref(false);
 const message = ref('');
 const user = reactive({
   fullName: "",
@@ -23,12 +24,13 @@ async function handleSubmit() {
   if (reset.value) {
     const data = await resetPassword(user.email);
     message.value = data?.message || '';
+    reset.value = false;
     return;
   }
   const data = await login(user);
   console.log(data);
   message.value = data?.message || '';
-  
+
 }
 </script>
 <template>
@@ -39,7 +41,7 @@ async function handleSubmit() {
     </h2>
 
     <div class="flex justify-center py-2 w-full">
-      <GoogleSignInButton state-cookie-domain="localhost"  @success="emit('success', $event)"
+      <GoogleSignInButton state-cookie-domain="localhost" @success="emit('success', $event)"
         @error="emit('error', $event)" />
     </div>
 
@@ -59,11 +61,11 @@ async function handleSubmit() {
       <div>
         <label for="email" class="block text-sm font-medium text-PRP">Correo Electrónico</label>
         <input id="email" type="email" v-model="user.email"
-          class="w-full px-3 py-2 border border-PRP  rounded-lg bg-white pl-4 mt-1 focus:outline-none focus:ring focus:ring-green-300"
+          class="w-full px-3 py-2 border border-PRP rounded-lg bg-white pl-4 mt-1 focus:outline-none focus:ring focus:ring-green-300"
           placeholder="Ingresa el email" required />
         <div v-if="newUser" class="text-sm p-1 pt-2 flex w-full text-end justify-end">
           <input type="checkbox" required id="checkbox" class="mr-2" />
-          <label for="checkbox">
+          <label for="checkbox" class="cursor-pointer">
             Acepto los <NuxtLink to="/" class="text-indigo-600 underline">Terminos y condiciones</NuxtLink>
           </label>
         </div>
@@ -71,14 +73,20 @@ async function handleSubmit() {
 
       <div v-if="!newUser">
         <label for="password" class="block text-sm font-medium text-PRP">Contraseña</label>
-        <input v-if="!reset" id="password" type="password" v-model="user.password"
-          class="w-full px-3 py-2 border border-PRP pl-4 mt-1 rounded-lg focus:outline-none focus:ring focus:ring-green-300"
-          :class="reset ? 'bg-gray-200' : ''" placeholder="Ingresa la contraseña" />
-        <input v-else type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-300"
+        <div v-if="!reset" class="relative">
+          <input id="password" :type="viewPass ? 'text' : 'password'" v-model="user.password"
+            class="w-full px-3 py-2 border border-PRP rounded-lg bg-white pl-4 mt-1 focus:outline-none focus:ring focus:ring-green-300"
+            placeholder="Ingresa la contraseña" />
+          <UButton icon="i-heroicons-eye" variant="soft" v-if="!viewPass" color="indigo" @click="viewPass = !viewPass"
+            class="absolute right-1 bottom-1" />
+          <UButton icon="i-heroicons-eye-slash" variant="soft" v-else color="indigo" @click="viewPass = !viewPass"
+            class="absolute right-1 bottom-1" />
+        </div>
+        <input v-if="reset" type="text" class="w-full px-3 py-2 border border-gray-300 pl-4 mt-1 rounded-lg bg-gray-300"
           placeholder="(crear nueva)" disabled />
         <div class="text-sm p-1 pt-2 w-full text-end flex justify-end">
           <input type="checkbox" v-model="reset" id="checkbox" class="mr-2" />
-          <label for="checkbox">
+          <label for="checkbox" class="cursor-pointer">
             Si olvidó su contraseña
           </label>
         </div>

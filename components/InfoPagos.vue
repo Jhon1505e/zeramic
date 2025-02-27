@@ -18,7 +18,7 @@ const json = ref(false)
                 <p>Finalizado: {{ transaction?.finalized_at || transaction?.finalizedAt }}</p>
                 <p>Id: {{ transaction?.id }}</p>
                 <p>Moneda: {{ transaction?.currency }}</p>
-                <p>Monto: {{ formatMoneda(transaction?.amount_in_cents || transaction?.amountInCents / 100) }}</p>
+                <p>Monto: {{ formatMoneda((transaction?.amount_in_cents || transaction?.amountInCents) / 100) }}</p>
                 <p>{{ transaction?.status_message }}</p>
                 <p>Medio de pago: {{ transaction?.payment_method_type || transaction?.paymentMethodType }}</p>
             </div>
