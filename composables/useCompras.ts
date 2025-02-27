@@ -12,7 +12,7 @@ export function useCompras() {
     const saveCompra = async (item: any) => {
         const data = await $fetch('/api/compras/save', {
             method: 'POST',
-            body: { ...item, status: "CREATED", date: new Date() }
+            body: { ...item, date: new Date() }
         })
         return data
     }

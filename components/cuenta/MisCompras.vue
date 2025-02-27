@@ -2,14 +2,23 @@
 defineProps({
     compra: Object as () => any,
 });
+const nopadding = { padding: '' }
+const ui = {
+    body: nopadding,
+    header: nopadding,
+    footer: nopadding,
+    background: 'bg-white/70'
+};
 </script>
 
 <template>
-    <UCard :ui="{ body: { padding: '' }, header: { padding: '' }, footer: { padding: '' } }">
+    <UCard :ui="ui">
         <template #header>
             <div class="flex justify-between items-center p-2">
                 <div>Fecha: {{ formatFecha(compra.date) }}</div>
-                <div>Estado: <UBadge color="cyan">{{ compra.status }}</UBadge>
+                <div>Estado: <UBadge :color="COLORS[compra?.wompi?.status] || 'cyan'">
+                        {{ compra?.wompi?.status || 'NUEVA' }}
+                    </UBadge>
                 </div>
                 <NuxtLink :to="`/micuenta/${compra.reference}`"
                     class="bg-PRP text-white rounded-lg px-6 py-1 text-center font-thin">Ver
@@ -17,7 +26,6 @@ defineProps({
             </div>
         </template>
         <div class="md:flex px-3 w-full items-center">
-
             <div class="md:w-2/3 w-full space-y-1">
                 <div v-for="prod in compra.productos" :key="prod.uuid" class="flex w-full gap-3 border-b pb-1">
                     <NuxtImg :src="prod.imagen" class="h-16 aspect-video rounded" alt="" />

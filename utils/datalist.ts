@@ -1,3 +1,12 @@
+import { type BadgeColor } from '#ui/types';
+
+export const COLORS: Record<string, BadgeColor> = {
+  "ERROR": "red",
+  "PENDING": "amber",
+  "DECLINED": "pink",
+  "APPROVED": "primary",
+}
+
 export function formatMoneda(value: number) {
   return new Intl.NumberFormat("es-CO", {
     style: "currency",
