@@ -14,9 +14,9 @@ const ui = {
 <template>
     <UCard :ui="ui">
         <template #header>
-            <div class="flex justify-between items-center p-2">
-                <div>Fecha: {{ formatFecha(compra.date) }}</div>
-                <div>Estado: <UBadge :color="COLORS[compra?.wompi?.status] || 'cyan'">
+            <div class="flex justify-between items-center py-2 px-4 text-PRP font-thin">
+                <p><b>Fecha: </b> {{ formatFecha(compra.date) }}</p>
+                <div><b>Estado: </b> <UBadge :color="COLORS[compra?.wompi?.status] || 'cyan'">
                         {{ compra?.wompi?.status || 'NUEVA' }}
                     </UBadge>
                 </div>
@@ -29,9 +29,9 @@ const ui = {
             <div class="md:w-2/3 w-full space-y-1">
                 <div v-for="prod in compra.productos" :key="prod.uuid" class="flex w-full gap-3 border-b pb-1">
                     <NuxtImg :src="prod.imagen" class="h-16 aspect-video rounded" alt="" />
-                    <div class="py-2 font-thin w-full">
+                    <div class="py-2 font-thin w-full text-PRP">
                         <b>{{ prod.producto }}</b>
-                        <div class="flex w-full gap-4">
+                        <div class="flex w-full gap-4 ">
                             <p><b>Cantidad:</b> {{ prod.cantidad }}</p>
                             <p><b>Valor:</b> {{ prod.valor }}</p>
                         </div>
@@ -52,9 +52,9 @@ const ui = {
             </div>
         </div>
         <template #footer>
-            <div class="flex w-full p-2 gap-6">
+            <div class="flex w-full py-4 px-6 gap-6">
                 <IconsDomicilio class="w-12 fill-PRP" />
-                <div class="font-thin">
+                <div class="font-thin text-PRP">
                     <p>
                         <b>Dirección:</b>
                         {{ compra.address }} - {{ compra.locationName }},

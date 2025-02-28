@@ -79,6 +79,12 @@ const columns = [
               <UIcon name="i-heroicons-shopping-bag" class="w-6 h-6" />
             </UTooltip>
           </button>
+
+          <button  class="rounded bg-gray-200 p-1 border mx-1">
+            <UTooltip text="Eliminar Cliente">
+              <UIcon name="i-heroicons-trash" class="w-6 h-6" />
+            </UTooltip>
+          </button>
         </template>
       </UTable>
     </div>
