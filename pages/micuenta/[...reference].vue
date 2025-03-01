@@ -11,9 +11,14 @@ const columns = [
     key: "item",
     label: "Producto",
   },
+
   {
-    key: "cantvalor",
-    label: "Cant/Valor",
+    key: "cantidad",
+    label: "Cantidad",
+  },
+  {
+    key: "valor",
+    label: "Valor",
   },
   {
     key: "total",
@@ -34,35 +39,25 @@ const color = computed(() =>
           <UIcon name="heroicons-outline:chevron-left" class="mr-2"></UIcon>Volver a mis compras
         </NuxtLink>
       </div>
-      <div class="flex gap-4  w-full mt-5">
-        <div class="w-full lg:flex gap-4">
-          <div class="lg:w-3/5">
+      <div class="w-full mt-5">
+        
+          
             <b class="text-2xl">Información de la compra</b>
             <div class="w-full grid grid-cols-1 md:grid-cols-2 bg-white/10 rounded-xl font-thin mt-3 px-4 py-5">
-              <p><b>Fecha:</b> {{ formatFecha(compra.date) }}</p>
+              <p><b>Fecha:</b> {{ formatFecha(compra?.date) }}</p>
               <p><b>Estado:</b>
-                <UBadge :color="color">{{ compra?.wompi?.status || 'NUEVA' }}</UBadge>
+                <UBadge :color="color" class="ml-2">{{ compra?.wompi?.status || 'NUEVA' }}</UBadge>
               </p>
-              <p><b>Nombre:</b> {{ compra.fullName }}</p>
-              <p><b>Email:</b> {{ compra.email }}</p>
-              <p><b>Celular:</b> {{ compra.phone }}</p>
-              <p><b>Departamento:</b> {{ compra.departmentOrStateName }}</p>
-              <p><b>Ciudad:</b> {{ compra.locationName }}</p>
-              <p><b>Dirección:</b> {{ compra.address }}</p>
+              <p><b>Nombre:</b> {{ compra?.fullName }}</p>
+              <p><b>Email:</b> {{ compra?.email }}</p>
+              <p><b>Celular:</b> {{ compra?.phone }}</p>
+              <p><b>Departamento:</b> {{ compra?.departmentOrStateName }}</p>
+              <p><b>Ciudad:</b> {{ compra?.locationName }}</p>
+              <p><b>Dirección:</b> {{ compra?.address }}</p>
             </div>
-          </div>
-          <div class="lg:w-2/5">
-            <h3>Información del Envio</h3>
-            <div class="p-4 bg-white/10 rounded-xl flex gap-3">
-              <img :src="compra.deliveryCompanyImgUrl" class="rounded-xl w-20" alt="" />
-              <div class="font-thin">
-                <p> <b>Empresa de envio:</b> {{ compra.deliveryCompanyName }}</p>
-                <p> <b>Tipo de envio:</b> {{ compra.routeType }}</p>
-                <p> <b>Costo de envio:</b> {{ formatMoneda(compra.shippingCost) }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+          
+        
+        
       </div>
 
       <div class=" mt-4">
@@ -71,15 +66,15 @@ const color = computed(() =>
           <UTable :columns="columns" :rows="compra.productos">
             <template #item-data="{ row }">
               <div class="flex w-full gap-2 items-center">
-                <img :src="row.imagen" class="w-32 rounded-sm" alt="" />
-                <p class="pl-5">{{ row.producto }}</p>
+                <img :src="row.imagen" class="w-32 rounded-xl" alt="" />
+                <p class="pl-5">{{ row?.producto }}</p>
               </div>
             </template>
-            <template #cantvalor-data="{ row }">
-              {{ row.cantidad }} / {{ formatMoneda(row.valor) }}
+            <template #cantidad-data="{ row }" >
+              <p class="pl-6">{{ row?.cantidad }}</p>
             </template>
             <template #total-data="{ row }">
-              {{ formatMoneda(row.cantidad * row.valor) }}
+              {{ formatMoneda(row?.cantidad * row.valor) }}
             </template>
           </UTable>
         </div>
@@ -88,16 +83,32 @@ const color = computed(() =>
 
 
       </div>
+      <div class="flex gap-3 pt-4">
+        <div v-if="compra.wompi" class="w-full">
+          
+          <h3>Información del Pago</h3>
+          <div class="bg-white/10 rounded-xl p-4 font-thin">
+            <p><b>Medio de pago:</b> {{ compra?.wompi.payment_method_type }}</p>
+            <p><b>Estado:</b> {{ compra?.wompi.status }}</p>
+            <p><b>Subtotal:</b> {{ formatMoneda(compra?.wompi.amount_in_cents / 100) }}</p>
+            <p><b> Total: </b>{{ formatMoneda(compra?.total + compra?.shippingCost) }}</p>
+            </div>
+        </div>
 
-      <div v-if="compra.wompi" class="w-full">
-        <b class="text-2xl">Información del Pago</b>
-        <p>Medio de pago: {{ compra.wompi.payment_method_type }}</p>
-        <p>Estado: {{ compra.wompi.status }}</p>
-        <p>
-          Total pagado: {{ formatMoneda(compra.wompi.amount_in_cents / 100) }}
-        </p>
-        <p>Total: {{ formatMoneda(compra.total + compra.shippingCost) }}</p>
+        <div class="w-full" >
+            <h3>Información del Envio</h3>
+            <div class="p-4 bg-white/10 rounded-xl flex gap-3">
+              <img :src="compra.deliveryCompanyImgUrl" class="rounded-xl w-20" alt="" />
+              <div class="font-thin">
+                <p> <b>Empresa de envio:</b> {{ compra?.deliveryCompanyName }}</p>
+                <p> <b>Tipo de envio:</b> {{ compra?.routeType }}</p>
+                <p> <b>Costo de envio:</b> {{ formatMoneda(compra?.shippingCost) }}</p>
+              </div>
+            </div>
+          </div>
+
       </div>
+
       <UButton class="mt-4" @click="modal = true">JSON</UButton>
 
       <UModal v-model="modal">
