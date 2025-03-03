@@ -42,7 +42,7 @@ const startPayment = async () => {
     infoDirection,
     locationCode,
     departmentOrStateName,
-    phone,
+    phone: `${phone}`,
     locationName,
     ...envio.value,
     total: total.value,
