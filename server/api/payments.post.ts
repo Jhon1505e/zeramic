@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
         html
     }
 
-    console.log("info", body.data.transaction)
+    //console.log("info", body.data.transaction)
 
     // TODO logica q recibe el evento de wompi
     // HACER SOLICITUD DE ENVIO API DE mipaquete.com
@@ -47,7 +47,7 @@ export default defineEventHandler(async (event) => {
     const dataCompra = await getCompras({ reference });
     const compra = dataCompra?.[0];
     let mpCode
-    console.log("compra", compra)
+    //console.log("compra", compra)
 
     if (status === "APPROVED") {
 
@@ -104,12 +104,12 @@ export default defineEventHandler(async (event) => {
             }
         })
 
-        if (data?.data?.message?.code === 540) {
+        const code = data?.data?.message?.code
+        if (code === 540) {
             // shipping cannot be paid
             await sendEmail(info);
-        }
-        console.log('api envio', data)
-        if (data?.mpCode) mpCode = data?.mpCode
+        } else if (data?.mpCode) mpCode = data?.mpCode
+
     }
 
     try {
