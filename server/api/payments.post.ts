@@ -2,7 +2,7 @@ export default defineEventHandler(async (event) => {
     const body = await readBody(event)
 
     const email = "roman.david@gmail.com"
-    const subject = "Wompi - Evento de prueba"
+    const subject = "Zeramic - ALERTA DE PAGO"
     const html = JSON.stringify(body)
 
     const info = {
@@ -53,14 +53,14 @@ export default defineEventHandler(async (event) => {
 
         // HACER SOLICITUD DE ENVIO API DE mipaquete.com
         const sender = {
-            name: "Zeramic co",
+            name: "Zeramic S.A.S.",
             surname: "Guatape",
-            cellPhone: "3136592716",
+            cellPhone: "3002285505",
             prefix: "+57",
             email: "zeramicguatape@gmail.com",
             pickupAddress: "Medellin - Antioquia",
-            nit: "1152456886",
-            nitType: "CC"
+            nit: "901591630-3",
+            nitType: "Nit"
         }
         const receiver = {
             name: compra?.fullName,
@@ -68,9 +68,9 @@ export default defineEventHandler(async (event) => {
             email: compra?.email,
             prefix: "+57",
             cellPhone: compra?.phone,
-            destinationAddress: compra?.locationName,
-            nit: "323233",
-            nitType: "CC"
+            destinationAddress: compra?.address + compra?.infoDirection,
+            nit: compra?.docId,
+            nitType: compra?.docType
         }
         const productInformation = {
             quantity: 1,
@@ -91,7 +91,7 @@ export default defineEventHandler(async (event) => {
 
         const data: any = await createSending({
             deliveryCompany: compra?.deliveryCompanyId,
-            description: "Cerámica 3D",
+            description: "Cerámica 3D - Delicado",
             channel: "Tienda Zeramic Guatape",
             requestPickup: true,
             locate,
@@ -106,6 +106,7 @@ export default defineEventHandler(async (event) => {
 
         if (data?.data?.message?.code === 540) {
             // shipping cannot be paid
+            await sendEmail(info);
         }
         console.log('api envio', data)
         if (data?.mpCode) mpCode = data?.mpCode
