@@ -53,7 +53,7 @@ export default defineEventHandler(async (event) => {
         // HACER SOLICITUD DE ENVIO API DE mipaquete.com
         const sender = {
             name: "Zeramic co",
-            surname: "",
+            surname: "Guatape",
             cellPhone: "3136592716",
             prefix: "+57",
             email: "zeramicguatape@gmail.com",
@@ -63,7 +63,7 @@ export default defineEventHandler(async (event) => {
         }
         const receiver = {
             name: compra?.fullName,
-            surname: "",
+            surname: ".",
             email: compra?.email,
             prefix: "+57",
             cellPhone: compra?.phone,
