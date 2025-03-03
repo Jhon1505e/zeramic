@@ -1,10 +1,12 @@
         
 <script setup lang="ts">
+import { type TableRow } from '#ui/types';
 
-const modal = defineModel()
+const modal = defineModel({ default: false })
+const compra = ref<TableRow[]>()
 
 defineProps({
-    compras: Array,
+    compras: Array<TableRow>,
 })
 const { isLoading } = useLoadingIndicator();
 
@@ -20,27 +22,26 @@ const columns = [
         sortable: true,
     },
     {
-        key: 'direccion',
-        label: 'Direccion',
-    },
-    {
         key: 'deliveryCompanyName',
         label: 'Enviado por',
     },
     {
         key: 'wompi',
-        label: 'wompi',
+        label: 'Estado',
+    },
+    {
+        key: 'actions',
+        label: 'Acciones',
     }
 ]
+const page = ref(1)
 
 </script>
 <template>
     <UModal v-model="modal" :ui="{ width: 'w-full sm:max-w-4xl' }">
+        <AdminInfoCompra v-model="compra" />
         <UCard>
             <UTable :loading="isLoading" :columns="columns" :rows="compras">
-                <template #direccion-data="{ row }">
-                    {{ row.address }} - {{ row.locationName }}, {{ row.departmentOrStateName }}
-                </template>
                 <template #date-data="{ row }">
                     {{ formatFecha(row.date) }}
                 </template>
@@ -48,10 +49,14 @@ const columns = [
                     {{ formatMoneda(row.total) }}
                 </template>
                 <template #wompi-data="{ row }">
-                    <UBadge variant="">{{ row?.wompi?.status || 'NUEVO' }}</UBadge>
+                    <UBadge :color="COLORS[row?.wompi?.status] || 'cyan'">
+                        {{ row?.wompi?.status || 'NUEVO' }}</UBadge>
+                </template>
+                <template #actions-data="{ row }">
+                    <UButton @click="compra = row" icon="i-heroicons-eye" />
                 </template>
             </UTable>
-            <UPagination :page-count="3" :total="compras.length" />
+            <UPagination v-model="page" :total="compras?.length || 0" />
             <!-- <pre class="text-xs">{{ compras }}</pre> -->
         </UCard>
     </UModal>

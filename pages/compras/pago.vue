@@ -30,7 +30,9 @@ const startPayment = async () => {
     email,
     address,
     infoDirection,
+    locationCode,
     departmentOrStateName,
+    phone,
     locationName } = client.value;
   const data = await saveCompra({
     reference,
@@ -38,7 +40,9 @@ const startPayment = async () => {
     email,
     address,
     infoDirection,
+    locationCode,
     departmentOrStateName,
+    phone,
     locationName,
     ...envio.value,
     total: total.value,

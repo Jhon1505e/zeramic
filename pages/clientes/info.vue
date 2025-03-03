@@ -6,6 +6,7 @@ const clients = ref();
 const modal = ref(false);
 const edit = ref(false);
 const client = ref();
+const toDelete = ref();
 const compras = ref();
 const modalCompras = ref(false);
 
@@ -66,7 +67,7 @@ const columns = [
       <UButton icon="i-heroicons-arrow-path" @click="onGetClients" />
     </div>
     <div class="bg-white p-4 rounded-xl my-6">
-      <UTable :columns="columns" :rows="clients">
+      <UTable :loading="isLoading" :columns="columns" :rows="clients">
         <template #actions-data="{ row }">
           <!-- <pre>{{ row._id }}</pre> -->
           <button @click="viewClient(row)" class="rounded bg-gray-200 p-1 border mx-1">
@@ -80,7 +81,7 @@ const columns = [
             </UTooltip>
           </button>
 
-          <button  class="rounded bg-gray-200 p-1 border mx-1">
+          <button @click="toDelete = row._id" class="rounded bg-gray-200 p-1 border mx-1">
             <UTooltip text="Eliminar Cliente">
               <UIcon name="i-heroicons-trash" class="w-6 h-6" />
             </UTooltip>
@@ -88,6 +89,8 @@ const columns = [
         </template>
       </UTable>
     </div>
+
+    <AdminDeleteClient v-model="toDelete" />
 
     <AdminCompras v-model="modalCompras" :compras="compras" />
 

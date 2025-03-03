@@ -2,6 +2,8 @@
 const { reference } = useRoute().params;
 const { getCompras } = useCompras();
 const data = await getCompras({ reference });
+if(!data?.length)
+  navigateTo("/micuenta/compras")
 const modal = ref(false);
 
 const compra = computed<any>(() => data && data.find(() => true));
@@ -25,6 +27,7 @@ const columns = [
     label: "Totales",
   },
 ];
+
 
 const color = computed(() =>
   COLORS[compra.value?.wompi?.status] || "cyan")
@@ -63,7 +66,7 @@ const color = computed(() =>
       <div class=" mt-4">
         <p class="text-2xl my-2 font-semibold">Resumen de la compra</p>
         <div class="px-2 bg-white rounded-xl">
-          <UTable :columns="columns" :rows="compra.productos">
+          <UTable :columns="columns" :rows="compra?.productos">
             <template #item-data="{ row }">
               <div class="flex w-full gap-2 items-center">
                 <img :src="row.imagen" class="w-32 rounded-xl" alt="" />
@@ -84,7 +87,7 @@ const color = computed(() =>
 
       </div>
       <div class="flex gap-3 pt-4">
-        <div v-if="compra.wompi" class="w-full">
+        <div v-if="compra?.wompi" class="w-full">
           
           <h3>Información del Pago</h3>
           <div class="bg-white/10 rounded-xl p-4 font-thin">
@@ -98,7 +101,7 @@ const color = computed(() =>
         <div class="w-full" >
             <h3>Información del Envio</h3>
             <div class="p-4 bg-white/10 rounded-xl flex gap-3">
-              <img :src="compra.deliveryCompanyImgUrl" class="rounded-xl w-20" alt="" />
+              <img v-if="compra?.deliveryCompanyImgUrl" :src="compra.deliveryCompanyImgUrl" class="rounded-xl w-20" alt="" />
               <div class="font-thin">
                 <p> <b>Empresa de envio:</b> {{ compra?.deliveryCompanyName }}</p>
                 <p> <b>Tipo de envio:</b> {{ compra?.routeType }}</p>
@@ -109,6 +112,8 @@ const color = computed(() =>
 
       </div>
 
+      <CuentaTrackingEnvio />
+        
       <UButton class="mt-4" @click="modal = true">JSON</UButton>
 
       <UModal v-model="modal">
