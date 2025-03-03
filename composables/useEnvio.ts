@@ -65,9 +65,9 @@ export function useEnvio() {
                 destinyCountryCode: "170",
                 destinyLocationCode: item.locationCode,
                 quantity: 1,
-                width: 20,
-                length: 20,
-                height: 20,
+                width: 10,
+                length: 10,
+                height: 10,
                 weight: 1,
                 declaredValue: item.declaredValue,
             }

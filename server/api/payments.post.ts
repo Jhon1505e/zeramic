@@ -53,8 +53,8 @@ export default defineEventHandler(async (event) => {
         // HACER SOLICITUD DE ENVIO API DE mipaquete.com
         const sender = {
             name: "Zeramic co",
-            surname: "Guatape",
-            cellPhone: "3013528220",
+            surname: "",
+            cellPhone: "3136592716",
             prefix: "+57",
             email: "zeramicguatape@gmail.com",
             pickupAddress: "Medellin - Antioquia",
@@ -63,7 +63,7 @@ export default defineEventHandler(async (event) => {
         }
         const receiver = {
             name: compra?.fullName,
-            surname: "Guatape",
+            surname: "",
             email: compra?.email,
             prefix: "+57",
             cellPhone: compra?.phone,
@@ -90,7 +90,7 @@ export default defineEventHandler(async (event) => {
 
         const data: any = await createSending({
             deliveryCompany: compra?.deliveryCompanyId,
-            description: "Envio de prueba",
+            description: "Cerámica 3D",
             channel: "Tienda Zeramic Guatape",
             requestPickup: true,
             locate,
