@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
         status_message,
     } = body.data.transaction;
 
-    const item = {
+    const wompi = {
         id,
         payment_method_type,
         amount_in_cents,
@@ -46,6 +46,7 @@ export default defineEventHandler(async (event) => {
     // Traer compra de la coleccion
     const dataCompra = await getCompras({ reference });
     const compra = dataCompra?.[0];
+    let mpCode
     console.log("compra", compra)
 
     if (status === "APPROVED") {
@@ -107,17 +108,15 @@ export default defineEventHandler(async (event) => {
             // shipping cannot be paid
         }
         console.log('api envio', data)
-        return data
+        if (data?.mpCode) mpCode = data?.mpCode
     }
-    /*
- 
- 
-try {
-await sendEmail(info);
-const data = await updateCompra({ reference, wompi: item })
-return data
-} catch (e: any) {
-console.error(e)
-return createError({ statusCode: 500, statusMessage: e?.message })
-} */
+
+    try {
+        // await sendEmail(info);
+        const data = await updateCompra({ reference, wompi, mpCode })
+        return data
+    } catch (e: any) {
+        console.error(e)
+        return createError({ statusCode: 500, statusMessage: e?.message })
+    }
 })

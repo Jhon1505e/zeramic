@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { getTracking } = useEnvio();
-const seguimiento: ITracking = await getTracking('1580633');
+const props = defineProps({ mpCode: String });
+const seguimiento = ref<ITracking>();
 
 type ITrack = {
     updateState: string;
@@ -14,6 +15,13 @@ interface ITracking {
     destiny: string;
     tracking: ITrack[];
 }
+
+const handleTracking = async () => {
+    if (!props.mpCode) return
+    seguimiento.value = await getTracking(props.mpCode);
+}
+
+handleTracking();
 </script>
 
 <template>
