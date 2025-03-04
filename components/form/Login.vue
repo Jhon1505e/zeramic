@@ -76,7 +76,7 @@ async function handleSubmit() {
         <div v-if="!reset" class="relative">
           <input id="password" :type="viewPass ? 'text' : 'password'" v-model="user.password"
             class="w-full px-3 py-2 border border-PRP rounded-lg bg-white pl-4 mt-1 focus:outline-none focus:ring focus:ring-green-300"
-            placeholder="Ingresa la contraseña" />
+            placeholder="Ingresa la contraseña" required />
           <UButton icon="i-heroicons-eye" variant="soft" v-if="!viewPass" color="indigo" @click="viewPass = !viewPass"
             class="absolute right-1 bottom-1" />
           <UButton icon="i-heroicons-eye-slash" variant="soft" v-else color="indigo" @click="viewPass = !viewPass"
