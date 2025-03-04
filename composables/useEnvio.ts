@@ -53,7 +53,7 @@ export function useEnvio() {
                 mpCode
             }
         })
-        return data as any;
+        return data;
     }
 
     const cotizarEnvio = async (item: { locationCode: string, declaredValue: number }) => {

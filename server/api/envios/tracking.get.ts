@@ -1,19 +1,18 @@
-
-const MIPAQUETE_API_KEY = process.env.MIPAQUETE_API_KEY
-const MIPAQUETE_URI = process.env.MIPAQUETE_URI
-
 export default defineEventHandler(async (event) => {
     const params = getQuery(event)
+    const mpCode = params?.mpCode as string || ''
+    const { getSendingTracking } = useEnvios();
 
-    const data = await $fetch(`${MIPAQUETE_URI}/getSendingTracking`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'session-tracker': 'a0c96ea6-b22d-4fb7-a278-850678d5429c',
-            'apikey': MIPAQUETE_API_KEY || ''
-        },
-        params
-    })
+    if (!mpCode) {
+        return { error: 'No se proporcionó el código de seguimiento' }
+    }
 
-    return data
+    try {
+        const data = await getSendingTracking(mpCode)
+        return { data }
+    } catch (e: any) {
+        const error: string = e?.data?.message?.detail || e?.message || 'Error'
+        return { error }
+    }
+
 })

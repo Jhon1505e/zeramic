@@ -2,6 +2,7 @@
 const { getTracking } = useEnvio();
 const props = defineProps({ mpCode: String });
 const seguimiento = ref<ITracking>();
+const message = ref<String>();
 
 type ITrack = {
     updateState: string;
@@ -18,16 +19,22 @@ interface ITracking {
 
 const handleTracking = async () => {
     if (!props.mpCode) return
-    seguimiento.value = await getTracking(props.mpCode);
+    const { data, error } = await getTracking(props.mpCode);
+    if (error) {
+        message.value = error
+        return
+    }
+    seguimiento.value = data
 }
 
-handleTracking();
+await handleTracking();
 </script>
 
 <template>
     <div>
         <h3>Seguimiento del Envio</h3>
         <div>
+            <p v-if="message" class="text-red-500 text-sm">{{ message }}</p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-1 pb-2">
                 <p>Empresa de envio: {{ seguimiento?.deliveryCompanyName }}</p>
                 <p>Nro. Guia: {{ seguimiento?.guideNumber }}</p>
