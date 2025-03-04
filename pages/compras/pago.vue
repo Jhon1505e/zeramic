@@ -51,7 +51,7 @@ const startPayment = async () => {
   wompiRef.value.openWidgetCheckout(reference);
 };
 
-const isProd = process.env.NODE_ENV === 'production';
+const isProd = process.env.VERCEL_ENV === 'production';
 
 const getPayment = async (id: string) => {
   try {
