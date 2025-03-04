@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
 
         if (compra?.shippingCost > cash) {
             // enviar correo de alerta
-            process.env.NODE_ENV === 'production' && await sendEmail({
+            process.env.VERCEL_ENV === 'production' && await sendEmail({
                 type: "ALERT",
                 email: "roman.david@gmail.com",
                 html: formatEmail({ ...compra, cash })
