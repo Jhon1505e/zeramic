@@ -1,8 +1,8 @@
-export default defineEventHandler(async (event) => {
-    const evento = JSON.parse(JSON.stringify(event));
+export default defineEventHandler((event) => {
+
     const proceso = JSON.parse(JSON.stringify(process));
 
-    console.log('proceso', ...proceso);
+    console.log('proceso', proceso);
 
     return {
         ...proceso
