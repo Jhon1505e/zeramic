@@ -28,6 +28,7 @@ export default defineEventHandler(async (event) => {
 
             // HACER SOLICITUD DE ENVIO API DE mipaquete.com
             const data: any = await createSending(compra);
+            console.log('send', data)
             if (data?.mpCode) mpCode = data?.mpCode;
         }
 
@@ -36,8 +37,9 @@ export default defineEventHandler(async (event) => {
     try {
         const email = compra?.email
         const html = formatEmail(compra)
-        await sendEmail({ type: "CONFIRM", email, html });
+        //await sendEmail({ type: "CONFIRM", email, html });
         const data = await updateCompra({ reference, wompi, mpCode })
+
         return data
     } catch (e: any) {
         console.error(e)

@@ -56,7 +56,7 @@ const formatSending = (compra: any) => {
         sender,
         receiver,
         productInformation,
-        paymentType: 102,
+        paymentType: 101,
         valueCollection: compra?.total,
         adminTransactionData: {
             saleValue: 0,
