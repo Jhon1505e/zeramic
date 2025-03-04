@@ -10,7 +10,7 @@ export default function dataCompras() {
     const getCompras = async (query: any) => {
         try {
             await mongo.connect()
-            return await compras.find(query).toArray()
+            return await compras.find(query, { sort: { date: -1 } }).toArray()
         } catch (e) {
             console.error(e)
             return null

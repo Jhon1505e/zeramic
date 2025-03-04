@@ -34,8 +34,8 @@ export default defineEventHandler(async (event) => {
     <p>Equipo de Zeramic</p>`
 
     await sendEmail({
+        type: 'SIGNUP',
         email: body.email,
-        subject: 'Cuenta creada en Zeramic.co',
         html
     })
 

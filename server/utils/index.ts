@@ -22,3 +22,29 @@ export async function comparePassword(password: string, userPassword: string): P
     const valid = await bcrypt.compare(password, userPassword);
     return valid;
 }
+
+export function formatWompi(transaction: any) {
+    const {
+        id,
+        reference,
+        payment_method_type,
+        amount_in_cents,
+        created_at,
+        finalized_at,
+        status,
+        status_message,
+    } = transaction;
+
+    const wompi = {
+        id,
+        reference,
+        payment_method_type,
+        amount_in_cents,
+        created_at,
+        finalized_at,
+        status,
+        status_message,
+    }
+
+    return { wompi, reference, status }
+}

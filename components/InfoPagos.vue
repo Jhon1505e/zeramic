@@ -6,31 +6,35 @@ const props = defineProps({
 const json = ref(false)
 </script>
 <template>
-    <UCard>
+    <UCard :ui="{ background: 'bg-PRP' }">
         <template #header>
-            <h3>Información de la transacción</h3>
+            <h3 class="text-white text-center">Información de la transacción</h3>
         </template>
-        <div class="p-2 overflow-auto">
+        <div class="p-2 overflow-auto text-white font-thin">
             <div v-if="transaction">
-                <p>Estado: {{ transaction?.status }}</p>
-                <p>Referencia: {{ transaction?.reference }}</p>
-                <p>Fecha: {{ transaction?.created_at || transaction?.createdAt }}</p>
-                <p>Finalizado: {{ transaction?.finalized_at || transaction?.finalizedAt }}</p>
-                <p>Id: {{ transaction?.id }}</p>
-                <p>Moneda: {{ transaction?.currency }}</p>
-                <p>Monto: {{ formatMoneda(transaction?.amount_in_cents || transaction?.amountInCents / 100) }}</p>
-                <p>{{ transaction?.status_message }}</p>
-                <p>Medio de pago: {{ transaction?.payment_method_type || transaction?.paymentMethodType }}</p>
+                <p> <b>Estado:</b>  {{ transaction?.status }}</p>
+                <p> <b>Referencia:</b> {{ transaction?.reference }}</p>
+                <p> <b>Fecha:</b> {{ formatFecha(transaction?.created_at || transaction?.createdAt) }} </p>
+                <p> <b>Finalizado:</b> {{ formatFecha(transaction?.finalized_at || transaction?.finalizedAt) }}</p>
+                <p> <b>Id:</b> {{ transaction?.id }}</p>
+                <p> <b>Moneda:</b> {{ transaction?.currency }}</p>
+                <p> <b>Monto:</b> {{ formatMoneda((transaction?.amount_in_cents || transaction?.amountInCents) / 100) }}</p>
+                <p>  {{ transaction?.status_message }}</p>
+                <p> <b>Medio de pago:</b> {{ transaction?.payment_method_type || transaction?.paymentMethodType }}</p>
             </div>
             <div v-else>
                 <div>Información no encontrada</div>
             </div>
-            <div class="text-center p-2">
-                <NuxtLink class="bg-PRP text-white px-6 py-2 rounded-lg" to="/micuenta/compras">Mis Compras</NuxtLink>
-            </div>
-            <hr class="my-4">
-            <UButton class="mt-4" @click="json = !json">JSON</UButton>
-            <pre v-if="json" class="text-xs">{{ transaction }}</pre>
+            
+            <!-- <UButton class="mt-4" @click="json = !json">JSON</UButton>
+            <pre v-if="json" class="text-xs">{{ transaction }}</pre> -->
         </div>
+        <template #footer>
+            <div class="flex justify-center gap-4">
+                <NuxtLink class="bg-white/10 border text-white px-6 py-2 rounded-lg" to="/">Ir Al Inicio</NuxtLink>
+                <NuxtLink class="bg-white/10 border text-white px-6 py-2 rounded-lg" to="/micuenta/compras">Ver Mis Compras</NuxtLink>
+            </div>
+
+        </template>
     </UCard>
 </template>

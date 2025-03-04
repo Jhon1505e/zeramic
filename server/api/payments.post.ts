@@ -1,48 +1,45 @@
 export default defineEventHandler(async (event) => {
     const body = await readBody(event)
+    const { getUser, createSending } = useEnvios();
+    const { getCompras, updateCompra } = dataCompras();
+    const { formatEmail, sendEmail } = useEmail();
 
-    const email = "roman.david@gmail.com"
-    const subject = "Wompi - Evento de prueba"
-    const html = JSON.stringify(body)
+    const { wompi, reference, status } = formatWompi(body.data.transaction);
 
-    const info = {
-        email,
-        subject,
-        html
+    // Traer compra de la coleccion
+    const dataCompra = await getCompras({ reference });
+    const compra = dataCompra?.[0];
+    let mpCode
+
+    if (status === "APPROVED") {
+
+        // verificar si hay saldo suficiente
+        const user: any = await getUser();
+        const cash = user?.cash || 0;
+
+        if (compra?.shippingCost > cash) {
+            // enviar correo de alerta
+            process.env.VERCEL_ENV === 'production' && await sendEmail({
+                type: "ALERT",
+                email: "roman.david@gmail.com",
+                html: formatEmail({ ...compra, cash })
+            });
+        } else {
+
+            // HACER SOLICITUD DE ENVIO API DE mipaquete.com
+            const data: any = await createSending(compra);
+            console.log('send', data)
+            if (data?.mpCode) mpCode = data?.mpCode;
+        }
+
     }
 
-    console.log("info", body.data.transaction)
-
-    // TODO logica q recibe el evento de wompi
-    // HACER SOLICITUD DE ENVIO API DE mipaquete.com
-    // almacenar en coleccion compras
-    // y eviar correo notificacion
-
-    const {
-        id,
-        reference,
-        payment_method_type,
-        amount_in_cents,
-        created_at,
-        finalized_at,
-        status,
-        status_message,
-    } = body.data.transaction;
-
-    const item = {
-        id,
-        payment_method_type,
-        amount_in_cents,
-        created_at,
-        finalized_at,
-        status,
-        status_message,
-    }
-
-    const { updateCompra } = dataCompras();
     try {
+        const email = compra?.email
+        const html = formatEmail(compra)
+        //await sendEmail({ type: "CONFIRM", email, html });
+        const data = await updateCompra({ reference, wompi, mpCode })
 
-        const data = await updateCompra({ reference, wompi: item })
         return data
     } catch (e: any) {
         console.error(e)

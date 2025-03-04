@@ -2,6 +2,7 @@
 interface IEnvio {
     deliveryCompanyImgUrl: string;
     deliveryCompanyName: string;
+    deliveryCompanyId: string;
     routeType: string;
     insurancePercentage: number;
     shippingCost: number;
@@ -15,6 +16,7 @@ export function useEnvio() {
             const {
                 deliveryCompanyImgUrl,
                 deliveryCompanyName,
+                deliveryCompanyId,
                 routeType,
                 insurancePercentage,
                 shippingCost
@@ -22,6 +24,7 @@ export function useEnvio() {
             data = {
                 deliveryCompanyImgUrl,
                 deliveryCompanyName,
+                deliveryCompanyId,
                 routeType,
                 insurancePercentage,
                 shippingCost
@@ -43,6 +46,16 @@ export function useEnvio() {
         return data as any;
     }
 
+    const getTracking = async (mpCode: string) => {
+        const data = await $fetch('/api/envios/tracking', {
+            method: 'GET',
+            params: {
+                mpCode
+            }
+        })
+        return data;
+    }
+
     const cotizarEnvio = async (item: { locationCode: string, declaredValue: number }) => {
         const data = await $fetch('/api/envios/quote', {
             method: 'POST',
@@ -52,9 +65,9 @@ export function useEnvio() {
                 destinyCountryCode: "170",
                 destinyLocationCode: item.locationCode,
                 quantity: 1,
-                width: 20,
-                length: 20,
-                height: 20,
+                width: 10,
+                length: 10,
+                height: 10,
                 weight: 1,
                 declaredValue: item.declaredValue,
             }
@@ -66,6 +79,7 @@ export function useEnvio() {
         envio,
         saveEnvio,
         getLocations,
+        getTracking,
         deleteEnvio,
         cotizarEnvio
     };
