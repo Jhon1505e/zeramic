@@ -24,13 +24,12 @@ export default defineEventHandler(async (event) => {
                 email: "roman.david@gmail.com",
                 html: formatEmail({ ...compra, cash })
             });
-        } else {
-
-            // HACER SOLICITUD DE ENVIO API DE mipaquete.com
-            const data: any = await createSending(compra);
-            console.log('send', data)
-            if (data?.mpCode) mpCode = data?.mpCode;
         }
+
+        // HACER SOLICITUD DE ENVIO API DE mipaquete.com
+        const data: any = await createSending(compra);
+        console.log('send', data)
+        if (data?.mpCode) mpCode = data?.mpCode;
 
     }
 
