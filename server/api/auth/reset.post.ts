@@ -20,11 +20,11 @@ export default defineEventHandler(async (event) => {
         ...userData
     })
 
-    const data: any = await sendEmail({
+    const data = await sendEmail({
         type: 'RESET',
         email: body.email,
         html: `Tu nueva contraseña es: <strong>${newPass}</strong>`
     })
-    const message = data?.error ? data.error.message : 'Nueva contraseña enviada'
+    const message = data?.error?.message || 'Nueva contraseña enviada'
     return { message }
 })

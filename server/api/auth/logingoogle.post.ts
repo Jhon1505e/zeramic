@@ -1,29 +1,39 @@
 import { OAuth2Client } from "google-auth-library"
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
 
-
 export default defineEventHandler(async (event) => {
     const body = await readBody(event)
 
-    if (!body?.token) {
+    if (!body?.credential) {
         throw createError({ statusCode: 400, statusMessage: 'No token' })
     }
 
-    const payload: any = await verify(body.token) // verify token, get google user
-    if (!payload?.email) { // return if no email
+     // verify credential, get google user
+    const payload: any = await verify(body.credential)
+    if (!payload?.email) {
         throw createError({ statusCode: 400, statusMessage: `${payload}` })
     }
 
-    const { findClient, insertClient } = fetchClient()  // get functions MongoDB
+    const { findClient, insertClient } = fetchClient()
+
     const { email, name, picture } = payload
-    const exist = await findClient(email) // find if exist
-    console.log('exist', exist)
-    if (!exist) { // if not exist save in MongoDB
+    const user = await findClient(email) // find if exist
+    
+    if (!user) { // if not exist save in MongoDB
         const data = await insertClient({ email, fullName: name, picture })
-        console.log(data)
-        return { email, name, picture }
+        return data
     }
-    return exist
+
+    return { email, name, picture }
+    
+    //
+    //
+    //
+    //const token = await createToken({ id: user._id, email: user.email })
+    //setCookie(event, "__session", token)
+//
+    //const { password: _, ...userData } = user
+    //return userData
 })
 
 async function verify(token: string) {

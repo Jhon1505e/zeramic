@@ -86,7 +86,7 @@ const color = computed(() =>
 
 
       </div>
-      <div class="flex gap-3 pt-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-4">
         <div v-if="compra?.wompi" class="w-full">
 
           <h3>Información del Pago</h3>

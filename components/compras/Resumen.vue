@@ -32,8 +32,8 @@ const index = paths.indexOf(path);
         <h4>Envio:</h4>
         <h4>{{ formatMoneda(envio?.shippingCost || 0) }}</h4>
       </div>
-      <NuxtLink to="/compras/envio" class="text-xs rounded-lg mt-1 px-2 py-1 text-start bg-PRP/10 text-PRP block">
-        Será enviado por <b>{{ envio?.deliveryCompanyName || "Seleccionar" }}</b>
+      <NuxtLink to="/compras/envio" class="text-xs rounded-lg mt-1 px-2 py-1 text-start bg-PRP/10 text-PRP flex gap-2">
+        Será enviado por <b>{{ envio?.deliveryCompanyName || "Seleccionar" }}</b> <UIcon size="medium" name="i-heroicons-arrow-path" />
       </NuxtLink>
       <div class="flex justify-between text-PRP">
         <h3>Total</h3>

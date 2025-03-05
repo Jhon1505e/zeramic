@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
     console.log('signup', body)
 
     if (!body.email) {
-        return
+        return { message: 'El correo es requerido' }
     }
 
     const { findClient, insertClient } = fetchClient()

@@ -4,20 +4,31 @@ export const useAuth = () => {
     const client = useState<IClient | null>("client", () => null);
     const { start, finish } = useLoadingIndicator();
 
+    const loginGoogle = async ({ credential }: any) => {
+        try {
+            const data = await $fetch<IClient>("/api/auth/logingoogle", {
+                method: "POST",
+                body: { credential },
+            });
+            return data
+        } catch (error) {
+            console.error(error);
+            return error;
+        }
+    }
+
     const login = async (user: any) => {
         start();
         try {
-            const data = await $fetch<IClient>("/api/auth/login", {
+            const { message, data } = await $fetch("/api/auth/login", {
                 method: "POST",
                 body: user,
             });
             finish();
-            return data.email
-                ? client.value = data
-                : data;
+            client.value = data as IClient;
+            return message
         } catch (error) {
             console.error(error);
-            return error;
         }
     }
 
@@ -28,21 +39,23 @@ export const useAuth = () => {
                 body: user,
             });
             finish();
-            return data;
+            return data.message;
         } catch (error) {
             console.error(error);
-            return error;
+            return JSON.stringify(error);
         }
     }
 
     const userLoggedIn = async () => {
-        if (!client.value) {
+        const { cookie } = useRequestHeaders(['cookie'])
+        if (!client.value && cookie) {
             const data = await $fetch<IClient>('/api/auth/token', {
-                headers: useRequestHeaders(['cookie'])
+                headers: { cookie }
             })
-            if (data)
+            console.log('data', data.state);
+            if (data.state === 'active')
                 client.value = data;
-            return data;
+            return;
         }
     }
 
@@ -57,9 +70,8 @@ export const useAuth = () => {
             method: 'POST',
             body: { email },
         });
-        console.log(data);
-        return data;
+        return data.message;
     }
 
-    return { login, signup, logout, resetPassword, userLoggedIn, client };
+    return { loginGoogle, login, signup, logout, resetPassword, userLoggedIn, client };
 }

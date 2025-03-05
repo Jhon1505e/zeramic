@@ -7,5 +7,5 @@ export default defineEventHandler(async (event) => {
         const noPassUser = { ...data, password: undefined }
         return noPassUser
     }
-    return null
+    return { state: null }
 })

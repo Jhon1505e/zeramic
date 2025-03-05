@@ -27,7 +27,7 @@ async function handleSubmit() {
   }
 
   if (reset.value) {
-    const data = await resetPassword(user);
+    const data = await resetPassword(user.email);
     console.log(data);
     message.value = data?.message || 'Mensaje enviado con nueva contraseña';
     Object.assign(user, init);
@@ -55,7 +55,7 @@ async function handleSubmit() {
       <p v-if="message" class="text-center text-xs font-semibold text-amber-600 bg-orange-100 p-1 rounded-sm">{{ message
         }}</p>
 
-      <form @submit.prevent="handleSubmit" class="space-y-2">
+      <!-- <form @submit.prevent="handleSubmit" class="space-y-2">
 
         <div v-if="newUser">
           <label for="fullName" class="block text-sm font-medium text-PRP">Nombre Completo</label>
@@ -96,7 +96,7 @@ async function handleSubmit() {
           class="w-full bg-PRP text-white py-2 rounded-lg hover:bg-PRP/80 focus:ring focus:ring-green-300">
           {{ newUser ? 'Registrarse' : reset ? 'Enviar contraseña' : 'Ingresar' }}
         </button>
-      </form>
+      </form> -->
 
       <p class="text-center text-sm mt-2">
         ¿{{ newUser ? 'Ya tienes una cuenta' : 'Primera vez' }}?

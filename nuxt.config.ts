@@ -25,6 +25,17 @@ export default defineNuxtConfig({
 
   app: {
     pageTransition: { name: "page", mode: "out-in" },
+    head: {
+      charset: "utf-8",
+      viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+      title: "Zeramic Guatapé - Soluciones creativas y funcionales en cerámica 3D",
+      htmlAttrs: {
+        lang: "es",
+      },
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ]
+    }
   },
 
   colorMode: {
