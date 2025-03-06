@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     if (user) {
         event.context.user = user
     }
-    const allowedOrigin = 'http://localhost';
+    const allowedOrigin = process.env.ALLOWED_ORIGIN || '';
     const origin = getHeader(event, 'origin') || '';
     const referer = getHeader(event, 'referer') || '';
 
