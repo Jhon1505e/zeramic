@@ -14,8 +14,10 @@ export default defineEventHandler(async (event) => {
     const origin = getHeader(event, 'origin') || '';
     const referer = getHeader(event, 'referer') || '';
 
+    console.log({ origin, referer, allowedOrigin })
+
     event.context.valid = origin.includes(allowedOrigin) || referer.includes(allowedOrigin)
     //if (!isValid)
-        //return { error: 'No autorizado' }
+    //return { error: 'No autorizado' }
 
 })
