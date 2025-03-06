@@ -15,7 +15,7 @@ const createToken = async (user: User) => {
         },
         'config.tokenSecret',
         {
-            expiresIn: "1m"
+            expiresIn: "1h"
         }
     )
 }

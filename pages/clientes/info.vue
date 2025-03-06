@@ -12,12 +12,10 @@ const modalCompras = ref(false);
 
 const { getDataClients, deleteClient } = useClient();
 const { getCompras } = useCompras();
-const { start, finish, isLoading } = useLoadingIndicator();
+const { isLoading } = useLoadingIndicator();
 
 async function onGetClients() {
-  start();
   clients.value = await getDataClients({ state: "active" });
-  finish();
 }
 
 function viewClient(item) {
@@ -28,9 +26,7 @@ function viewClient(item) {
 async function viewCompras({ email }) {
   compras.value = [];
   modalCompras.value = true
-  start();
   compras.value = await getCompras({ email });
-  finish();
 }
 
 

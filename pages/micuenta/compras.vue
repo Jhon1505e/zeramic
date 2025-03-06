@@ -1,17 +1,23 @@
 <script setup lang="ts">
 const { client } = useAuth();
+const { getCompras } = useCompras();
 const compras = ref();
 
-const { getCompras } = useCompras();
+const data = await getCompras({ email: client.value?.email });
+if (data) {
+  compras.value = data;
+}
 
-compras.value = await getCompras({ email: client.value?.email });
 </script>
+
 <template>
   <div class="md:flex gap-4 max-w-5xl mx-auto p-5">
     <CuentaNavInfo />
-    <div class="w-full space-y-3">
+    <div class="w-full">
       <div class="text-white p-1 text-2xl border-b mt-6 md:mt-0">Mis Compras</div>
-      <CuentaMisCompras v-for="compra in compras" :key="compra.uuid" :compra="compra" />
+      <div class="space-y-3">
+        <CuentaMisCompras v-for="compra in compras" :key="compra.uuid" :compra="compra" />
+      </div>
       <div v-if="!compras?.length" class="h-full flex justify-center items-center">
         <div class="pb-20 text-white text-center">
           <IconsNuevasCompras class="w-32 fill-white mx-auto" />

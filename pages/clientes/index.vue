@@ -7,21 +7,18 @@ const init = {
 const user = reactive({ ...init });
 const newUser = ref(false);
 const reset = ref(false);
-const loading = ref(false);
 const message = ref('');
 
 const { login, signup, resetPassword } = useAuth();
 
 async function handleSubmit() {
   message.value = 'Loading...';
-  loading.value = true;
 
   if (newUser.value) {
     const data = await signup(user);
     console.log(data);
     message.value = data?.message || '';
     newUser.value = false;
-    loading.value = false;
     return;
     
   }
@@ -32,21 +29,18 @@ async function handleSubmit() {
     message.value = data?.message || 'Mensaje enviado con nueva contraseña';
     Object.assign(user, init);
     reset.value = false;
-    loading.value = false;
     return;
   }
 
   const data = await login(user);
   console.log(data);
   message.value = data?.message || '';
-  loading.value = false;
 }
 
 </script>
 
 <template>
   <div class="bg-PRP flex items-center justify-center pt-4 pb-20">
-    <Loading v-if="loading" />
     <div class="bg-white border p-6 rounded-lg shadow-lg w-full max-w-md m-6">
       <IconsLogin class="w-28 fill-PRP mx-auto" />
       <h2 class="text-xl text-PRP font-semibold text-center">
