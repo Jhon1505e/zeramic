@@ -7,8 +7,14 @@ export default defineEventHandler(async (event) => {
 
     const requestHeaders = getRequestHeaders(event);
 
+    const headers = getHeaders(event)
 
-    console.log('requestHeaders', requestHeaders);
+
+    console.log('requestHeaders => ', requestHeaders);
+    
+    console.log('- - - - - - -- - - - - --- - - -');
+    
+    console.log('headers => ', headers);
 
     if (!user) {
         event.context.user = null
