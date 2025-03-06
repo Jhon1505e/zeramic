@@ -5,6 +5,11 @@ export default defineEventHandler(async (event) => {
     const user = await getUserToken(event)
     console.log(user);
 
+    const requestHeaders = getRequestHeaders(event);
+
+
+    console.log('requestHeaders', requestHeaders);
+
     if (!user) {
         event.context.user = null
     }
