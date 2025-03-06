@@ -6,6 +6,9 @@ export default defineEventHandler(async (event) => {
 
     const { wompi, reference, status } = formatWompi(body.data.transaction);
 
+    const clientIP = getRequestHeaders(event)['x-forwarded-for'] || event.node.req.socket.remoteAddress;
+    console.log('clientIP', clientIP)
+
     // Traer compra de la coleccion
     const dataCompra = await getCompras({ reference });
     const compra = dataCompra?.[0];
