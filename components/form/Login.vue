@@ -15,22 +15,16 @@ const user = reactive({
 async function handleSubmit() {
   message.value = 'Loading...';
   if (newUser.value) {
-    const data = await signup(user);
-    console.log(data);
-    message.value = data?.message || '';
+    message.value = await signup(user);
     newUser.value = false;
     return;
   }
   if (reset.value) {
-    const data = await resetPassword(user.email);
-    message.value = data?.message || '';
+    message.value = await resetPassword(user.email);
     reset.value = false;
     return;
   }
-  const data = await login(user);
-  console.log(data);
-  message.value = data?.message || '';
-
+  message.value = await login(user) || '';
 }
 </script>
 <template>

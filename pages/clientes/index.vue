@@ -7,46 +7,40 @@ const init = {
 const user = reactive({ ...init });
 const newUser = ref(false);
 const reset = ref(false);
-const loading = ref(false);
 const message = ref('');
 
 const { login, signup, resetPassword } = useAuth();
 
 async function handleSubmit() {
   message.value = 'Loading...';
-  loading.value = true;
 
   if (newUser.value) {
     const data = await signup(user);
     console.log(data);
     message.value = data?.message || '';
     newUser.value = false;
-    loading.value = false;
     return;
     
   }
 
   if (reset.value) {
-    const data = await resetPassword(user);
+    const data = await resetPassword(user.email);
     console.log(data);
     message.value = data?.message || 'Mensaje enviado con nueva contraseña';
     Object.assign(user, init);
     reset.value = false;
-    loading.value = false;
     return;
   }
 
   const data = await login(user);
   console.log(data);
   message.value = data?.message || '';
-  loading.value = false;
 }
 
 </script>
 
 <template>
   <div class="bg-PRP flex items-center justify-center pt-4 pb-20">
-    <Loading v-if="loading" />
     <div class="bg-white border p-6 rounded-lg shadow-lg w-full max-w-md m-6">
       <IconsLogin class="w-28 fill-PRP mx-auto" />
       <h2 class="text-xl text-PRP font-semibold text-center">
@@ -55,7 +49,7 @@ async function handleSubmit() {
       <p v-if="message" class="text-center text-xs font-semibold text-amber-600 bg-orange-100 p-1 rounded-sm">{{ message
         }}</p>
 
-      <form @submit.prevent="handleSubmit" class="space-y-2">
+      <!-- <form @submit.prevent="handleSubmit" class="space-y-2">
 
         <div v-if="newUser">
           <label for="fullName" class="block text-sm font-medium text-PRP">Nombre Completo</label>
@@ -96,7 +90,7 @@ async function handleSubmit() {
           class="w-full bg-PRP text-white py-2 rounded-lg hover:bg-PRP/80 focus:ring focus:ring-green-300">
           {{ newUser ? 'Registrarse' : reset ? 'Enviar contraseña' : 'Ingresar' }}
         </button>
-      </form>
+      </form> -->
 
       <p class="text-center text-sm mt-2">
         ¿{{ newUser ? 'Ya tienes una cuenta' : 'Primera vez' }}?

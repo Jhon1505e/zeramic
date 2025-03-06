@@ -1,7 +1,6 @@
 import type { IClient } from "~/types/clients";
 
 export function useClient() {
-    const { start, finish } = useLoadingIndicator();
 
     const getDataClients = async (user: any) => {
         const data = await $fetch("/api/clients/getAll", {

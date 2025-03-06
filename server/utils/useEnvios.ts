@@ -6,12 +6,12 @@ const headers = {
     'apikey': MIPAQUETE_API_KEY || ''
 }
 const sender = {
-    name: "Zeramic S.A.S.",
-    surname: "Guatape",
+    name: "Zeramic SAS.",
+    surname: "Vianey Acevedo",
     cellPhone: "3002285505",
     prefix: "+57",
     email: "zeramicguatape@gmail.com",
-    pickupAddress: "Medellin - Antioquia",
+    pickupAddress: "Cra 76A #53-215, Laureles - Estadio",
     nit: "901591630-3",
     nitType: "Nit"
 }
@@ -31,8 +31,8 @@ const formatSending = (compra: any) => {
 
     const productInformation = {
         quantity: 1,
-        width: 10,
-        large: 10,
+        width: 20,
+        large: 20,
         height: 10,
         weight: 1,
         forbiddenProduct: true,
@@ -51,15 +51,16 @@ const formatSending = (compra: any) => {
         deliveryCompany: compra?.deliveryCompanyId,
         description: "Cerámica 3D - Delicado",
         channel: "Tienda Zeramic Guatape",
+        comments: "Cerámica - DELICADO",
         requestPickup: true,
         locate,
         sender,
         receiver,
         productInformation,
-        paymentType: 101,
-        valueCollection: compra?.total,
+        paymentType: 102,
+        valueCollection: compra?.total + compra?.shippingCost,
         adminTransactionData: {
-            saleValue: 0,
+            saleValue: compra?.total,
         }
     }
 

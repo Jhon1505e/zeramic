@@ -21,7 +21,7 @@ const filterProducts = computed(() => {
   <div class="bg-gray-200">
     <div class="bg-PRP w-full">
       <h2
-        class="text-4xl md:text-6xl py-10 md:py-20 w-3/4 mx-auto text-center font-bold text-white"
+        class="text-4xl md:text-6xl py-10 md:py-20 md:w-3/4 mx-auto text-center font-bold text-white"
       >
         ¡ Todo lo que necesitas <br class="hidden md:block"> para decorar tu hogar !
       </h2>

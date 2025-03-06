@@ -8,7 +8,7 @@ const payment = ref();
 const modal = ref(false);
 const route = useRoute();
 
-const amount = computed(() => total.value) // + (envio.value?.shippingCost || 0));
+const amount = computed(() => total.value + (envio.value?.shippingCost || 0));
 const datos = computed(() => ({
   nombre: client.value?.fullName || "",
   email: client.value?.email || "",

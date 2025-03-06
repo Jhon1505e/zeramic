@@ -1,4 +1,4 @@
-import { Resend } from "resend";
+import { Resend, ErrorResponse } from "resend";
 const config = useRuntimeConfig();
 const RESEND_API_KEY = config.resendAPIKey;
 
@@ -54,7 +54,6 @@ export default function useEmail() {
             return data
         } catch (error) {
             console.error(error)
-            return error
         }
     }
 

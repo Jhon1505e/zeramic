@@ -46,8 +46,8 @@ onMounted(() => {
       <NuxtLink :to="item.slug">
         <img :src="item.imagen" class="h-16 aspect-video rounded" alt="" />
       </NuxtLink>
-      <div class="w-full items-center justify-between" :class="{ 'flex': isCompras }">
-        <div class="font-semibold" :class="{ 'w-1/2': isCompras }">
+      <div class="w-full items-center justify-between" :class="{ 'md:flex': isCompras }">
+        <div class="font-semibold" :class="{ 'md:w-1/2': isCompras }">
           {{ item.producto }}
         </div>
         <div class="flex items-center w-full pt-2">

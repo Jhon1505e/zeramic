@@ -1,10 +1,10 @@
 export default defineNuxtRouteMiddleware(async (event) => {
-
-
     const { userLoggedIn, client } = useAuth()
     if (client.value) return
-    const user = await userLoggedIn()
-    console.log("user", user, event.name)
-    if (!user && event.name !== "micuenta")
+    await userLoggedIn()
+    // console.log("vista", event.name)
+    // console.log("client", client.value)
+    const path = event.path
+    if(!client.value && path.startsWith("/micuenta") && event.name !== "micuenta")
         return navigateTo({ name: "micuenta" })
 })

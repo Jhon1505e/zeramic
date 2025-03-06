@@ -1,9 +1,7 @@
 <script setup lang="ts">
 const { client } = useAuth();
-const loading = ref(false);
 
 async function handleLoginSuccess(response: any) {
-  loading.value = true;
   const { credential } = response;
   // hacer fetch al api del servidor nuxt
   // para verificar token con google-auth-library
@@ -16,7 +14,6 @@ async function handleLoginSuccess(response: any) {
     },
   });
   client.value = data as any;
-  loading.value = false;
 }
 
 function handleLoginError() {
@@ -36,7 +33,6 @@ onMounted(async () => {
 
 <template>
   <div class="flex flex-col items-center justify-center max-w-5xl mx-auto pb-10">
-    <Loading v-if="loading" />
     <div v-if="!client">
       <FormLogin />
       <div class="max-w-2xl mx-auto">

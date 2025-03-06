@@ -4,6 +4,7 @@ import type { IClient } from '~/types/clients';
 const client = defineModel<IClient>({ required: true });
 const { saveClient } = useClient()
 const { saveEnvio } = useEnvio();
+const { isLoading } = useLoadingIndicator();
 
 const handleSubmit = () => {
     saveClient(client.value)
@@ -13,7 +14,6 @@ const handleSubmit = () => {
 <template>
     <div class="w-full">
         <form @submit.prevent="handleSubmit">
-            <!--  <pre class="text-xs">{{ client }}</pre> -->
             <div>
                 <div class="grid md:grid-cols-2 gap-3 p-2">
                     <div class="w-full">
@@ -32,7 +32,8 @@ const handleSubmit = () => {
                     <div class="w-full">
                         <label for="phone" class="text-white">Celular:</label>
                         <input v-model="client.phone" required type="number"
-                            class="py-2 w-full px-4 rounded-lg text-gray-700 bg-white mt-2 border" placeholder="Celular" />
+                            class="py-2 w-full px-4 rounded-lg text-gray-700 bg-white mt-2 border"
+                            placeholder="Celular" />
                     </div>
                     <div class="w-full">
                         <label for="docType" class="text-white">Tipo de Documento:</label>
@@ -58,7 +59,8 @@ const handleSubmit = () => {
                 <div class="w-full">
                     <label for="address" class="text-white">Dirección:</label>
                     <input required v-model="client.address" type="text" id="address"
-                        class="w-full py-2 px-4 rounded-lg text-gray-700 bg-white mt-2 border" placeholder="Dirección" />
+                        class="w-full py-2 px-4 rounded-lg text-gray-700 bg-white mt-2 border"
+                        placeholder="Dirección" />
                 </div>
                 <div class="w-full">
                     <label for="infoDirection" class="text-white">Información adicional:</label>
@@ -68,11 +70,8 @@ const handleSubmit = () => {
                 </div>
             </div>
 
-            <div class="flex justify-around gap-5 items-center py-2">
-                <button type="submit" class="border px-6 py-2 mt-4 mr-2 bg-white/10 text-white rounded-lg">
-                    Actualizar Datos
-                </button>
-            </div>
+            <UButton type="submit" block label="Actualizar" :loading="isLoading" trailing icon="i-heroicons-arrow-right"
+                class="border mx-auto px-6 py-2 mt-4 w-1/3 bg-white/10 text-white rounded-lg" />
         </form>
     </div>
 </template>

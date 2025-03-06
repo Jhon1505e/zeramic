@@ -16,5 +16,6 @@ export interface IClient {
     departmentOrStateName?: string;
     locationCode?: string;
     locationName?: string;
+    admin?: boolean;
     state: string;
 }
