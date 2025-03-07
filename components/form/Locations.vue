@@ -70,29 +70,19 @@ const resetLocation = () => {
 onMounted(async () => {
     data.value = await getLocations();
 });
+const ui = { label: { base: 'text-white' } }
 
 </script>
 <template>
     <div class="grid md:grid-cols-2 gap-3 p-2">
-        <div class="w-full">
-            <label for="state" class="text-white">Departamento:</label>
-            <select v-model="department" id="state" required @change="resetLocation"
-                class="w-full py-2.5 px-4 text-gray-700 rounded-lg bg-white mt-2 border">
-                <option value="" selected disabled>Seleccionar</option>
-                <option v-for="state in departments" :value="state">
-                    {{ state.departmentOrStateName }}
-                </option>
-            </select>
-        </div>
-        <div class="w-full">
-            <label for="city" class="text-white">Ciudad:</label>
-            <select v-model="location" id="city" required
-                class="w-full py-2.5 px-4 text-gray-700 rounded-lg bg-white mt-2 border">
-                <option value="" selected disabled>Seleccionar</option>
-                <option v-for="city in filteredLocations" :value="city">
-                    {{ city.locationName }}
-                </option>
-            </select>
-        </div>
+        <UFormGroup :ui="ui" label="Departamento" name="departmentCode">
+            <USelectMenu v-model="department" searchable option-attribute="departmentOrStateName" required
+                @change="resetLocation" :options="departments" placeholder="Departamento" size="lg"
+                icon="i-heroicons-globe-americas" />
+        </UFormGroup>
+        <UFormGroup :ui="ui" label="Ciudad" name="locationCode">
+            <USelectMenu v-model="location" searchable option-attribute="locationName" required
+                :options="filteredLocations" placeholder="Ciudad" size="lg" icon="i-heroicons-map" />
+        </UFormGroup>
     </div>
 </template>

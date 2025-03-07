@@ -1,22 +1,31 @@
 <script setup lang="ts">
-
+const toast = useToast();
+import { z } from 'zod'
+const { start, finish } = useLoadingIndicator();
 const init = {
   email: "",
   subject: "",
   message: "",
 }
 const info = reactive({ ...init });
-const mensaje = ref("");
+
+const schema = z.object({
+  email: z.string().email('Email inválido'),
+  subject: z.string().min(1, 'Requerido'),
+  message: z.string().min(1, 'Requerido'),
+})
 
 const sendMail = async () => {
-  mensaje.value = "Enviando...";
+  start();
   const data = await $fetch('/api/send', {
     method: 'POST',
     body: info,
   });
-  mensaje.value = "Mensaje Enviado";
+  toast.add({ title: "Mensaje enviado", color: "emerald" });
   Object.assign(info, init);
+  finish();
 };
+const ui = { label: { base: 'text-white' } }
 </script>
 <template>
   <div class="bg-PRP">
@@ -26,20 +35,27 @@ const sendMail = async () => {
         <p class="text-white p-4 text-sm">✨ Diseñamos, fabricamos y comercializamos cerámica de alta calidad, inspirada
           en el Zócalo Guatapense. ⭐️ Merchandising empresarial</p>
         <div class="w-full  mx-auto px-10 sm:px-0">
-          <form @submit.prevent="sendMail">
-            <input type="email" v-model="info.email" required
-              class="border border-white px-4 py-2 w-full bg-white/10 rounded-lg mt-4"
-              placeholder="Correo Electronico" />
-            <input type="text" v-model="info.subject" required
-              class="border border-white px-4 py-2 w-full bg-white/10 rounded-lg mt-4" placeholder="Asunto" />
-            <textarea v-model="info.message" type="text" required rows="4"
-              class="border border-white px-4 py-2 w-full bg-white/10 rounded-lg mt-4" placeholder="Mensaje"></textarea>
-            <p>{{ mensaje }}</p>
-            <button type="submit"
-              class="border border-white px-4 py-2 w-full bg-white/30 text-white hover:bg-white/40  rounded-lg mt-4">
+          <UForm :state="info" :schema="schema" @submit.prevent="sendMail" class="space-y-4">
+            
+            <UFormGroup :ui="ui" label="Correo Electronico" name="email">
+              <UInput type="email" v-model="info.email"
+                placeholder="Correo Electronico" size="lg" />
+            </UFormGroup>
+
+            <UFormGroup :ui="ui" label="Asunto" name="subject">
+              <UInput type="text" v-model="info.subject"
+                placeholder="Asunto" size="lg" />
+            </UFormGroup>
+            
+            <UFormGroup :ui="ui" label="Mensaje" name="message">
+              <UTextarea v-model="info.message" type="text"
+                placeholder="Mensaje" size="lg" />
+            </UFormGroup>
+
+            <UButton block trailing icon="i-heroicons-arrow-right" size="lg" type="submit">
               Enviar
-            </button>
-          </form>
+            </UButton>
+          </UForm>
         </div>
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-4 pt-12 max-w-3xl gap-2 px-10 mx-auto text-center text-white">

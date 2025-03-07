@@ -4,6 +4,9 @@ export const useAuth = () => {
     const client = useState<IClient | null>("client", () => null);
     const { start, finish } = useLoadingIndicator();
 
+    const incomplete = computed(
+        () => Object.keys(client.value || {}).length < 12);
+
     const loginGoogle = async ({ credential }: any) => {
         try {
             const data = await $fetch<IClient>("/api/auth/logingoogle", {
@@ -73,5 +76,5 @@ export const useAuth = () => {
         return data.message;
     }
 
-    return { loginGoogle, login, signup, logout, resetPassword, userLoggedIn, client };
+    return { loginGoogle, login, signup, logout, resetPassword, userLoggedIn, client, incomplete };
 }
