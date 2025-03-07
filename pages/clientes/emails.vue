@@ -19,6 +19,7 @@ const items = [
                 <EmailsWelcome v-if="tab === 0" />
                 <EmailsResetPass v-if="tab === 1" />
                 <EmailsConfirm v-if="tab === 3" />
+                <EmailsContact v-if="tab === 4" />
             </EmailsTemplate>
         </div>
     </div>
