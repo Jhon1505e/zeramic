@@ -74,15 +74,15 @@ const ui = { label: { base: 'text-white' } }
 
 </script>
 <template>
-    <div class="grid md:grid-cols-2 gap-3 p-2">
+    <div class="grid md:grid-cols-2 gap-3 px-2">
         <UFormGroup :ui="ui" label="Departamento" name="departmentCode">
             <USelectMenu v-model="department" searchable option-attribute="departmentOrStateName" required
-                @change="resetLocation" :options="departments" placeholder="Departamento" size="lg"
+                @change="resetLocation" :options="departments" placeholder="Departamento" size="xl"
                 icon="i-heroicons-globe-americas" />
         </UFormGroup>
         <UFormGroup :ui="ui" label="Ciudad" name="locationCode">
             <USelectMenu v-model="location" searchable option-attribute="locationName" required
-                :options="filteredLocations" placeholder="Ciudad" size="lg" icon="i-heroicons-map" />
+                :options="filteredLocations" placeholder="Ciudad" size="xl" icon="i-heroicons-map" />
         </UFormGroup>
     </div>
 </template>

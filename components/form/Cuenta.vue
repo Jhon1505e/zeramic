@@ -28,10 +28,17 @@ async function onSubmit() {
     model.value = client
     saveEnvio()
     finish();
-    toast.add({ title: "Datos de cuenta actualizados", color: "emerald" });
+    toast.add({
+        title: "Datos Actualizados",
+        icon: "i-heroicons-check-circle",
+        timeout: 3500,
+        description: "Se actualizaron tus datos de cuenta",
+        color: "emerald",
+    });
 };
 
 const ui = { label: { base: 'text-white' } }
+const size = 'md'
 
 const docTypes = [
     { label: 'Tarjeta Identidad', value: 'TI' },
@@ -49,25 +56,25 @@ const docTypes = [
             <div>
                 <div class="grid md:grid-cols-2 gap-3 p-2">
                     <UFormGroup :ui="ui" label="Nombres y Apellidos" name="fullName">
-                        <UInput size="lg" icon="i-heroicons-user" placeholder="Nombres y Apellidos"
+                        <UInput size="xl" icon="i-heroicons-user" placeholder="Nombres y Apellidos"
                             v-model="client.fullName" />
                     </UFormGroup>
                     <UFormGroup :ui="ui" label="Email" name="email">
-                        <UInput size="lg" icon="i-heroicons-envelope" placeholder="Email" v-model="client.email"
+                        <UInput size="xl" icon="i-heroicons-envelope" placeholder="Email" v-model="client.email"
                             readonly />
                     </UFormGroup>
                 </div>
                 <div class="grid md:grid-cols-3 gap-3 p-2">
                     <UFormGroup :ui="ui" label="Celular" name="phone">
-                        <UInput size="lg" type="text" icon="i-heroicons-phone" placeholder="Celular"
+                        <UInput size="xl" type="text" icon="i-heroicons-phone" placeholder="Celular"
                             v-model.trim="client.phone" />
                     </UFormGroup>
                     <UFormGroup :ui="ui" label="Tipo de Documento" name="docType">
-                        <USelect size="lg" icon="i-heroicons-identification" :options="docTypes"
+                        <USelect size="xl" icon="i-heroicons-identification" :options="docTypes"
                             placeholder="Tipo de Documento" v-model="client.docType" />
                     </UFormGroup>
                     <UFormGroup :ui="ui" label="Número de Documento" name="docId">
-                        <UInput type="number" v-model="client.docId" size="lg" icon="i-heroicons-hashtag"
+                        <UInput type="number" v-model="client.docId" size="xl" icon="i-heroicons-hashtag"
                             placeholder="Número de Documento" />
                     </UFormGroup>
                 </div>
@@ -77,11 +84,11 @@ const docTypes = [
 
             <div class="grid md:grid-cols-2 gap-3 p-2">
                 <UFormGroup :ui="ui" label="Dirección" name="address">
-                    <UInput type="text" v-model="client.address" size="lg" icon="i-heroicons-map-pin"
+                    <UInput type="text" v-model="client.address" size="xl" icon="i-heroicons-map-pin"
                         placeholder="Dirección" />
                 </UFormGroup>
                 <UFormGroup :ui="ui" label="Información adicional" name="infoDirection">
-                    <UInput type="text" v-model="client.infoDirection" size="lg" icon="i-heroicons-information-circle"
+                    <UInput type="text" v-model="client.infoDirection" size="xl" icon="i-heroicons-information-circle"
                         placeholder="Información adicional" />
                 </UFormGroup>
             </div>

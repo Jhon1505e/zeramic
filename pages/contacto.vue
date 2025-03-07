@@ -21,7 +21,10 @@ const sendMail = async () => {
     method: 'POST',
     body: info,
   });
-  toast.add({ title: "Mensaje enviado", color: "emerald" });
+  toast.add({
+    title: "Mensaje enviado", color: "emerald",
+    description: "En breve nos pondremos en contacto contigo",
+  });
   Object.assign(info, init);
   finish();
 };
@@ -30,16 +33,16 @@ const ui = { label: { base: 'text-white' } }
 <template>
   <div class="bg-PRP">
     <div class="max-w-lg mx-auto pb-14">
-      <div class="pt-5  text-center">
+      <div class="pt-5">
         <h2 class="text-4xl font-bold pb-4 text-white">¡Contáctanos!</h2>
         <p class="text-white p-4 text-sm">✨ Diseñamos, fabricamos y comercializamos cerámica de alta calidad, inspirada
           en el Zócalo Guatapense. ⭐️ Merchandising empresarial</p>
         <div class="w-full  mx-auto px-10 sm:px-0">
-          <UForm :state="info" :schema="schema" @submit.prevent="sendMail" class="space-y-4">
+          <UForm :state="info" :schema="schema" @submit.prevent="sendMail" class="space-y-2">
             
             <UFormGroup :ui="ui" label="Correo Electronico" name="email">
               <UInput type="email" v-model="info.email"
-                placeholder="Correo Electronico" size="lg" />
+                placeholder="Correo Electronico" size="xl" />
             </UFormGroup>
 
             <UFormGroup :ui="ui" label="Asunto" name="subject">
@@ -52,9 +55,10 @@ const ui = { label: { base: 'text-white' } }
                 placeholder="Mensaje" size="lg" />
             </UFormGroup>
 
-            <UButton block trailing icon="i-heroicons-arrow-right" size="lg" type="submit">
-              Enviar
-            </UButton>
+            <div class="flex justify-center">
+              <UButton trailing icon="i-heroicons-paper-airplane"
+                leading-icon="i-heroicons-chat-bubble-oval-left-ellipsis" color="indigo" size="lg" type="submit" label="Enviar" />
+            </div>
           </UForm>
         </div>
       </div>

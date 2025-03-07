@@ -19,12 +19,13 @@ const json = ref(false)
                 <!-- <pre class="text-xs text-white">{{ client }}</pre> -->
                 <FormCuenta v-model="client" />
                 
-                <UButton class="mt-4" @click="json = !json">json</UButton>
+                <DevOnly>
+                    <UButton class="mt-4" @click="json = !json">json</UButton>
+                    <div v-if="json" class="fixed z-30 bottom-1 right-1 bg-white/70 text-xs"><pre>{{ client }}</pre></div>
+                </DevOnly>
 
             </div>
         </div>
         <FormLogin v-else @success="onSuccess" class="md:mt-10" />
-
-        <div v-if="json" class="fixed z-30 bottom-1 right-1 bg-white/70 text-xs"><pre>{{ client }}</pre></div>
     </div>
 </template>
