@@ -177,8 +177,8 @@ const formatEmail = ({ type, info }: EmailInfo) => {
                ${address}. ${locationName}, ${departmentOrStateName}
              </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px">
-              <div><strong>Metodo de Pago:</strong> ${wompi.payment_method_type}</div>
-              <div style="text-align: center;"><strong>Estado:</strong> ${wompi.status}</div>
+              <div><strong>Metodo de Pago:</strong> ${wompi?.payment_method_type}</div>
+              <div style="text-align: center;"><strong>Estado:</strong> ${wompi?.status}</div>
               <div><strong>Enviado por:</strong> ${deliveryCompanyName}</div>
               <div style="text-align: center;"><strong>Valor Envio:</strong> ${shippingCost}</div>
             </div>
