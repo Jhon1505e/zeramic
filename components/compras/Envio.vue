@@ -7,14 +7,15 @@ const { total } = useShopping();
 const envios = ref<IEnvio[]>([]);
 
 onMounted(async () => {
-    if (client.value?.locationCode) {
-        const data = {
-            locationCode: client.value.locationCode,
-            declaredValue: total.value,
-        }
-        envios.value = await cotizarEnvio(data);
-        !envio.value && saveEnvio(sortEnvios.value[0]);
+    if (!client.value?.locationCode)
+        return navigateTo("/micuenta");
+    const data = {
+        locationCode: client.value.locationCode,
+        declaredValue: total.value,
     }
+    envios.value = await cotizarEnvio(data);
+    !envio.value && saveEnvio(sortEnvios.value[0]);
+
 });
 
 const sortEnvios = computed(() => {

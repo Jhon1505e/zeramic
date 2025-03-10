@@ -38,7 +38,6 @@ async function onSubmit() {
 };
 
 const ui = { label: { base: 'text-white' } }
-const size = 'md'
 
 const docTypes = [
     { label: 'Tarjeta Identidad', value: 'TI' },

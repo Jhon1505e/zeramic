@@ -20,7 +20,8 @@ export default defineEventHandler(async (event) => {
     const data = await insertClient({
         fullName: body.fullName,
         email: body.email,
-        password: newPass
+        password: newPass,
+        state: 'active'
     })
 
     await sendEmail({

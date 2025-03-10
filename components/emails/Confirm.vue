@@ -67,7 +67,7 @@ const {
 
 <template>
   <div style="padding-inline: 20px; font-size: 0.97rem; padding-block: 4px; color: #696868;">
-    <div style="text-align: right; font-size: 0.9rem">{{ formatFecha(date) }}</div>
+    <div style="text-align: right; font-size: 0.9rem">${date}</div>
     
     <h1 style="font-weight: 600; text-align: center">
       Confirmación de tu pedido
@@ -77,19 +77,19 @@ const {
     </p>
 
      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px">
-       <div><strong>Nombre:</strong> {{ fullName }}</div>
-       <div style="text-align: center;">{{ email }}</div>
+       <div><strong>Nombre:</strong> ${fullName}</div>
+       <div style="text-align: center;">${email}</div>
      </div>
      <div><strong>Dirección:</strong>
-       {{ address }}. {{ locationName }}, {{ departmentOrStateName }}
+       ${address}. ${locationName}, ${departmentOrStateName}
      </div>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px">
-      <div><strong>Metodo de Pago:</strong> {{ wompi.payment_method_type }}</div>
-      <div style="text-align: center;"><strong>Estado:</strong> {{ wompi.status }}</div>
-      <div><strong>Enviado por:</strong> {{ deliveryCompanyName }}</div>
-      <div style="text-align: center;"><strong>Valor Envio:</strong> {{ formatMoneda(shippingCost) }}</div>
+      <div><strong>Metodo de Pago:</strong> ${wompi.payment_method_type}</div>
+      <div style="text-align: center;"><strong>Estado:</strong> ${wompi.status}</div>
+      <div><strong>Enviado por:</strong> ${deliveryCompanyName}</div>
+      <div style="text-align: center;"><strong>Valor Envio:</strong> ${shippingCost}</div>
     </div>
-    <div style="text-align: center;"><small><strong>Id compra:</strong> {{ reference }}</small></div>
+    <div style="text-align: center;"><small><strong>Id compra:</strong> ${reference}</small></div>
 
     <p style="font-weight: bolder; font-size: 20px; margin-top: 10px;">
       Productos:
@@ -103,16 +103,16 @@ const {
         <img :src="prod.imagen" style="width: 120px; border-radius: 10px" alt="Zeramic" />
       </a>
       <div style="width: 100%;">
-        <p style="font-weight: 600">{{ prod.producto }}</p>
-        <p style="font-size: 0.9rem">Cant: {{ prod.cantidad }} x {{ formatMoneda(prod.valor) }}</p>
+        <p style="font-weight: 600">${prod.producto}</p>
+        <p style="font-size: 0.9rem">Cant: ${prod.cantidad} x ${prod.valor}</p>
       </div>
-      <div style="font-weight: 600; text-align: right;">{{ formatMoneda(prod.valor * prod.cantidad) }}</div>
+      <div style="font-weight: 600; text-align: right;">${prod.valor * prod.cantidad}</div>
     </div>
 
     <div style="display: flex; justify-content: end; gap: 6px; padding: 6px; align-items: center">
-      <div style="text-align: end;">Subtotal: {{ formatMoneda(total) }}</div>
-      <div>+ Envio: {{ formatMoneda(shippingCost) }}</div>
-      <div style="font-weight: 600; font-size: 1.1rem;">= Total: {{ formatMoneda(total + shippingCost) }}</div>
+      <div style="text-align: end;">Subtotal: ${total}</div>
+      <div>+ Envio: ${shippingCost}</div>
+      <div style="font-weight: 600; font-size: 1.1rem;">= Total: ${total + shippingCost}</div>
     </div>
     
 

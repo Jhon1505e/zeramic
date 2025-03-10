@@ -136,7 +136,10 @@ export default function useEmail() {
 }
 
 const formatEmail = ({ type, info }: EmailInfo) => {
-    const { fullName, password, email, message, subject } = info
+    const { fullName, password, email, message, subject,
+        address, locationName, departmentOrStateName,
+        deliveryCompanyName, shippingCost, reference, date, wompi
+    } = info
 
     /* Plantillas HTML */
     const TEMPLATES = {
@@ -158,7 +161,31 @@ const formatEmail = ({ type, info }: EmailInfo) => {
 
         ALERT: ``,
 
-        CONFIRM: ``,
+        CONFIRM: `
+            <div style="text-align: right; font-size: 0.9rem">${date}</div>
+            <h1 style="font-weight: 600; text-align: center">
+              Confirmación de tu pedido
+            </h1>
+            <p style="padding: 0 40px 10px 40px; text-align: center;">
+              Gracias por tu compra en Zeramic; aquí tienes el resumen de tu pedido:
+            </p>
+             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px">
+               <div><strong>Nombre:</strong> ${fullName}</div>
+               <div style="text-align: center;">${email}</div>
+             </div>
+             <div><strong>Dirección:</strong>
+               ${address}. ${locationName}, ${departmentOrStateName}
+             </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px">
+              <div><strong>Metodo de Pago:</strong> ${wompi.payment_method_type}</div>
+              <div style="text-align: center;"><strong>Estado:</strong> ${wompi.status}</div>
+              <div><strong>Enviado por:</strong> ${deliveryCompanyName}</div>
+              <div style="text-align: center;"><strong>Valor Envio:</strong> ${shippingCost}</div>
+            </div>
+            <div style="text-align: center;"><small><strong>Id compra:</strong> ${reference}</small></div>
+            <p style="font-weight: bolder; font-size: 20px; margin-top: 10px;">
+              Productos:
+            </p>`,
 
         CONTACT: `
             <h2 style="font-weight: 600; text-align: center;">Mensaje de Contacto</h2>

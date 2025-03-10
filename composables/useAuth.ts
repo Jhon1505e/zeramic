@@ -8,12 +8,14 @@ export const useAuth = () => {
         () => Object.keys(client.value || {}).length < 12);
 
     const loginGoogle = async ({ credential }: any) => {
+        start();
         try {
             const data = await $fetch<IClient>("/api/auth/logingoogle", {
                 method: "POST",
                 body: { credential },
             });
-            return data
+            client.value = data;
+            return finish();
         } catch (error) {
             console.error(error);
             return error;

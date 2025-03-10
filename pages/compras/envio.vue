@@ -1,34 +1,5 @@
 <script setup lang="ts">
 const { client } = useAuth();
-
-async function handleLoginSuccess(response: any) {
-  const { credential } = response;
-  // hacer fetch al api del servidor nuxt
-  // para verificar token con google-auth-library
-  // devuelve el email y nombre
-  // y consultar en la base de datos
-  const data = await $fetch("/api/googlelogin", {
-    method: "POST",
-    body: {
-      token: credential,
-    },
-  });
-  client.value = data as any;
-}
-
-function handleLoginError() {
-  console.error("Login failed");
-}
-
-onMounted(async () => {
-  const auth = localStorage.getItem("auth");
-  if (auth && !client.value) {
-    const store = JSON.parse(auth);
-    const credential = store.token;
-    // handleLoginSuccess({ credential });
-  }
-})
-
 </script>
 
 <template>

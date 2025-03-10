@@ -1,10 +1,5 @@
 <script setup lang="ts">
-const { client, loginGoogle, incomplete } = useAuth();
-
-const onSuccess = async ({ credential }: any) => {
-    const data = await loginGoogle({ credential })
-    console.log(data);
-}
+const { client, incomplete } = useAuth();
 
 const json = ref(false)
 </script>
@@ -26,6 +21,6 @@ const json = ref(false)
 
             </div>
         </div>
-        <FormLogin v-else @success="onSuccess" class="md:mt-10" />
+        <FormLogin v-else class="md:mt-10" />
     </div>
 </template>

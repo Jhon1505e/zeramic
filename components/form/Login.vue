@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const { signup, login, resetPassword } = useAuth();
-const emit = defineEmits(['success', 'error']);
+const { signup, login, resetPassword, loginGoogle } = useAuth();
+const emit = defineEmits(['error']);
 
 const newUser = ref(false);
 const reset = ref(false);
@@ -26,6 +26,11 @@ async function handleSubmit() {
   }
   message.value = await login(user) || '';
 }
+
+async function onSuccess({ credential }: any) {
+  message.value = 'Ingresando...';
+  await loginGoogle({ credential });
+}
 </script>
 <template>
   <div class="bg-white border p-6 rounded-lg shadow-lg w-full max-w-md md:m-0">
@@ -35,8 +40,7 @@ async function handleSubmit() {
     </h2>
 
     <div class="flex justify-center py-2 w-full">
-      <GoogleSignInButton state-cookie-domain="localhost" @success="emit('success', $event)"
-        @error="emit('error', $event)" />
+      <GoogleSignInButton state-cookie-domain="localhost" @success="onSuccess" @error="emit('error', $event)" />
     </div>
 
     <p v-if="message" class="text-center text-xs font-semibold text-amber-600 bg-orange-100 p-1 rounded-sm">
