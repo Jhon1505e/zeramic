@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
         const _id = data?.insertedId
         const token = await createToken({ id: _id, email })
         setCookie(event, "__session", token)
-        return { _id, email, name, picture }
+        return { _id, email, fullName: name, picture }
     }
 
     const token = await createToken({ id: user._id, email: user.email })
