@@ -41,7 +41,7 @@ export default defineEventHandler(async (event) => {
 
     try {
         const email = compra?.email || 'roman.david@gmail.com';
-        const mail = await sendEmail({ type: "CONFIRM", info: { email, ...compra } });
+        const mail = await sendEmail({ type: "CONFIRM", info: { email, ...compra, wompi } });
         const data = await updateCompra({ reference, wompi, mpCode })
         return { statusCode: 200, body: { mail, data, send } }
     } catch (e: any) {
