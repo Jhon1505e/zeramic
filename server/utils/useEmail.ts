@@ -170,19 +170,6 @@ const formatEmail = ({ type, info }: EmailInfo) => {
             <p style="padding-top: 10px;">
                 <a style="padding: 8px 30px; background-color: #590bf9; color: #ffffff; border-radius: 5px; text-decoration: none; font-weight: 500;" href="https://www.zeramic.co/micuenta" target="_blank">Ir al Sitio</a>
             </p>
-        </div>
-        ${items}
-        <div style="display: flex; justify-content: end; gap: 6px; padding: 6px; align-items: center">
-          <div style="text-align: end;">Subtotal: ${total}</div>
-          <div>+ Envio: ${shippingCost}</div>
-          <div style="font-weight: 600; font-size: 1.1rem;">= Total: ${total + shippingCost}</div>
-        </div>
-        <p style="margin-block:10px; text-align: center;">
-          ¡Esperamos que disfrutes tu compra! <br />
-          Puedes seguir el estado de tu pedido aquí:
-        </p>
-        <div style="display: flex; justify-content: center;">
-          <a style="padding: 8px 30px; background-color: #590bf9; color: #ffffff; border-radius: 5px; text-decoration: none; font-weight: 500;" href="https://www.zeramic.co/micuenta/compras" target="_blank">Seguir Pedido</a>
         </div>`,
 
         RESET: ``,
@@ -213,7 +200,20 @@ const formatEmail = ({ type, info }: EmailInfo) => {
             <div style="text-align: center;"><small><strong>Id compra:</strong> ${reference}</small></div>
             <p style="font-weight: bolder; font-size: 20px; margin-top: 10px;">
               Productos:
-            </p>`,
+            </p>
+            ${items}
+            <div style="display: flex; justify-content: end; gap: 6px; padding: 6px; align-items: center">
+              <div style="text-align: end;">Subtotal: ${total}</div>
+              <div>+ Envio: ${shippingCost}</div>
+              <div style="font-weight: 600; font-size: 1.1rem;">= Total: ${total + shippingCost}</div>
+            </div>
+            <p style="margin-block:10px; text-align: center;">
+              ¡Esperamos que disfrutes tu compra! <br />
+              Puedes seguir el estado de tu pedido aquí:
+            </p>
+            <div style="display: flex; justify-content: center;">
+              <a style="padding: 8px 30px; background-color: #590bf9; color: #ffffff; border-radius: 5px; text-decoration: none; font-weight: 500;" href="https://www.zeramic.co/micuenta/compras" target="_blank">Seguir Pedido</a>
+            </div>`,
 
         CONTACT: `
             <h2 style="font-weight: 600; text-align: center;">Mensaje de Contacto</h2>

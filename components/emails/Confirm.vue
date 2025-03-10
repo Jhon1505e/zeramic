@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  const compra = {
+const compra = {
   _id: "67c98370392b92231b06f0aa",
   reference: "0597d45d-52ad-44ee-ab83-d0e09398dca5",
   fullName: "David Roman",
@@ -50,25 +50,25 @@
 };
 
 const {
-    reference,
-    fullName,
-    email,
-    date,
-    address,
-    locationName,
-    deliveryCompanyName,
-    departmentOrStateName,
-    shippingCost,
-    wompi,
-    total,
-    productos
+  reference,
+  fullName,
+  email,
+  date,
+  address,
+  locationName,
+  deliveryCompanyName,
+  departmentOrStateName,
+  shippingCost,
+  wompi,
+  total,
+  productos
 } = compra
 </script>
 
 <template>
   <div style="padding-inline: 20px; font-size: 0.97rem; padding-block: 4px; color: #696868;">
     <div style="text-align: right; font-size: 0.9rem">${date}</div>
-    
+
     <h1 style="font-weight: 600; text-align: center">
       Confirmación de tu pedido
     </h1>
@@ -76,13 +76,13 @@ const {
       Gracias por tu compra en Zeramic; aquí tienes el resumen de tu pedido:
     </p>
 
-     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px">
-       <div><strong>Nombre:</strong> ${fullName}</div>
-       <div style="text-align: center;">${email}</div>
-     </div>
-     <div><strong>Dirección:</strong>
-       ${address}. ${locationName}, ${departmentOrStateName}
-     </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px">
+      <div><strong>Nombre:</strong> ${fullName}</div>
+      <div style="text-align: center;">${email}</div>
+    </div>
+    <div><strong>Dirección:</strong>
+      ${address}. ${locationName}, ${departmentOrStateName}
+    </div>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px">
       <div><strong>Metodo de Pago:</strong> ${wompi.payment_method_type}</div>
       <div style="text-align: center;"><strong>Estado:</strong> ${wompi.status}</div>
@@ -97,9 +97,9 @@ const {
 
     <!-- tabla productos -->
 
-    <div style="display: flex; padding-block: 10px; border-bottom: solid 1px #CCC; align-items: center; justify-content: space-between; gap: 10px;"
-      v-for="prod in productos" :key="prod.uuid">
-      <a :href="'https://www.zeramic.co'+prod.slug" target="_blank" style="width: 180px;">
+    <div
+      style="display: flex; padding-block: 10px; border-bottom: solid 1px #CCC; align-items: center; justify-content: space-between; gap: 10px;">
+      <a :href="'https://www.zeramic.co' + prod.slug" target="_blank" style="width: 180px;">
         <img :src="prod.imagen" style="width: 120px; border-radius: 10px" alt="Zeramic" />
       </a>
       <div style="width: 100%;">
@@ -114,7 +114,6 @@ const {
       <div>+ Envio: ${shippingCost}</div>
       <div style="font-weight: 600; font-size: 1.1rem;">= Total: ${total + shippingCost}</div>
     </div>
-    
 
     <p style="margin-block:10px; text-align: center;">
       ¡Esperamos que disfrutes tu compra! <br />
@@ -122,14 +121,7 @@ const {
     </p>
 
     <div style="display: flex; justify-content: center;">
-      <a style="
-        padding: 8px 30px;
-        background-color: #590bf9;
-        color: #ffffff;
-        border-radius: 5px;
-        text-decoration: none;
-        font-weight: 500;
-      " href="https://www.zeramic.co/micuenta/compras" target="_blank">Seguir Pedido</a>
+      <a style=" padding: 8px 30px; background-color: #590bf9; color: #ffffff; border-radius: 5px; text-decoration: none; font-weight: 500;" href="https://www.zeramic.co/micuenta/compras" target="_blank">Seguir Pedido</a>
     </div>
   </div>
 </template>
