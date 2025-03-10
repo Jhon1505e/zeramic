@@ -33,7 +33,7 @@ const ui = { label: { base: 'text-white' } }
 <template>
   <div class="bg-PRP">
     <div class="max-w-lg mx-auto pb-14">
-      <div class="pt-5">
+      <div class="pt-5 text-center">
         <h2 class="text-4xl font-bold pb-4 text-white">¡Contáctanos!</h2>
         <p class="text-white p-4 text-sm">✨ Diseñamos, fabricamos y comercializamos cerámica de alta calidad, inspirada
           en el Zócalo Guatapense. ⭐️ Merchandising empresarial</p>

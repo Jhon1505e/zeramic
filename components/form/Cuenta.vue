@@ -2,6 +2,8 @@
 import type { IClient } from '~/types/clients';
 import { z } from 'zod'
 
+
+const modal = ref(false);
 const model = defineModel<IClient>({ required: true });
 const { saveClient } = useClient()
 const { saveEnvio } = useEnvio();
@@ -92,8 +94,17 @@ const docTypes = [
                 </UFormGroup>
             </div>
 
-            <UButton type="submit" block label="Actualizar" trailing icon="i-heroicons-arrow-right"
-                class="border mx-auto px-6 py-2 mt-4 w-1/3 bg-white/10 text-white rounded-lg" />
-        </UForm>
-    </div>
-</template>
+            
+            <div class="flex justify-center gap-4 ">
+                <UButton label="Cambiar Contraseña" trailing-icon="i-heroicons-key" class="border  px-6 py-2 mt-4 bg-white/10 text-white rounded-lg" @click="modal = true" /> 
+
+                
+                <UButton type="submit" block label="Actualizar" trailing icon="i-heroicons-arrow-right"
+                class="border  px-6 py-2 mt-4 w-1/3 bg-white/10 text-white rounded-lg" />
+            </div>
+            </UForm>
+        </div>
+    <UModal v-model="modal" :ui="{ background: 'bg-PRP' }" >
+        <CuentaContrasenas />
+    </UModal>
+    </template>
