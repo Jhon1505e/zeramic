@@ -1,10 +1,10 @@
 import { type BadgeColor } from '#ui/types';
 
 export const COLORS: Record<string, BadgeColor> = {
-  "ERROR": "red",
-  "PENDING": "amber",
-  "DECLINED": "pink",
-  "APPROVED": "primary",
+  ERROR: "red",
+  PENDIENTE: "amber",
+  DECLINADO: "pink",
+  APROBADO: "primary",
 }
 
 export function formatMoneda(value: number) {
