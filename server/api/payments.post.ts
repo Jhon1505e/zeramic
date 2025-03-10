@@ -13,6 +13,7 @@ export default defineEventHandler(async (event) => {
     const dataCompra = await getCompras({ reference });
     const compra = dataCompra?.[0];
     let mpCode
+    let send
 
     if (status === "APPROVED") {
 
@@ -29,16 +30,20 @@ export default defineEventHandler(async (event) => {
         }
 
         // HACER SOLICITUD DE ENVIO API DE mipaquete.com
-        const data: any = await createSending(compra);
-        console.log('send', data)
-        if (data?.mpCode) mpCode = data?.mpCode;
-
+        try {
+            const data: any = await createSending(compra);
+            if (data?.mpCode) mpCode = data?.mpCode;
+        } catch ({ data }: any) {
+            console.log('error', data)
+            send = data;
+        }
     }
 
     try {
         const email = compra?.email || 'roman.david@gmail.com';
-        await sendEmail({ type: "CONFIRM", info: { email, ...compra } });
-        return  await updateCompra({ reference, wompi, mpCode })
+        const mail = await sendEmail({ type: "CONFIRM", info: { email, ...compra } });
+        const data = await updateCompra({ reference, wompi, mpCode })
+        return { statusCode: 200, body: { mail, data, send } }
     } catch (e: any) {
         console.error(e)
         return createError({ statusCode: 500, statusMessage: e?.message })
