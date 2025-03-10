@@ -141,17 +141,17 @@ const formatEmail = ({ type, info }: EmailInfo) => {
         deliveryCompanyName, shippingCost, reference, date, wompi
     } = info
 
-    const items = productos.map((item: any) => {
+    const items = productos?.map((item: any) => {
         return `
-        <div style="display: flex; padding-block: 10px; border-bottom: solid 1px #CCC; align-items: center; justify-content: space-between; gap: 10px;">
-        <a :href="'https://www.zeramic.co'+${item.slug}" target="_blank" style="width: 180px;">
-            <img :src="${item.imagen}" style="width: 120px; border-radius: 10px" alt="Zeramic" />
+        <div style="display: flex; padding: 10px; border-bottom: solid 1px #CCC; align-items: center; justify-content: space-between; gap: 10px;">
+        <a href="https://www.zeramic.co${item.slug}" target="_blank" style="width: 180px;">
+            <img src="${item.imagen}" style="width: 120px; border-radius: 10px" alt="Zeramic" />
         </a>
-        <div style="width: 100%;">
-            <p style="font-weight: 600">${item.producto}</p>
-            <p style="font-size: 0.9rem">Cant: ${item.cantidad} x ${item.valor}</p>
+        <div style="width: 100%;padding: 5px">
+            <div style="font-weight: 600">${item.producto}</div>
+            <div style="font-size: 0.9rem">Cant: ${item.cantidad} x ${formatMoneda(item.valor)}</div>
         </div>
-        <div style="font-weight: 600; text-align: right;">${item.valor * item.cantidad}</div>
+        <div style="font-weight: 600; text-align: right;">${formatMoneda(item.valor * item.cantidad)}</div>
         </div>
         `
     }).join('')
@@ -177,43 +177,45 @@ const formatEmail = ({ type, info }: EmailInfo) => {
         ALERT: ``,
 
         CONFIRM: `
+          <div style="padding: 4px 10px; font-size: 0.97rem; color: #696868;">
             <div style="text-align: right; font-size: 0.9rem">${date}</div>
             <h1 style="font-weight: 600; text-align: center">
               Confirmación de tu pedido
             </h1>
-            <p style="padding: 0 40px 10px 40px; text-align: center;">
+            <div style="padding: 0 40px 10px 40px; text-align: center;">
               Gracias por tu compra en Zeramic; aquí tienes el resumen de tu pedido:
-            </p>
-             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px">
-               <div><strong>Nombre:</strong> ${fullName}</div>
+            </div>
+             <div style="display: flex; gap: 10px; justify-content: space-between;">
+               <div style="width: 50%;"><strong>Nombre:</strong> ${fullName}</div>
                <div style="text-align: center;">${email}</div>
              </div>
              <div><strong>Dirección:</strong>
                ${address}. ${locationName}, ${departmentOrStateName}
              </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px">
+            <div style="display: flex; gap: 10px">
               <div><strong>Metodo de Pago:</strong> ${wompi?.payment_method_type}</div>
               <div style="text-align: center;"><strong>Estado:</strong> ${wompi?.status}</div>
               <div><strong>Enviado por:</strong> ${deliveryCompanyName}</div>
-              <div style="text-align: center;"><strong>Valor Envio:</strong> ${shippingCost}</div>
+              <div style="text-align: center;"><strong>Valor Envio:</strong> ${formatMoneda(shippingCost)}</div>
             </div>
-            <div style="text-align: center;"><small><strong>Id compra:</strong> ${reference}</small></div>
             <p style="font-weight: bolder; font-size: 20px; margin-top: 10px;">
               Productos:
             </p>
             ${items}
-            <div style="display: flex; justify-content: end; gap: 6px; padding: 6px; align-items: center">
-              <div style="text-align: end;">Subtotal: ${total}</div>
-              <div>+ Envio: ${shippingCost}</div>
-              <div style="font-weight: 600; font-size: 1.1rem;">= Total: ${total + shippingCost}</div>
+            <div style="display: flex; gap: 6px; padding: 6px;">
+              <div style="width: 33%;">Subtotal: ${formatMoneda(total)}</div>
+              <div style="width: 33%;"> + Envio: ${formatMoneda(shippingCost)}</div>
+              <div style="font-weight: 600; font-size: 1.1rem; width: 33%;"> = Total: ${formatMoneda(total + shippingCost)}</div>
             </div>
             <p style="margin-block:10px; text-align: center;">
               ¡Esperamos que disfrutes tu compra! <br />
               Puedes seguir el estado de tu pedido aquí:
             </p>
-            <div style="display: flex; justify-content: center;">
+            <div style="padding: 10px 20px; text-align: center;">
               <a style="padding: 8px 30px; background-color: #590bf9; color: #ffffff; border-radius: 5px; text-decoration: none; font-weight: 500;" href="https://www.zeramic.co/micuenta/compras" target="_blank">Seguir Pedido</a>
-            </div>`,
+            </div>
+            <div style="text-align: center;"><small><strong>Id compra:</strong> ${reference}</small></div>
+          </div>`,
 
         CONTACT: `
             <h2 style="font-weight: 600; text-align: center;">Mensaje de Contacto</h2>
@@ -229,3 +231,10 @@ const formatEmail = ({ type, info }: EmailInfo) => {
 
     return header + TEMPLATES[type] + footer
 }
+
+export function formatMoneda(value: number) {
+    return new Intl.NumberFormat("es-CO", {
+      style: "currency",
+      currency: "COP",
+    }).format(value);
+  }
