@@ -2,9 +2,9 @@ export default defineEventHandler(async (event) => {
 
     const body = await readBody(event);
 
-    console.log('body', body);
+    console.log('body', JSON.stringify(body));
     
-    const changes = body?.entry?.changes
+    const changes = body?.entry?.changes[0];
     
     console.log('body', JSON.stringify(changes));
 
