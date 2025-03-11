@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
     const messages = value?.messages
     if (!messages || messages.length === 0) {
         // error
-        return createError({ message: 'No messages' });
+        return { statusCode: 200, body: { message: 'ok' } };
     }
     const message = messages.find(() => true);
 
