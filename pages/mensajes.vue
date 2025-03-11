@@ -30,7 +30,7 @@ async function getMessages(from?: string) {
 const msg = reactive({
     to: "",
     text: "",
-    token: "EAA4AEi9zu2kBO39R2t5lfMSW81cTnH95vIWaQlBaDBAiL7RQKP31nJxNbufZBuGuKTf9H4bJ4Vlm394sogTRVjt5B6BgN2L1jrenHIebdN0tCc3qwuxAtX7rlTNq99yg6uBw9WY82ZBJbTVYrLZCUqTpduH7hIijiMBrSy3YRfFJIJwcFPFC96XCVkMZAkXpLCKZCnddInZBKHDbFZAWwFBUq351bUA9GE2FhnPZCVBn",
+    token: "",
 });
 
 const newDate = (timestamp: string) =>
