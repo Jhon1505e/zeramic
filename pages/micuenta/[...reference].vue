@@ -2,7 +2,7 @@
 const { reference } = useRoute().params;
 const { getCompras } = useCompras();
 const data = await getCompras({ reference });
-if (!data?.length) navigateTo("/micuenta/compras");
+if (!data?.length && import.meta.client) navigateTo("/micuenta/compras");
 const modal = ref(false);
 const tracking = ref(false);
 

@@ -20,74 +20,6 @@ export default function useEmail() {
         }
     }
 
-    /* 
-    const formatEmail = (compra: any) => {
-        const {
-            reference,
-            fullName,
-            email,
-            date,
-            address,
-            locationName,
-            deliveryCompanyName,
-            departmentOrStateName,
-            shippingCost,
-            wompi,
-            total,
-            cash,
-            productos
-        } = compra
-
-        let items = '';
-        for (let i = 0; i < productos?.length; i++) {
-            const element = productos[i];
-            items += `
-                <tr>
-                    <td><img style="border-radius: 5px;" src="${element.imagen}" width="120" alt="${element.producto}"></td>
-                    <td>${element.producto}</td>
-                    <td>${element.cantidad}</td>
-                    <td>${element.valor}</td>
-                </tr>`
-        }
-
-        const info = `
-            <p>Fecha: ${date}</p>
-            <p>Referencia: ${reference}</p>
-            <p>Nombre: ${fullName}</p>
-            <p>Email: ${email}</p>
-            <p>Estado: ${wompi?.status || 'NUEVA'}</p>
-            <p>Metodo de pago: ${wompi?.payment_method_type || 'N/A'}</p>
-            <p>Direccion: ${locationName}, ${departmentOrStateName} - ${address}</p>
-            <p>Envio: ${deliveryCompanyName}</p>
-        `
-        const alert = `
-            <p>Alerta!</p>
-            <p>El envio de esta compra se encuentra pendiente</p>
-            <p>Saldo disponible: ${cash}</p>
-            <p>Valor envio: ${shippingCost}</p>
-            ${info}
-            <p>Debe anadir dinero a su cuenta para crear el envio y finalizar la compra</p>
-        `
-        const html = `
-            <h1>Informacion de la compra</h1>
-            ${info}
-            <p>Productos:</p>
-            <table style="width: 100%; border-collapse: collapse; border: 1px solid #ccc;">
-                <tr>
-                    <td colspan="2">Producto</td>
-                    <td>Valor</td>
-                    <td>Total</td>
-                </tr>
-                ${items}
-            </table>
-            <p>Subtotal: ${total}</p>
-            <p>Envio: ${shippingCost}</p>
-            <p>Total: ${total + shippingCost}</p>
-        `
-        return (typeof cash === 'number') ? alert : html
-    }
-
- */
     return { sendEmail }
 }
 
@@ -142,20 +74,23 @@ const formatEmail = ({ type, info }: EmailInfo) => {
         deliveryCompanyName, shippingCost, reference, date, wompi
     } = info
 
-    const items = productos?.map((item: any) => {
-        return `
-        <div style="display: flex; padding: 10px; border-bottom: solid 1px #CCC; align-items: center; justify-content: space-between; gap: 10px;">
-        <a href="https://www.zeramic.co${item.slug}" target="_blank" style="width: 180px;">
-            <img src="${item.imagen}" style="width: 120px; border-radius: 10px" alt="Zeramic" />
-        </a>
-        <div style="width: 100%;padding: 5px">
-            <div style="font-weight: 600">${item.producto}</div>
-            <div style="font-size: 0.9rem">Cant: ${item.cantidad} x ${formatMoneda(item.valor)}</div>
-        </div>
-        <div style="font-weight: 600; text-align: right;">${formatMoneda(item.valor * item.cantidad)}</div>
-        </div>
-        `
-    }).join('')
+    let items = '';
+    if (type === 'CONFIRM') {
+        items = productos?.map((item: any) => {
+            return `
+            <div style="display: flex; padding: 10px; border-bottom: solid 1px #CCC; align-items: center; justify-content: space-between; gap: 10px;">
+            <a href="https://www.zeramic.co${item.slug}" target="_blank" style="width: 180px;">
+                <img src="${item.imagen}" style="width: 120px; border-radius: 10px" alt="Zeramic" />
+            </a>
+            <div style="width: 100%;padding: 5px">
+                <div style="font-weight: 600">${item.producto}</div>
+                <div style="font-size: 0.9rem">Cant: ${item.cantidad} x ${formatMoneda(item.valor)}</div>
+            </div>
+            <div style="font-weight: 600; text-align: right;">${formatMoneda(item.valor * item.cantidad)}</div>
+            </div>
+            `
+        }).join('')
+    }
 
     /* Plantillas HTML */
     const TEMPLATES = {
@@ -240,7 +175,7 @@ const formatEmail = ({ type, info }: EmailInfo) => {
 
 export function formatMoneda(value: number) {
     return new Intl.NumberFormat("es-CO", {
-      style: "currency",
-      currency: "COP",
+        style: "currency",
+        currency: "COP",
     }).format(value);
-  }
+}
