@@ -78,5 +78,29 @@ export const useAuth = () => {
         return data.message;
     }
 
-    return { loginGoogle, login, signup, logout, resetPassword, userLoggedIn, client, incomplete };
+    type IPassword = {
+        password: string;
+        newPassword: string;
+    }
+    const changePassword = async (item: IPassword) => {
+        start();
+        const data = await $fetch('/api/auth/change', {
+            method: 'POST',
+            body: item,
+        });
+        finish();
+        return data.message;
+    }
+
+    return {
+        loginGoogle,
+        login,
+        signup,
+        logout,
+        resetPassword,
+        changePassword,
+        userLoggedIn,
+        client,
+        incomplete
+    };
 }

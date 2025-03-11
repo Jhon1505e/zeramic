@@ -2,50 +2,6 @@ import { Resend } from "resend";
 const config = useRuntimeConfig();
 const RESEND_API_KEY = config.resendAPIKey;
 
-// Plantillas de email - Tipos de correo
-const TIPOS_DE_CORREO = {
-    SIGNUP: 'BIENVENIDO',
-    RESET: 'CAMBIO DE CONTRASEÑA',
-    ALERT: 'ALERTA DE PAGO',
-    CONFIRM: 'CONFIRMACION DE COMPRA',
-    CONTACT: 'CONTACTO',
-}
-
-type Tipo = keyof typeof TIPOS_DE_CORREO;
-type Info = {
-    email: string;
-    [key: string]: any;
-};
-type EmailInfo = {
-    type: Tipo;
-    info: Info;
-}
-
-const header = `
-    <div style="width: 520px; margin: auto; border-radius: 20px; border: 1px solid #ccc;
-        font-size: 1rem; font-family: Arial, Helvetica, sans-serif;">
-        <div style="background: radial-gradient(circle, #5200f8 60%, #4b00e2 100%);
-            padding: 20px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-            <a href="https://www.zeramic.co" target="_blank">
-                <img src="https://www.zeramic.co/img/logo-zeramic.png" alt="Zeramic"
-                    style="width: 220px; margin: auto; display: block" />
-            </a>
-        </div>
-        <div style="background-color: #ffff;">`;
-
-const footer = `
-        </div>
-        <div style="background: radial-gradient( circle, #5200f8 60%, #4b00e2 100%);
-            border-bottom-right-radius: 10px; border-bottom-left-radius: 10px;
-            padding: 10px;">
-            <p style="text-align: end; font-size: 0.9rem; padding: 4px">
-                <a href="https://zeramic.co" target="_blank"
-                    style="font-weight: 600; color: #ffff; text-decoration: underline">zeramic.co
-                </a>
-            </p>
-        </div>
-    </div>`;
-
 export default function useEmail() {
     const { emails } = new Resend(RESEND_API_KEY);
 
@@ -135,8 +91,53 @@ export default function useEmail() {
     return { sendEmail }
 }
 
+// Plantillas de email - Tipos de correo
+const TIPOS_DE_CORREO = {
+    SIGNUP: 'BIENVENIDO',
+    RESET: 'CAMBIO DE CONTRASEÑA',
+    ALERT: 'ALERTA DE PAGO',
+    CONFIRM: 'CONFIRMACION DE COMPRA',
+    CONTACT: 'CONTACTO',
+}
+
+type Tipo = keyof typeof TIPOS_DE_CORREO;
+type Info = {
+    email: string;
+    [key: string]: any;
+};
+type EmailInfo = {
+    type: Tipo;
+    info: Info;
+}
+
+const header = `
+    <div style="width: 520px; margin: auto; border-radius: 20px; border: 1px solid #ccc;
+        font-size: 1rem; font-family: Arial, Helvetica, sans-serif;">
+        <div style="background: radial-gradient(circle, #5200f8 60%, #4b00e2 100%);
+            padding: 20px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <a href="https://www.zeramic.co" target="_blank">
+                <img src="https://www.zeramic.co/img/logo-zeramic.png" alt="Zeramic"
+                    style="width: 220px; margin: auto; display: block" />
+            </a>
+        </div>
+        <div style="background-color: #ffff;">`;
+
+const footer = `
+        </div>
+        <div style="background: radial-gradient( circle, #5200f8 60%, #4b00e2 100%);
+            border-bottom-right-radius: 10px; border-bottom-left-radius: 10px;
+            padding: 10px;">
+            <p style="text-align: end; font-size: 0.9rem; padding: 4px">
+                <a href="https://zeramic.co" target="_blank"
+                    style="font-weight: 600; color: #ffff; text-decoration: underline">zeramic.co
+                </a>
+            </p>
+        </div>
+    </div>`;
+
+
 const formatEmail = ({ type, info }: EmailInfo) => {
-    const { fullName, password, email, message, subject,
+    const { fullName, password, email, message, subject, newPass,
         address, locationName, departmentOrStateName, productos, total,
         deliveryCompanyName, shippingCost, reference, date, wompi
     } = info
@@ -172,7 +173,12 @@ const formatEmail = ({ type, info }: EmailInfo) => {
             </p>
         </div>`,
 
-        RESET: ``,
+        RESET: `<div style="padding: 4px 16px; text-align: center;">
+            <h1 style="font-weight: 600; color: #000;"> Recuperar Contraseña</h1>
+            <p style="font-size: 1rem; color: #696868; margin-block: 5px;">Hemos recibido una solicitud para cambiar <br> la contraseña de tu cuenta. <br> Esta será tu nueva contraseña: </p>
+            <p style="font-size: 2rem; color: #000; margin-block: 5px; font-weight: 500;">${newPass}</p>
+            <a style="display: inline-block; padding: 8px 30px; background-color: #590bf9; color: #ffffff; border-radius: 5px; text-decoration: none; margin-top: 10px; font-weight: 500;" href="https://www.zeramic.co/micuenta" target="_blank">Ingresar</a>
+        </div>`,
 
         ALERT: ``,
 
