@@ -2,6 +2,8 @@ import { saveMessage } from "../utils/messages";
 
 export default defineEventHandler(async (event) => {
     const body = await readBody(event);
+    
+    console.log('body', JSON.stringify(body));
 
     const entry = body?.entry;
     if (!entry) {
