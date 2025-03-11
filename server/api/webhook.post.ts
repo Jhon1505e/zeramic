@@ -1,3 +1,5 @@
+import { saveMessage } from "../utils/messages";
+
 export default defineEventHandler(async (event) => {
 
     const { entry } = await readBody(event);
@@ -7,12 +9,12 @@ export default defineEventHandler(async (event) => {
         return createError({ message: 'No entry' });
     }
 
-    const { changes }= entry.find(() => true);
-    const { value }= changes.find(() => true);
-    
-    // const changes = body?.entry?.changes[0];
-    
-    console.log('body', value?.messages);
+    const { changes } = entry.find(() => true);
+    const { value } = changes.find(() => true);
 
-    return  { statusCode: 200, body: { message: 'ok' } }
+    // const changes = body?.entry?.changes[0];
+    const data = await saveMessage(value?.messages);
+    console.log('body', data);
+
+    return { statusCode: 200, body: { message: 'ok' } }
 })
