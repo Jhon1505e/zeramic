@@ -1,12 +1,18 @@
 export default defineEventHandler(async (event) => {
 
-    const body = await readBody(event);
+    const { entry } = await readBody(event);
 
-    console.log('body', JSON.stringify(body));
+    if (!entry) {
+        // error
+        return createError({ message: 'No entry' });
+    }
+
+    const { changes }= entry.find(() => true);
+    const { value }= changes.find(() => true);
     
-    const changes = body?.entry?.changes[0];
+    // const changes = body?.entry?.changes[0];
     
-    console.log('body', JSON.stringify(changes));
+    console.log('body', value?.messages);
 
     return  { statusCode: 200, body: { message: 'ok' } }
 })
