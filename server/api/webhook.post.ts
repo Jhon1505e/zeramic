@@ -28,7 +28,8 @@ export default defineEventHandler(async (event) => {
     }
     const message = messages.find(() => true);
 
-    // const data = await saveMessage(message);
+    const data = await saveMessage(message);
+    console.log('data', data);
     console.log('message', message);
 
     return { statusCode: 200, body: { message: 'ok' } }

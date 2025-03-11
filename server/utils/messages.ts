@@ -13,11 +13,12 @@ const saveMessage = async (message: any) => {
     }
 }
 
-const getMessages = async (item) => {
+const getMessages = async (from?: string) => {
     try {
-        const data = await db.collection('messages')
-            .find({from: null}).toArray()
-        return data
+        const messages = db.collection('messages')
+        return from
+            ? await messages.find({ from }).toArray()
+            : await messages.find().toArray()
     } catch (error) {
         console.error(error)
     }

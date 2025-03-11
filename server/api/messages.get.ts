@@ -1,7 +1,8 @@
 import { getMessages } from "../utils/messages";
 export default defineEventHandler(async (event) => {
-    
+
     const query = getQuery(event)
-    const data = await getMessages(query)
+    const from = query?.from as string | undefined
+    const data = await getMessages(from)
     return data
 });
