@@ -18,22 +18,31 @@ const channel = client.channel(
   }
 )
 
+const presenceState = ref();
+const newPresences = ref();
+const leftPresences = ref();
+const status = ref()
+
 channel.on('presence', { event: 'sync' }, () => {
   console.log('Online users: ', channel.presenceState())
+  presenceState.value = channel.presenceState()
 })
 
 channel.on('presence', { event: 'join' }, ({ newPresences }) => {
   console.log('New users have joined: ', newPresences)
+  newPresences.value = newPresences
 })
 
 channel.on('presence', { event: 'leave' }, ({ leftPresences }) => {
   console.log('Users have left: ', leftPresences)
+  leftPresences.value = leftPresences
 })
 
 channel.subscribe(async (status) => {
   if (status === 'SUBSCRIBED') {
     const status = await channel.track({ 'user_id': 1 })
     console.log(status)
+    status.value = status
   }
 })
   
@@ -41,7 +50,17 @@ channel.subscribe(async (status) => {
 
 <template>
     <div>
-        
-        
+        <pre>
+          {{ presenceState }}
+        </pre>
+      <pre>
+          {{ newPresences }}
+        </pre>
+      <pre>
+          {{ leftPresences }}
+        </pre>
+      <pre>
+          {{ status }}
+        </pre>
     </div>
 </template>
