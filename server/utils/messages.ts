@@ -18,7 +18,15 @@ const getMessages = async (from?: string) => {
         const messages = db.collection('messages')
         return from
             ? await messages.find({ from }).toArray()
-            : await messages.find().toArray()
+            : await messages.aggregate([{
+                $group: {
+                    _id: '$from',
+                    document: { $first: '$$ROOT' }
+                }
+            },
+            {
+                $replaceRoot: { newRoot: '$document' }
+            }]).toArray()
     } catch (error) {
         console.error(error)
     }
