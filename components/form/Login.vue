@@ -16,8 +16,8 @@ const user = reactive({
 });
 
 const schema = z.object({
-    fullName: z.string().min(1, 'Requerido'),
-    email: z.string().email('Email inválido'),
+  fullName: z.string().min(1, 'Requerido'),
+  email: z.string().email('Email inválido'),
 });
 
 const ui = { label: { base: 'text-PRP' } }
@@ -57,20 +57,22 @@ async function onSuccess({ credential }: any) {
       {{ message }}
     </p>
 
-    <UForm :schema="schema" @submit.prevent="handleSubmit" class="space-y-2">
+    <UForm :schema="schema" :state="user" @submit.prevent="handleSubmit" class="space-y-2">
 
       <div v-if="newUser">
         <UFormGroup :ui="ui" label="Nombre Completo" name="fullName">
-          <UInput v-model="user.fullName" size="lg" placeholder="Ingrese su nombre" color="violet" variant="outline" icon="i-heroicons-user"  />
+          <UInput v-model="user.fullName" size="lg" placeholder="Ingrese su nombre" color="violet" variant="outline"
+            icon="i-heroicons-user" />
         </UFormGroup>
 
       </div>
 
       <div>
         <UFormGroup :ui="ui" label="Correo Electrónico" name="email">
-          <UInput v-model="user.email" size="lg" placeholder="Ingrese su correo" color="violet" variant="outline" icon="i-heroicons-at-symbol"  />
+          <UInput v-model="user.email" size="lg" placeholder="Ingrese su correo" color="violet" variant="outline"
+            icon="i-heroicons-at-symbol" />
         </UFormGroup>
-        
+
         <div v-if="newUser" class="text-sm p-1 pt-2 flex w-full text-end justify-end">
           <input type="checkbox" required id="checkbox" class="mr-2" />
           <label for="checkbox" class="cursor-pointer">
@@ -80,13 +82,33 @@ async function onSuccess({ credential }: any) {
       </div>
 
       <div v-if="!newUser">
-        
-        <label for="password" class="block text-sm font-medium text-PRP">Contraseña</label>
+
+        <UFormGroup :ui="ui" label="Contraseña" name="password">
+          <UInput 
+            v-model="user.password" size="lg"
+            :placeholder="reset ? '(Crear nueva)' : 'Ingrese su contraseña'"
+            color="violet" :disabled="reset"
+            :type="viewPass ? 'text' : 'password'"
+            :icon="reset ? 'i-heroicons-envelope' : 'i-heroicons-lock-closed'"
+            variant="outline" :ui="{ icon: { trailing: { pointer: '' } } }">
+            <template #trailing>
+              <UButton color="gray" variant="link"
+                :icon="viewPass ? 'i-heroicons-eye' : 'i-heroicons-eye-slash'"
+                @click="viewPass = !viewPass" />
+            </template>
+          </UInput>
+        </UFormGroup>
+        <div class="text-sm p-1 pt-2 w-full text-end flex justify-end">
+          <UCheckbox v-model="reset" @change="user.password = ''" label="Si olvidó su contraseña" />
+        </div>
+
+
+        <!-- <label for="password" class="block text-sm font-medium text-PRP">Contraseña</label>
         <div v-if="!reset" class="relative">
-          <input id="password" :type="viewPass ? 'text' : 'password'" v-model="user.password"
+          <UInput name="password" :type="viewPass ? 'text' : 'password'" v-model="user.password"
             class="w-full pr-3  py-2 border border-PRP rounded-lg bg-white pl-11 mt-1 focus:outline-none focus:ring focus:ring-green-300"
             placeholder="Ingresa la contraseña" required />
-            <UIcon name="i-heroicons-lock-closed" class="absolute left-4 top-4 w-5 h-5 text-PRP"  />
+          <UIcon name="i-heroicons-lock-closed" class="absolute left-4 top-4 w-5 h-5 text-PRP" />
           <UButton icon="i-heroicons-eye" variant="soft" v-if="!viewPass" color="indigo" @click="viewPass = !viewPass"
             class="absolute right-1 bottom-1" />
           <UButton icon="i-heroicons-eye-slash" variant="soft" v-else color="indigo" @click="viewPass = !viewPass"
@@ -99,13 +121,12 @@ async function onSuccess({ credential }: any) {
           <label for="checkbox" class="cursor-pointer">
             Si olvidó su contraseña
           </label>
-        </div>
+        </div> -->
       </div>
 
       <UButton type="submit"
         class="w-full bg-PRP text-white  py-2 rounded-lg hover:bg-PRP/80 focus:ring focus:ring-green-300">
         <p class="text-center  w-full">
-
           {{ newUser ? 'Registrarse' : reset ? 'Enviar contraseña' : 'Ingresar' }}
         </p>
       </UButton>
