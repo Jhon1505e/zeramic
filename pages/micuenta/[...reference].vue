@@ -38,65 +38,23 @@ const color = computed(() => COLORS[compra.value?.wompi?.status] || "cyan");
       <div
         class="md:flex justify-center items-center gap-5 bg-white/10 py-5 rounded-xl mx-auto px-6 md:px-0 w-4/5 md:w-2/3"
       >
+      <div class="mt-4 md:mt-0">
+        <NuxtLink
+          to="/micuenta/compras"
+          class="bg-white/20 flex gap-4 py-2.5 font-bold px-4 rounded-xl border text-xl"
+        >
+          <IconsArrow class="w-2" /> Volver a mis compras
+        </NuxtLink>
+      </div>
         <button
           class="text-xl bg-white/20 mx-auto md:mx-0 flex gap-3 py-2 px-6 rounded-xl border font-bold"
           @click="tracking = true"
         >
           <IconsCar class="w-8 fill-white" />Seguimiento del envio
         </button>
-        <div class="mt-4 md:mt-0">
-          <NuxtLink
-            to="/micuenta/compras"
-            class="bg-white/20 flex gap-2 py-2.5 font-bold px-4 rounded-xl border text-xl"
-          >
-            <IconsBag class="w-5 fill-white" /> Volver a mis compras
-          </NuxtLink>
-        </div>
       </div>
 
-      <div class="mt-4">
-        <p class="text-2xl mt-6 mb-4 font-semibold">Resumen de la compra</p>
-
-        <div class="border rounded-xl">
-          <div class="flex justify-around bg-white/10 py-3">
-            <div></div>
-            <b>Producto</b>
-            <b class="hidden sm:block">Cantidad</b>
-            <b class="hidden sm:block">Valor</b>
-            <b>Total</b>
-          </div>
-          <div
-            class="flex gap-2 w-full p-2"
-            v-for="item in compra?.productos"
-            :key="item.id"
-          >
-            <NuxtLink>
-              <img
-                :src="item.imagen"
-                class="h-16 aspect-video rounded"
-                alt=""
-              />
-            </NuxtLink>
-            <div class="w-full items-center flex justify-around">
-              <b>
-                {{ item.producto }} <br />
-                <p class="sm:hidden font-thin">{{ item.cantidad }} unidades</p>
-              </b>
-              <p class="font-medium text-sm hidden sm:block">
-                {{ item.cantidad }}
-              </p>
-
-              <p class="font-medium text-sm hidden sm:block">
-                {{ formatMoneda(item.valor) }}
-              </p>
-
-              <p class="font-medium text-sm">
-                {{ formatMoneda(item.valor * item.cantidad) }}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      
       <div class="w-full mt-8 md:flex gap-3">
         <div class="md:w-3/5 bg-white/10 rounded-xl px-5 py-2 text-white">
           <p class="text-2xl text-center font-semibold">
@@ -141,6 +99,52 @@ const color = computed(() => COLORS[compra.value?.wompi?.status] || "cyan");
               <b> Total: </b
               >{{ formatMoneda(compra?.total + compra?.shippingCost) }}
             </p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4">
+        <p class="text-2xl mt-6 mb-4 font-semibold">Resumen de la compra</p>
+
+        <div class="border rounded-xl">
+          <div class="flex text-center bg-white/10 py-3">
+            <div class="w-28 "></div>
+            <div class="w-full  flex text-center justify-around md:justify-center">
+
+              <b class="md:w-2/5">Producto</b>
+            <b class="hidden sm:block w-1/5">Cantidad</b>
+            <b class="hidden sm:block w-1/5">Valor</b>
+            <b class="md:w-1/5">Total</b>
+            </div>
+          </div>
+          <div
+            class="flex gap-2 w-full p-2"
+            v-for="item in compra?.productos"
+            :key="item.id"
+          >
+            <NuxtLink >
+              <img
+                :src="item.imagen"
+                class="h-16 aspect-video rounded"
+                alt=""
+              />
+            </NuxtLink>
+            <div class="w-full flex md:text-center items-center  justify-between md:justify-center px-4 md:px-0">
+              <b class="md:w-2/5">
+                {{ item.producto }} <br />
+                <p class="sm:hidden font-thin">{{ item.cantidad }} unidades</p>
+              </b>
+              <p class="font-medium text-sm hidden sm:block w-1/5">
+                {{ item.cantidad }}
+              </p>
+
+              <p class="font-medium text-sm hidden sm:block w-1/5">
+                {{ formatMoneda(item.valor) }}
+              </p>
+
+              <p class="font-medium  text-sm md:w-1/5">
+                {{ formatMoneda(item.valor * item.cantidad) }}
+              </p>
+            </div>
           </div>
         </div>
       </div>
