@@ -35,6 +35,13 @@ export function formatWompi(transaction: any) {
         status_message,
     } = transaction;
 
+    const estado ={
+        PENDING: 'PENDIENTE',
+        APPROVED: 'APROBADO',
+        DECLINED: 'DECLINADO',
+        ERROR: 'ERROR',
+    }
+
     const wompi = {
         id,
         reference,
@@ -42,7 +49,7 @@ export function formatWompi(transaction: any) {
         amount_in_cents,
         created_at,
         finalized_at,
-        status,
+        status: estado[status as keyof typeof estado] || 'NUEVA',
         status_message,
     }
 

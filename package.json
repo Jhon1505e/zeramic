@@ -16,6 +16,7 @@
     "@nuxtjs/sitemap": "^7.2.4",
     "@storyblok/nuxt": "^6.0.4",
     "bcryptjs": "^2.4.3",
+    "@supabase/realtime-js": "2.11.2",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "6.6",
     "nuxt": "^3.10.1",
@@ -23,7 +24,8 @@
     "nuxt-vue3-google-signin": "^0.0.11",
     "resend": "^4.1.2",
     "vue": "^3.4.15",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.11.3",

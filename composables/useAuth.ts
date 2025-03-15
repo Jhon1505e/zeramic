@@ -4,13 +4,18 @@ export const useAuth = () => {
     const client = useState<IClient | null>("client", () => null);
     const { start, finish } = useLoadingIndicator();
 
+    const incomplete = computed(
+        () => Object.keys(client.value || {}).length < 12);
+
     const loginGoogle = async ({ credential }: any) => {
+        start();
         try {
             const data = await $fetch<IClient>("/api/auth/logingoogle", {
                 method: "POST",
                 body: { credential },
             });
-            return data
+            client.value = data;
+            return finish();
         } catch (error) {
             console.error(error);
             return error;
@@ -73,5 +78,29 @@ export const useAuth = () => {
         return data.message;
     }
 
-    return { loginGoogle, login, signup, logout, resetPassword, userLoggedIn, client };
+    type IPassword = {
+        password: string;
+        newPassword: string;
+    }
+    const changePassword = async (item: IPassword) => {
+        start();
+        const data = await $fetch('/api/auth/change', {
+            method: 'POST',
+            body: item,
+        });
+        finish();
+        return data.message;
+    }
+
+    return {
+        loginGoogle,
+        login,
+        signup,
+        logout,
+        resetPassword,
+        changePassword,
+        userLoggedIn,
+        client,
+        incomplete
+    };
 }

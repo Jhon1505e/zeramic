@@ -1,7 +1,6 @@
 export default defineEventHandler(async (event) => {
 
     const body = await readBody(event)
-    console.log('signup', body)
 
     if (!body.email) {
         return { message: 'El correo es requerido' }
@@ -15,28 +14,19 @@ export default defineEventHandler(async (event) => {
         return { message: 'El correo ya se encuentra registrado' }
     }
 
-    const newPass = generatePassword()
-    const password = await hashPassword(newPass)
+    const password = generatePassword()
+    const newPass = await hashPassword(password)
 
     const data = await insertClient({
         fullName: body.fullName,
         email: body.email,
-        password
+        password: newPass,
+        state: 'active'
     })
-
-    const html = `<h1>Bienvenido a Zeramic</h1>
-    <p>Hola, ${body.fullName}</p>
-    <p>Te damos la bienvenida a la comunidad de Zeramic</p>
-    <p>Tu contraseña provisional es: <strong>${newPass}</strong></p>
-    <p>Por favor, cambia tu contraseña en tu primer inicio de sesión</p>
-
-    <p>Saludos</p>
-    <p>Equipo de Zeramic</p>`
 
     await sendEmail({
         type: 'SIGNUP',
-        email: body.email,
-        html
+        info: { fullName: body.fullName, email: body.email, password }
     })
 
     return { message: 'Usuario registrado, revisa tu correo para continuar' }

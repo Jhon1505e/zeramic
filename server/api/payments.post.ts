@@ -2,7 +2,7 @@ export default defineEventHandler(async (event) => {
     const body = await readBody(event)
     const { getUser, createSending } = useEnvios();
     const { getCompras, updateCompra } = dataCompras();
-    const { formatEmail, sendEmail } = useEmail();
+    const { sendEmail } = useEmail();
 
     const { wompi, reference, status } = formatWompi(body.data.transaction);
 
@@ -13,6 +13,7 @@ export default defineEventHandler(async (event) => {
     const dataCompra = await getCompras({ reference });
     const compra = dataCompra?.[0];
     let mpCode
+    let send
 
     if (status === "APPROVED") {
 
@@ -24,25 +25,25 @@ export default defineEventHandler(async (event) => {
             // enviar correo de alerta
             process.env.VERCEL_ENV === 'production' && await sendEmail({
                 type: "ALERT",
-                email: "roman.david@gmail.com",
-                html: formatEmail({ ...compra, cash })
+                info: { email: 'roman.david@gmail.com', ...compra },
             });
         }
 
         // HACER SOLICITUD DE ENVIO API DE mipaquete.com
-        const data: any = await createSending(compra);
-        console.log('send', data)
-        if (data?.mpCode) mpCode = data?.mpCode;
-
+        try {
+            const data: any = await createSending(compra);
+            if (data?.mpCode) mpCode = data?.mpCode;
+        } catch ({ data }: any) {
+            console.log('error', data)
+            send = data;
+        }
     }
 
     try {
-        const email = compra?.email
-        const html = formatEmail(compra)
-        await sendEmail({ type: "CONFIRM", email, html });
+        const email = compra?.email || 'roman.david@gmail.com';
+        const mail = await sendEmail({ type: "CONFIRM", info: { email, ...compra, wompi } });
         const data = await updateCompra({ reference, wompi, mpCode })
-
-        return data
+        return { statusCode: 200, body: { mail, data, send } }
     } catch (e: any) {
         console.error(e)
         return createError({ statusCode: 500, statusMessage: e?.message })

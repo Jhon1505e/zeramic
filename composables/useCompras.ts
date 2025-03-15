@@ -8,6 +8,7 @@ export function useCompras() {
             params
         })
         finish();
+        console.log(data)
         return data
     }
 
