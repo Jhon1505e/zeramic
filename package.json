@@ -16,7 +16,6 @@
     "@nuxtjs/sitemap": "^7.2.4",
     "@storyblok/nuxt": "^6.0.4",
     "bcryptjs": "^2.4.3",
-    "@supabase/realtime-js": "2.11.2",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "6.6",
     "nuxt": "^3.10.1",
