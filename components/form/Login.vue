@@ -15,9 +15,12 @@ const user = reactive({
   password: "",
 });
 
-const schema = z.object({
-  fullName: z.string().min(1, 'Requerido'),
-  email: z.string().email('Email inválido'),
+const fullName = z.string().min(1, 'Requerido')
+const email = z.string().email('Email inválido')
+const schema = computed(() => {
+  if(newUser.value)
+    return z.object({ fullName, email });
+  return z.object({ email })
 });
 
 const ui = { label: { base: 'text-PRP' } }
