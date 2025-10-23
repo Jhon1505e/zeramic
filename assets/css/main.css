@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "@nuxt/ui";
 
 h1 {
   @apply text-3xl font-semibold pt-3 pb-1;
@@ -29,4 +28,9 @@ b {
 .page-enter-from,
 .page-leave-to {
   @apply transform transition-all opacity-0;
+}
+
+@theme static {
+  --color-PRP: #5200f8;
+  --color-YLW: #ffe600;
 }

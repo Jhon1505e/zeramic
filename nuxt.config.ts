@@ -20,7 +20,6 @@ export default defineNuxtConfig({
     "@nuxtjs/robots",
     "nuxt-vue3-google-signin",
     "@nuxt/ui",
-    "@nuxtjs/tailwindcss",
   ],
 
   app: {
@@ -52,10 +51,7 @@ export default defineNuxtConfig({
     id: process.env.NUXT_PUBLIC_GTAG_ID,
   },
 
-  tailwindcss: {
-    configPath: "./tailwind.config.js",
-    cssPath: "./assets/css/main.css",
-  },
+  css: ["~/assets/css/main.css"],
 
   storyblok: {
     accessToken: process.env.STORYBLOK_TOKEN,
