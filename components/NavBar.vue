@@ -36,7 +36,7 @@
             </div>
           </div>
 
-          <div class="lg:hidden flex pr-6">
+          <div class="hidden flex pr-6">
             <button @click="modal = true">
               <IconsMenu class="w-9 stroke-white" />
             </button>
