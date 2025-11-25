@@ -64,7 +64,7 @@ async function onSuccess({ credential }: any) {
 
       <div v-if="newUser">
         <UFormField :ui="ui" label="Nombre Completo" name="fullName">
-          <UInput v-model="user.fullName" size="lg" placeholder="Ingrese su nombre" color="violet" variant="outline"
+          <UInput v-model="user.fullName" class="w-full" size="lg" placeholder="Ingrese su nombre" color="violet" variant="outline"
             icon="i-heroicons-user" />
         </UFormField>
 
@@ -87,7 +87,7 @@ async function onSuccess({ credential }: any) {
       <div v-if="!newUser">
 
         <UFormField :ui="ui" label="Contraseña" name="password">
-          <UInput 
+          <UInput class="w-full"
             v-model="user.password" size="lg"
             :placeholder="reset ? '(Crear nueva)' : 'Ingrese su contraseña'"
             color="violet" :disabled="reset"
