@@ -63,18 +63,18 @@ async function onSuccess({ credential }: any) {
     <UForm :schema="schema" :state="user" @submit.prevent="handleSubmit" class="space-y-2">
 
       <div v-if="newUser">
-        <UFormGroup :ui="ui" label="Nombre Completo" name="fullName">
+        <UFormField :ui="ui" label="Nombre Completo" name="fullName">
           <UInput v-model="user.fullName" size="lg" placeholder="Ingrese su nombre" color="violet" variant="outline"
             icon="i-heroicons-user" />
-        </UFormGroup>
+        </UFormField>
 
       </div>
 
       <div>
-        <UFormGroup :ui="ui" label="Correo Electrónico" name="email">
+        <UFormField :ui="ui" label="Correo Electrónico" name="email">
           <UInput v-model="user.email" size="lg" placeholder="Ingrese su correo" color="violet" variant="outline"
             icon="i-heroicons-at-symbol" />
-        </UFormGroup>
+        </UFormField>
 
         <div v-if="newUser" class="text-sm p-1 pt-2 flex w-full text-end justify-end">
           <input type="checkbox" required id="checkbox" class="mr-2" />
@@ -86,7 +86,7 @@ async function onSuccess({ credential }: any) {
 
       <div v-if="!newUser">
 
-        <UFormGroup :ui="ui" label="Contraseña" name="password">
+        <UFormField :ui="ui" label="Contraseña" name="password">
           <UInput 
             v-model="user.password" size="lg"
             :placeholder="reset ? '(Crear nueva)' : 'Ingrese su contraseña'"
@@ -100,7 +100,7 @@ async function onSuccess({ credential }: any) {
                 @click="viewPass = !viewPass" />
             </template>
           </UInput>
-        </UFormGroup>
+        </UFormField>
         <div class="text-sm p-1 pt-2 w-full text-end flex justify-end">
           <UCheckbox v-model="reset" @change="user.password = ''" label="Si olvidó su contraseña" />
         </div>
