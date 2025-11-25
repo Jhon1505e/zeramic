@@ -36,7 +36,7 @@
             </div>
           </div>
 
-          <div class="hidden flex pr-6">
+          <div class="lg:hidden flex pr-6">
             <button @click="modal = true">
               <IconsMenu class="w-9 stroke-white" />
             </button>
@@ -53,6 +53,6 @@
 const modal = ref(false);
 const route = useRoute();
 const index = computed(() => route.name?.toString().startsWith("index"));
-const isCompras = computed(() => route.name?.toString().startsWith("compras"));
+const isCompras = computed(() => true); // route.name?.toString().startsWith("compras"));
 const { open, cart } = useShopping();
 </script>
