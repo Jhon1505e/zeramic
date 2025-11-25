@@ -6,7 +6,7 @@ const closeSession = () => {
 }
 </script>
 <template>
-    <div class="bg-black/10 text-white rounded-xl border h-full w-full md:w-1/3">
+    <div class="bg-black/10 text-white sticky top-0 rounded-xl border h-full w-full md:w-1/3">
         <h2 class="text-center mt-2">Mi cuenta</h2>
         <div class="justify-center mt-4 hidden md:flex">
             <NuxtImg v-if="client?.picture" :src="client.picture" alt="" class="w-32 h-32 rounded-full" />

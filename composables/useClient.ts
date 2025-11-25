@@ -22,12 +22,10 @@ export function useClient() {
     };
 
     const saveClient = async (client: IClient) => {
-        start();
         const data = await $fetch<IClient>("/api/clients/update", {
             method: "POST",
             body: client,
         });
-        finish();
         return data
     }
 

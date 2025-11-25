@@ -25,8 +25,8 @@ function viewClient(item) {
 
 async function viewCompras({ email }) {
   compras.value = [];
-  modalCompras.value = true
   compras.value = await getCompras({ email });
+  modalCompras.value = true
 }
 
 
@@ -45,10 +45,7 @@ const columns = [
     label: "Celular",
     key: "phone",
   },
-  {
-    label: "Dirección",
-    key: "address",
-  },
+  
   {
     label: "Acciones",
     key: "actions",
@@ -57,33 +54,37 @@ const columns = [
 </script>
 
 <template>
-  <div class="max-w-6xl mx-auto">
-    <div class="flex w-full justify-between items-center px-6">
-      <h1 class="text-3xl text-white">Clientes</h1>
-      <UButton icon="i-heroicons-arrow-path" @click="onGetClients" />
+  <div class="w-3/4 ">
+    <div class="flex w-full justify-end pt-4">
+      
+      <UButton icon="i-heroicons-arrow-path" @click="onGetClients" label="Actualizar" class="text-white border bg-white/10 mt-2 rounded-xl" />
     </div>
-    <div class="bg-white p-4 rounded-xl my-6">
+    <div class="flex gap-3 pt-6  " >
+      
+      <div class="bg-white/90 p-4 rounded-xl w-full">
+
+     
       <UTable :loading="isLoading" :columns="columns" :rows="clients">
-        <template #actions-data="{ row }">
+        <template #actions-data="{ row }" >
           <!-- <pre>{{ row._id }}</pre> -->
-          <button @click="viewClient(row)" class="rounded bg-gray-200 p-1 border mx-1">
+          <button @click="viewClient(row)" class="rounded-xl bg-PRP/80 text-white p-1 border mx-1">
             <UTooltip text="Ver / Editar">
               <UIcon name="i-heroicons-clipboard-document-list" class="w-6 h-6" />
             </UTooltip>
           </button>
-          <button @click="viewCompras(row)" class="rounded bg-gray-200 p-1 border mx-1">
+          <button @click="viewCompras(row)" class="rounded-xl bg-PRP/80 text-white  p-1 border mx-1">
             <UTooltip text="Ver Compras">
               <UIcon name="i-heroicons-shopping-bag" class="w-6 h-6" />
             </UTooltip>
           </button>
 
-          <button @click="toDelete = row._id" class="rounded bg-gray-200 p-1 border mx-1">
+          <button @click="toDelete = row._id" class="rounded-xl bg-PRP/80 text-white  p-1 border mx-1">
             <UTooltip text="Eliminar Cliente">
               <UIcon name="i-heroicons-trash" class="w-6 h-6" />
             </UTooltip>
           </button>
         </template>
-      </UTable>
+      </UTable> </div>
     </div>
 
     <AdminDeleteClient v-model="toDelete" />
@@ -103,16 +104,22 @@ const columns = [
     </UModal>
     <UModal v-model="modal" prevent-close>
       <UCard :ui="{ background: 'bg-PRP' }">
-        <div class="p-4" v-if="!edit">
-          <div class="flex gap-2 justify-end">
-            <button @click="edit = true" class="px-3 py-2 border border-white rounded-full">
-              <IconsPencil class="w-5 stroke-white" />
-            </button>
-            <button @click="modal = false" class="px-3 py-2 border border-white rounded-full">
-              <IconsClose class="w-5 stroke-white" />
-            </button>
+        <div class="px-4" v-if="!edit">
+          <div class="flex justify-between ">
+            <p class="text-white text-2xl font-bold pt-1">Información del cliente</p>
+            <div class="flex gap-2">
+
+             
+               <button @click="edit = true" class="bg-white/10 rounded-full p-2">
+                <IconsPencil class="w-7 stroke-white" />
+              </button>
+            <button @click="modal = false" class="bg-white/10 rounded-full p-2">
+              <IconsClose class="w-7 stroke-white" />
+            </button> 
+            </div>
           </div>
-          <div class="px-5 md:flex gap-8">
+          <hr class="my-2 opacity-30">
+          <div class=" md:flex gap-8">
             <div class="text-white font-thin pt-1">
               <p><b>Nombre:</b> {{ client?.fullName }}</p>
               <p><b>Email:</b> {{ client?.email }}</p>
@@ -121,6 +128,7 @@ const columns = [
                 {{ client?.phone ? client.phone : "Sin Número" }}
               </p>
               <p><b>Documento {{ client?.docType }}: </b> {{ client?.docId }}</p>
+              <p><b>Estado:</b> {{ client?.status ? "Inactivo" : "Activo" }}</p>
               <p><b>Departamento:</b> {{ client?.departmentOrStateName }}</p>
               <p><b>Ciudad:</b> {{ client?.locationName }}</p>
               <p><b>Dirección:</b> {{ client?.address }}</p>

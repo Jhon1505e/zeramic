@@ -13,6 +13,7 @@ const isPath = (n: string) => route.name?.toString() === n;
           RESUMEN DE COMPRA
         </NuxtLink>
         <NuxtLink to="/compras/envio"
+        
           class="md:flex justify-center text-center text-xs text-PRP fill-PRP md:text-lg items-center gap-2 p-2 pt-4 md:pt-2 rounded hover:bg-PRP/30 font-semibold duration-150 ease-in"
           :class="{ 'bg-PRP/30': isPath('compras-envio') }">
           <IconsEnvio class="h-10 mx-auto sm:mx-2 pb-1 sm:pb-0" />
