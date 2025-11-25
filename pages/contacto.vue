@@ -40,20 +40,20 @@ const ui = { label: { base: 'text-white' } }
         <div class="w-full  mx-auto px-10 sm:px-0">
           <UForm :state="info" :schema="schema" @submit.prevent="sendMail" class="space-y-2">
             
-            <UFormGroup :ui="ui" label="Correo Electronico" name="email">
+            <UFormField :ui="ui" label="Correo Electronico" name="email">
               <UInput type="email" v-model="info.email"
-                placeholder="Correo Electronico" size="xl" />
-            </UFormGroup>
+                placeholder="Correo Electronico" size="xl" class="w-full" />
+            </UFormField>
 
-            <UFormGroup :ui="ui" label="Asunto" name="subject">
+            <UFormField :ui="ui" label="Asunto" name="subject">
               <UInput type="text" v-model="info.subject"
-                placeholder="Asunto" size="lg" />
-            </UFormGroup>
+                placeholder="Asunto" size="xl" class="w-full" />
+            </UFormField>
             
-            <UFormGroup :ui="ui" label="Mensaje" name="message">
+            <UFormField :ui="ui" label="Mensaje" name="message">
               <UTextarea v-model="info.message" type="text"
-                placeholder="Mensaje" size="lg" />
-            </UFormGroup>
+                placeholder="Mensaje" size="xl" class="w-full" />
+            </UFormField>
 
             <div class="flex justify-center">
               <UButton trailing icon="i-heroicons-paper-airplane"
