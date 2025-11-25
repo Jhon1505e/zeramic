@@ -27,7 +27,7 @@ const isInCart = computed(() => cart.value.has(props.uuid));
             </h2>
 
             <div class="flex gap-2 justify-center">
-              <div class="bg-black/50 border flex gap-2 py-2 px-4 rounded-lg text-white">
+              <div class="hidden bg-black/50 border flex gap-2 py-2 px-4 rounded-lg text-white">
                 {{ isInCart ? "En carrito" : "Añadir" }}
                 <IconsBag class="h-6 w-6 mx-auto" />
               </div>
