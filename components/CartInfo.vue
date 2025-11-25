@@ -34,7 +34,7 @@ onMounted(() => {
         Carrito vacío
       </p>
       <IconsShopping class="w-28 mt-5 mb-8 mx-auto" />
-      <NuxtLink to="/productos" @click="open = false" class="border p-2 rounded-lg font-extralight">
+      <NuxtLink to="/productos" @click="open = false" class="hidden border p-2 rounded-lg font-extralight">
         Añadir productos
       </NuxtLink>
     </div>

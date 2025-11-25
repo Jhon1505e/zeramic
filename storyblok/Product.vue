@@ -11,9 +11,9 @@
 
           <StoryblokComponent v-for="blok in blok.Body" :key="blok._uid" :blok="blok" />
           <div class="w-2/3 pb-10 pl-8 mx-auto">
-            <button @click="addToShop" class="text-white border border-white font-thin px-6 py-2 text-xl rounded-md">
+            <UButton @click="addToShop" class="hidden text-white border border-white font-thin px-6 py-2 text-xl rounded-md">
               {{ isInCart ? "En el carrito" : "Añadir a la compra" }}
-            </button>
+            </UButton>
           </div>
         </div>
       </div>
