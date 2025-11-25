@@ -22,7 +22,7 @@ const isInCart = computed(() => cart.value.has(props.uuid));
         <div
           class="opacity-0 hover:opacity-100 duration-300 h-full w-full flex justify-center items-center bg-black/50 rounded-t-lg">
           <div>
-            <h2 class="text-white font-bold justify-center mt-4 flex">
+            <h2 class="hidden text-white font-bold justify-center mt-4 flex">
               {{ formatMoneda(content?.Precio) }}
             </h2>
 
